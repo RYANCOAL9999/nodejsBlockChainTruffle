@@ -8,6 +8,7 @@ let _cheerio        =   require('cheerio');
 let _modelForm      =   require(base_path+'/model/modelFormData');
 let _HashBlockJson  =   require(base_path+'/build/contracts/HashBlock.json');
 let _modelFormHTML  =   require(base_path+'/model/modelFormHTML');
+let _Tx             =   require('ethereumjs-tx');
 
 class controllerWeb3 
 {
@@ -16,7 +17,7 @@ class controllerWeb3
         this.mongodb = mongodb;
         this.redis = redis; //testnet mainnet to testing!
         this.web3 = new _Web3(new _Web3.providers.HttpProvider(
-            `https://ropsten.infura.io/v3/${_Setting.INFURA_API_KEY}`
+            'https://ropsten.infura.io/v3/${_Setting.INFURA_API_KEY}'
         ));
         this.formHTML = new _modelFormHTML();
     }
@@ -306,6 +307,7 @@ class controllerWeb3
 
     runWeb3Function(hash2)
     {
+
         //_HashBlockJson.abi = abi
         
         // var HashBlock = new this.web3.eth.Contract(_HashBlockJson.abi, _Setting.CONTRACT_ADDRESS,
@@ -321,6 +323,38 @@ class controllerWeb3
         //     console.log(hash);
         //     this.contractEventHandle(formData.shaOneReturnUrl, res);
         // })
+
+        console.log("Calling the function");    //for debug only
+
+        var from_addr = _Setting.WALLET_ADDRESS;
+        var contract_abi = _HashBlockJson.abi;
+        var contract_addr = _Setting.CONTRACT_ADDRESS;
+
+        var TheContract = new this.web3.eth.Contract(contract_abi, contract_addr);
+
+        var method_call_abi = TheContract.methods.UploadHash(hash2).encodeABI();
+
+        this.web3.eth.getTransactionCount(from_addr).then(txCount => {
+
+            const txData = {
+              nonce: this.web3.utils.toHex(txCount),
+              gasLimit: this.web3.utils.toHex(250000),
+              gasPrice: this.web3.utils.toHex(10e8),
+              to: contract_addr,
+              from: from_addr,
+              data: method_call_abi,
+            };
+
+            var transaction = new this.ethereumjs.Tx(txData); 
+            var privateKeyBuf = new this.ethereumjs.Buffer.Buffer(_Setting.ETH_P_KEY, 'hex');
+            transaction.sign(privateKeyBuf);
+            var serializedTx = transaction.serialize().toString('hex');
+
+            this.web3.eth.sendSignedTransaction('0x' + serializedTx).then(console.log);
+        });
+
+        console.log("Hash uploaded");   //for debug only
+        console.log(hash2);
 
     }
 

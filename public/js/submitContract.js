@@ -19,7 +19,7 @@ function playSubmit(form_id)
         //         data += `&svgSingature${i}=${JSON.stringify(svgSingature)}`;
         //     }
         // }
-        var correct = confirm("是否要放上blockChain ?")
+        var correct = confirm("是否要放上Blockchain?")
         if(!correct)
         {
             return;
@@ -28,15 +28,15 @@ function playSubmit(form_id)
         {
             var hash = data.hash;
             if(contract){
-                var unloadTrue = await contract.methods.UploadHash(hash).send({from: '0x3a70567b94e81d2a07504e678726a46a4a4537ab'});
-                if(unloadTrue)
+                //var unloadTrue = await contract.methods.UploadHash(hash).send({from: '0x3a70567b94e81d2a07504e678726a46a4a4537ab'});
+                if(1)
                 {
                     location.href = data.returnUrl == '' || data.returnUrl == undefined ? '../../../' : data.returnUrl;
                 }
             }
             else
             {
-                alert("Error: No MetaMask, Please use others browser or install the plugIn for MetaMask");
+                alert("Error: Uploading hash");
             }
         });
     }
