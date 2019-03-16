@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        }
+
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+
+        .dropdown-content span {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+        .formPDF {
+        display: block;
+        position: relative;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="dropdown">
+            <button class="dropbtn">智能合約</button>
+            <div class="dropdown-content">
+                <span id='3'>出售香港住宅物業用的地產代理協議(表格3)</span>
+                <span id='4'>購買香港住宅物業用的地產代理協議(表格4)</span>
+                <span id='5'>出租香港住宅物業用的地產代理協議(表格5)</span>
+                <span id='6'>承租香港住宅物業用的地產代理協議(表格6)</span>
+                <span id='7'>更改</span>
+            </div>
+        </div>
+        <script type="text/javascript" src="/js/runContract.js"></script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>From 4</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.js"></script>
+        <script src="/displayPDF.js"></script>
+    </head>
+    <body onload="draw('/form/cform4_result.pdf')">
+        <div style="text-align:center;">
+            <div>
+                <button id="prev">Previous</button>
+                <button id="next">Next</button>
+                &nbsp; &nbsp;
+                <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+            </div>
+            <div>
+                <canvas id="the-canvas" style="border:1px solid black;"></canvas>
+            </div>
+        </div>
+    </body>
+</html>

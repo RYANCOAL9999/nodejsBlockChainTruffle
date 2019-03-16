@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        font-size: 10px;
+        border: none;
+        }
+        span.cls_003{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+        </style>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jSignature/2.1.3/jSignature.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+        <script type="text/javascript" src="/js/getForm.js"></script>
+        <script type="text/javascript" src="/js/wz_jsgraphics.js"></script>
+        <script type="text/javascript" src="/js/dAppSetting.js"></script>
+        <script type="text/javascript" src="/js/formDataSetting.js"></script>
+        <script type="text/javascript" src="/js/submitContract.js"></script>
+        <script type="text/javascript" src="/js/formContract.js"></script>
+    </head>
+    <body>
+        <form action="/api/users/date" method="GET" id="dataForm">
+        <span class="cls_003">Agency: <input type="text" name="account"></span><br><br>
+        <span><input type="button" class="dropbtn" value="submit" onclick="clickSubmit()"></span>
+        </form>
+        <p id="spanOPT">Click the "Submit" button and the form-data will be get the contract create date of Agency".</p>
+        <br>
+        <div>
+            <span class="cls_003">文件的 Hash : </span>
+            <span class="cls_003"> <input type="text" name="hash1" size="38" id="formHash" style="height:18px;"></span>
+        </div>
+        <br>
+        <div>
+            <span class="cls_003">放上了block Chain Hash : </span>
+            <span class="cls_003"><input type="text" name="hash2" size="38" id="blockChainHash" style="height:18px;"></span>
+        </div>
+        <br>
+        <div>
+            <span class="cls_003"><input type="button" class="dropbtn" value="compare Two Hash" onclick="playHash()"></span>
+        </div>
+    </body>
+</html>
