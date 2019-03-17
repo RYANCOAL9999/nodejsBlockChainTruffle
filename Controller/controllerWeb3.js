@@ -1,14 +1,14 @@
 'use strict';
-let _Web3           =   require("web3");
-let _Url            =   require('url');
+let _web3           =   require("web3");
+let _url            =   require('url');
 let _path           =   require('path');
-let _Setting        =   require(base_path+'/enum/setting');
+let _setting        =   require(base_path+'/enum/setting');
 let _fs             =   require('fs');
 let _cheerio        =   require('cheerio');
 let _modelForm      =   require(base_path+'/model/modelFormData');
 let _HashBlockJson  =   require(base_path+'/build/contracts/HashBlock.json');
 let _modelFormHTML  =   require(base_path+'/model/modelFormHTML');
-let _Tx             =   require('ethereumjs-tx');
+let _tx             =   require('ethereumjs-tx');
 
 class controllerWeb3 
 {
@@ -16,10 +16,11 @@ class controllerWeb3
     {
         this.mongodb = mongodb;
         this.redis = redis; //testnet mainnet to testing!
-        this.web3 = new _Web3(new _Web3.providers.HttpProvider(
-            'https://ropsten.infura.io/v3/${_Setting.INFURA_API_KEY}'
+        this.web3 = new _Web3(new _web3.providers.HttpProvider(
+            `https://ropsten.infura.io/v3/${_setting.INFURA_API_KEY}`
         ));
         this.formHTML = new _modelFormHTML();
+        this.theContract = new this.web3.eth.Contract(_HashBlockJson.abi, _setting.CONTRACT_ADDRESS);
     }
 
     loadIndexhtml(req, res)
@@ -44,7 +45,7 @@ class controllerWeb3
         }
 
         var unixTime = new Date().getTime();
-        var hash = _.sha1(unixTime+'#'+_Setting.PRIVATE_KEY);
+        var hash = _.sha1(unixTime+'#'+_setting.PRIVATE_KEY);
         var filePath = _path.join(base_path+`/public/htmlCache/${hash}.html`);
         _fs.writeFileSync(filePath, $.html());
         return filePath;
@@ -58,7 +59,7 @@ class controllerWeb3
             res.status(403).send({ error: '沒有這個合約' });
         }
         var html = _fs.readFileSync(path, 'utf8');
-        var params = _Url.parse(req.url, true).query;
+        var params = _url.parse(req.url, true).query;
         if(params.returnUrl)
         {
             path = this.genContentContract(params, html);
@@ -96,14 +97,14 @@ class controllerWeb3
         res.send(JSON.stringify(data)); 
     }
 
-    getContractBalance(req, res)
+    async getContractBalance(req, res)
     {
-        var params = _Url.parse(req.url, true).query;
+        var params = _url.parse(req.url, true).query;
         var contract = undefined;
         if(!params.contract)
         {
             if(params.agency && params.createDay){
-                contract = _.sha1(params.agency+'#'+params.createDay+'#'+_Setting.PRIVATE_KEY);
+                contract = _.sha1(params.agency+'#'+params.createDay+'#'+_setting.PRIVATE_KEY);
             }
         }
         else
@@ -118,10 +119,12 @@ class controllerWeb3
             {
                 var json = JSON.parse(_fs.readFileSync(path, 'utf8'));
                 var html = this.formHTML.renderingHTML(json, params.createDay);
+                var hash = await this.theContract.methods.Get().call({from: _setting.META_MASK_ADDRESS});
                 var passedData = 
                 {
                     html : html,
-                    json : json
+                    json : json,
+                    hash : hash
                 }
                 res.send(JSON.stringify(passedData));
             }
@@ -131,10 +134,10 @@ class controllerWeb3
             res.status(403).send({ error: '沒有這個代理協議' });
         }
     }
-    
+
     getAgentLogInID(req, res)
     {
-        var params = _Url.parse(req.url, true).query;
+        var params = _url.parse(req.url, true).query;
         var path = _path.join(base_path+`/data/${params.account}.json`);
         if(_fs.existsSync(path))
         {
@@ -148,7 +151,7 @@ class controllerWeb3
 
     getContractCreatingDate(req, res)
     {
-        var params = _Url.parse(req.url, true).query;
+        var params = _url.parse(req.url, true).query;
         var path = _path.join(base_path+`/date/${params.account}.json`);
         if(_fs.existsSync(path))
         {
@@ -180,7 +183,7 @@ class controllerWeb3
 
     getContractDifferenetPrice(req, res)
     {
-        var params = _Url.parse(req.url, true).query;
+        var params = _url.parse(req.url, true).query;
         var path = _path.join(base_path+`/data/${params.account}.json`);
         if(_fs.existsSync(path))
         {
@@ -235,7 +238,7 @@ class controllerWeb3
                 unixTime = new Date().getTime();
                 this.saveDate(data.agency, unixTime);
             }
-            var hash = _.sha1(data.agency+'#'+unixTime+'#'+_Setting.PRIVATE_KEY);
+            var hash = _.sha1(data.agency+'#'+unixTime+'#'+_setting.PRIVATE_KEY);
             var filePath = `./data/${hash}.json`;
             var json = JSON.stringify(new _modelForm(data));
             _fs.writeFileSync(filePath, json);
@@ -305,61 +308,33 @@ class controllerWeb3
         }
     }
 
-    runWeb3Function(hash2)
+    async runWeb3Function(hash2)
     {
+        var from_addr = _setting.WALLET_ADDRESS;
+        var contract_addr = _setting.CONTRACT_ADDRESS;
+        var method_call_abi = await this.theContract.methods.UploadHash(hash2). encodeABI();
 
-        //_HashBlockJson.abi = abi
-        
-        // var HashBlock = new this.web3.eth.Contract(_HashBlockJson.abi, _Setting.CONTRACT_ADDRESS,
-        // {
-        //     from : _Setting.META_MASK_ADDRESS,
-        //     gasPrice : _Setting.GAS_PRICE
-        // });
-        // var hash2 = _.sha1(JSON.stringify(formData));
-        // HashBlock.methods.set(hash2).send(
-        // {
-        //         from : _Setting.META_MASK_ADDRESS,
-        // }).on('transactionHash', (hash)=>{
-        //     console.log(hash);
-        //     this.contractEventHandle(formData.shaOneReturnUrl, res);
-        // })
+        var txCount = await this.web3.eth.getTransactionCount(from_addr);
 
-        console.log("Calling the function");    //for debug only
+        var txData = {
+            nonce: this.web3.utils.toHex(txCount),
+            gasLimit: this.web3.utils.toHex(250000),
+            gasPrice: this.web3.utils.toHex(10e8),
+            to: contract_addr,
+            from: from_addr,
+            data: method_call_abi,
+        };
 
-        var from_addr = _Setting.WALLET_ADDRESS;
-        var contract_abi = _HashBlockJson.abi;
-        var contract_addr = _Setting.CONTRACT_ADDRESS;
+        // var transaction = new this.ethereumjs.Tx(txData);                                    //error
+        // var privateKeyBuf = new this.ethereumjs.Buffer.Buffer(_setting.ETH_P_KEY, 'hex');    //error
 
-        var TheContract = new this.web3.eth.Contract(contract_abi, contract_addr);
+        var transaction = new _tx(txData);                              //should be this correct ?
+        var privateKeyBuf = Buffer.from(_setting.ETH_P_KEY, 'hex');     //should be this correct ?
 
-        var method_call_abi = TheContract.methods.UploadHash(hash2).encodeABI();
-
-        this.web3.eth.getTransactionCount(from_addr).then(txCount => {
-
-            const txData = {
-              nonce: this.web3.utils.toHex(txCount),
-              gasLimit: this.web3.utils.toHex(250000),
-              gasPrice: this.web3.utils.toHex(10e8),
-              to: contract_addr,
-              from: from_addr,
-              data: method_call_abi,
-            };
-
-            var transaction = new this.ethereumjs.Tx(txData); 
-            var privateKeyBuf = new this.ethereumjs.Buffer.Buffer(_Setting.ETH_P_KEY, 'hex');
-            transaction.sign(privateKeyBuf);
-            var serializedTx = transaction.serialize().toString('hex');
-
-            this.web3.eth.sendSignedTransaction('0x' + serializedTx).then(console.log);
-        });
-
-        console.log("Hash uploaded");   //for debug only
-        console.log(hash2);
-
+        transaction.sign(privateKeyBuf);
+        var serializedTx = transaction.serialize().toString('hex');
+        this.web3.eth.sendSignedTransaction('0x' + serializedTx).then(console.log);
     }
-
-
-
 }
 
 module.exports = controllerWeb3;

@@ -32,105 +32,19 @@ async function playHash()
     }
 }
 
-async function render(data)
+async function render(data, hash)
 {
     var dataHash = await hashQuery(data);
-    var blockHash = undefined;
-    if(contract){
-        console.log("calling Get()");
-        //blockHash = await TheContract.methods.Get().call({from: _Setting.WALLET_ADDRESS});
-        var from_addr = "0x49a6cAAfd2fD3821D511b7A937FE7A35A2D88077";
-        var contract_abi = 
-[
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "hash",
-      "outputs": [
-        {
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "OwnerAddress",
-      "outputs": [
-        {
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_newOwner",
-          "type": "address"
-        }
-      ],
-      "name": "ChangeOwner",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_hash",
-          "type": "string"
-        }
-      ],
-      "name": "UploadHash",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "Get",
-      "outputs": [
-        {
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    }
-];
-        var contract_addr = "0xcb23f695e92994ced13deabbc071753b82b43076";
-
-        var TheContract = new this.web3.eth.Contract(contract_abi, contract_addr);
-
-        blockHash = await TheContract.methods.Get().call({from: "0x49a6cAAfd2fD3821D511b7A937FE7A35A2D88077"});
-        console.log(blockHash);
-    }
+    var blockHash = hash;
     dbFormData = data;
     $("#formHash").val(dataHash);
     $("#blockChainHash").val(blockHash);
 }
 
-function formTest(data)
+function formTest(data, hash)
 {
     var textareaObject = data.textareaObject;
     var signatureObject = data.signatureObject;
-    // console.log(signatureObject);
-
     for(var textarea in textareaObject)
     {
         $(`#${textarea}T`).val(textareaObject[textarea]);
@@ -142,7 +56,7 @@ function formTest(data)
         image.src = signatureObject[signature];
         document.body.append(image);
     }
-    render(data);
+    render(data, hash);
 
 }
 function readContract()
@@ -159,7 +73,7 @@ function readContract()
             $("#spanOPT").append(`<br>`);
             $("#spanOPT").append(`<br>`);
             $("#spanOPT").append(data.html);
-            formTest(data.json);
+            formTest(data.json, data.hash);
         },
         error: function (data) {
             alert(data.responseJSON.error);
