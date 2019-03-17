@@ -16,7 +16,7 @@ class controllerWeb3
     {
         this.mongodb = mongodb;
         this.redis = redis; //testnet mainnet to testing!
-        this.web3 = new _Web3(new _web3.providers.HttpProvider(
+        this.web3 = new _web3(new _web3.providers.HttpProvider(
             `https://ropsten.infura.io/v3/${_setting.INFURA_API_KEY}`
         ));
         this.formHTML = new _modelFormHTML();
