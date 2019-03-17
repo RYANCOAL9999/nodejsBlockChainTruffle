@@ -97,42 +97,38 @@ class controllerWeb3
         res.send(JSON.stringify(data)); 
     }
 
+    
+
     async getContractBalance(req, res)
     {
         var params = _url.parse(req.url, true).query;
-        var contract = undefined;
-        if(!params.contract)
+        var agency = params.agency;
+        var createDay = Number(params.createDay);
+        if(!agency || !createDay)
         {
-            if(params.agency && params.createDay){
-                contract = _.sha1(params.agency+'#'+params.createDay+'#'+_setting.PRIVATE_KEY);
-            }
+            this.sendError(403, res, '沒有這個代理協議');
+            return;
         }
-        else
+        var contract = this.hashFilePath(agency, createDay);
+        var path = _path.join(base_path+`/data/${contract}.json`);
+
+        if(!_fs.existsSync(path))
         {
-            contract = params.contract;
+            this.sendError(403, res, '沒有這個代理協議');
+            return;
         }
-        if(contract)
+
+        var json = JSON.parse(_fs.readFileSync(path, 'utf8'));
+        var num = Object.values(JSON.parse(_fs.readFileSync(`date/${agency}.json`, 'utf8')).date).indexOf(createDay);
+        var html = this.formHTML.renderingHTML(json, createDay);
+        var hash = await this.theContract.methods.Get(agency, num).call({from: _setting.WALLET_ADDRESS});
+        var passedData = 
         {
-            var path = _path.join(base_path+`/data/${contract}.json`);
-            
-            if(_fs.existsSync(path))
-            {
-                var json = JSON.parse(_fs.readFileSync(path, 'utf8'));
-                var html = this.formHTML.renderingHTML(json, params.createDay);
-                var hash = await this.theContract.methods.Get().call({from: _setting.META_MASK_ADDRESS});
-                var passedData = 
-                {
-                    html : html,
-                    json : json,
-                    hash : hash
-                }
-                res.send(JSON.stringify(passedData));
-            }
+            html : html,
+            json : json,
+            hash : hash
         }
-        else
-        {
-            res.status(403).send({ error: '沒有這個代理協議' });
-        }
+        res.send(JSON.stringify(passedData));    
     }
 
     getAgentLogInID(req, res)
@@ -145,7 +141,7 @@ class controllerWeb3
         }
         else
         {
-            res.status(403).send({ error: '沒有這個代理' });
+            this.sendError(403, res, '沒有這個代理');
         }
     }
 
@@ -155,14 +151,11 @@ class controllerWeb3
         var path = _path.join(base_path+`/date/${params.account}.json`);
         if(_fs.existsSync(path))
         {
-            var data = _fs.readFileSync((path), 'utf8');
-            // console.log(data);
-
             res.send(_fs.readFileSync((path), 'utf8'));
         }
         else
         {
-            res.status(403).send({ error: '沒有這個代理' });
+            this.sendError(403, res, '沒有這個代理');
         }
     
     }
@@ -177,7 +170,7 @@ class controllerWeb3
         }
         else
         {
-            res.status(403).send({ error: '沒有這個代理' });
+            this.sendError(403, res, '沒有這個代理');
         }
     }
 
@@ -191,7 +184,7 @@ class controllerWeb3
         }
         else
         {
-            res.status(403).send({ error: '沒有這個代理協議' });
+            this.sendError(403, res, '沒有這個代理協議');
         }
     }
 
@@ -210,7 +203,12 @@ class controllerWeb3
         });
     }
 
-    saveDate(agencyId, data)
+    fileExist(filePath)
+    {
+        return _fs.existsSync(filePath);
+    }
+
+    saveDate(agencyId, unixTime)
     {
         var filePath = `./date/${agencyId}.json`;
         var oldData = undefined;
@@ -224,27 +222,28 @@ class controllerWeb3
             oldData.date = [];
         }
         // console.log(oldData);
-        oldData.date.push(data);
+        oldData.date.push(unixTime);
         _fs.writeFileSync(filePath, JSON.stringify(oldData)); 
     }
 
-    saveData(data)
+    saveData(data, agency, unixTime)
     {
         if(data)
         {
-            var unixTime = data.oldCreateDay;
             if(!unixTime)
             {
-                unixTime = new Date().getTime();
-                this.saveDate(data.agency, unixTime);
+                var unixTime = new Date();
+                this.saveDate(agency, unixTime.getTime());
             }
-            var hash = _.sha1(data.agency+'#'+unixTime+'#'+_setting.PRIVATE_KEY);
+            var hash = this.hashFilePath(agency, unixTime.getTime());
             var filePath = `./data/${hash}.json`;
-            var json = JSON.stringify(new _modelForm(data));
-            _fs.writeFileSync(filePath, json);
-            return json; 
+            _fs.writeFileSync(filePath, data);
         }
-        return undefined;
+    }
+
+    renderData(data)
+    {
+        return JSON.stringify(new _modelForm(data));
     }
 
     /**
@@ -252,11 +251,10 @@ class controllerWeb3
      * load post api
      */
 
-    contractEventHandle(shaOneReturnUrl, hash, res)
+    contractEventHandle(shaOneReturnUrl, res)
     {
         var data = {
-            returnUrl : shaOneReturnUrl,
-            hash : hash
+            returnUrl : shaOneReturnUrl
             //get on redis
             //returnUrl : await queryUrl(shaOneReturnUrl)
         };
@@ -283,8 +281,8 @@ class controllerWeb3
             }
         }
         var json = JSON.stringify(formData);
-        var hash2 = _.sha1(json);
-        res.send(hash2);
+        var hash = _.sha1(json);
+        res.send(hash);
     }
 
     /*async*/ 
@@ -294,28 +292,53 @@ class controllerWeb3
         
         if(formData)
         {
-            var json = this.saveData(formData);
-            var hash2 = _.sha1(json);
+            var returnUrl = formData.shaOneReturnUrl;
+            var agency = formData.agency;
+            var unixTime = formData.oldCreateDay;
+            var json = this.renderData(formData);
+            var hash = _.sha1(json);
             if(formData.action == 'save')
             {
-                hash2 = undefined;
+                this.saveData(json, agency, unixTime);
+                this.contractEventHandle(returnUrl, res);
             }
             else
             {
-                this.runWeb3Function(hash2);
+                this.runWeb3Function(hash, returnUrl, res, json, agency, unixTime);
             }
-            this.contractEventHandle(formData.shaOneReturnUrl, hash2, res);
         }
     }
 
-    async runWeb3Function(hash2)
+    hashFilePath(agency, createDay)
+    {
+        return _.sha1(agency+'#'+createDay+'#'+_setting.PRIVATE_KEY);
+    }
+
+    sendError(code, res, message)
+    {
+        res.status(code).send({ error: message });
+    }
+
+
+    async runWeb3Function(hash, returnUrl, res, json, agency, unixTime)
     {
         var from_addr = _setting.WALLET_ADDRESS;
         var contract_addr = _setting.CONTRACT_ADDRESS;
-        var method_call_abi = await this.theContract.methods.UploadHash(hash2). encodeABI();
+
+        var num = 0;
+        var filePath = `./date/${agency}.json`;
+        if(_fs.existsSync(filePath))
+        {
+            num = JSON.parse(_fs.readFileSync(filePath, 'utf8')).length;
+        }
+        var method_call_abi = await this.theContract.methods.UploadHash(agency, num, hash). encodeABI();
+        if(!method_call_abi)
+        {
+            this.sendError(403, res, 'cannot unload this contract');
+            return;
+        }
 
         var txCount = await this.web3.eth.getTransactionCount(from_addr);
-
         var txData = {
             nonce: this.web3.utils.toHex(txCount),
             gasLimit: this.web3.utils.toHex(250000),
@@ -325,15 +348,22 @@ class controllerWeb3
             data: method_call_abi,
         };
 
-        // var transaction = new this.ethereumjs.Tx(txData);                                    //error
-        // var privateKeyBuf = new this.ethereumjs.Buffer.Buffer(_setting.ETH_P_KEY, 'hex');    //error
-
-        var transaction = new _tx(txData);                              //should be this correct ?
-        var privateKeyBuf = Buffer.from(_setting.ETH_P_KEY, 'hex');     //should be this correct ?
+        var transaction = new _tx(txData);                             
+        var privateKeyBuf = Buffer.from(_setting.ETH_P_KEY, 'hex');   
 
         transaction.sign(privateKeyBuf);
         var serializedTx = transaction.serialize().toString('hex');
-        this.web3.eth.sendSignedTransaction('0x' + serializedTx).then(console.log);
+        var confirmSendSignTransaction = await this.web3.eth.sendSignedTransaction('0x' + serializedTx);
+        console.log(confirmSendSignTransaction);
+        if(confirmSendSignTransaction)
+        {
+            this.saveData(json, agency, unixTime);
+            this.contractEventHandle(returnUrl, res);
+        }
+        else
+        {
+            this.sendError(403, res, 'cannot unload this contract');
+        }
     }
 }
 

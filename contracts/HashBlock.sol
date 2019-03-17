@@ -3,7 +3,13 @@ pragma solidity ^0.5.0;
 contract HashBlock
 {
 	address public OwnerAddress = msg.sender;								//Set the contract owner when deploy
-	string public hash;
+	
+	struct Record
+	{
+		string[1000000]	A_hash;
+	}
+	
+	mapping(string => Record) _Record;
 
 	modifier OnlyOwner {
 		if(msg.sender == OwnerAddress)_;									//Only The contract owner
@@ -15,12 +21,12 @@ contract HashBlock
 		OwnerAddress = _newOwner;
 	}
 
-	function UploadHash(string memory _hash) public									//Upload the hash
+	function UploadHash(string memory _id, uint _num, string memory _hash) public OnlyOwner									//Upload the hash
 	{
-		hash = _hash;
+	        _Record[_id].A_hash[_num] = _hash;
 	}
 	
-	function Get() view public returns (string memory) {								//View the hash by calling this function, callback do not need gas
-		return hash;
-  }
+	function Get(string memory id, uint num) public view OnlyOwner returns (string memory) {
+        return _Record[id].A_hash[num];
+    }
 }
