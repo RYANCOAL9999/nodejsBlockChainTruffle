@@ -37,7 +37,7 @@ class mongoConnectionHelper extends _EventEmitter
      */
     createConnection(host, port)
     {
-        _Mongoose.connect(`mongodb://${host}:${port}/testproject`, 	
+        _Mongoose.connect(`mongodb://${host}:${port}/truffle`, 	
         {
             // useMongoClient: true,
             autoIndex: false, 
@@ -106,10 +106,6 @@ class mongoConnectionHelper extends _EventEmitter
     {
         return this.dbConnected;
     }
-    
-
-
-
 }
 
 module.exports = mongoConnectionHelper;

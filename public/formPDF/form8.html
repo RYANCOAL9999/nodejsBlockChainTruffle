@@ -1,0 +1,362 @@
+
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style type="text/css">
+            span.cls_002{font-family:Arial,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_002{font-family:Arial,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_003{font-family:Arial,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_003{font-family:Arial,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_004{font-family:Arial,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_004{font-family:Arial,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_006{font-family:Arial,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_006{font-family:Arial,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_007{font-family:Arial,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_007{font-family:Arial,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_009{font-family:Arial,serif;font-size:7.6px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_009{font-family:Arial,serif;font-size:7.6px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_010{font-family:Arial,serif;font-size:7.6px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_010{font-family:Arial,serif;font-size:7.6px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_012{font-family:Arial,serif;font-size:8.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_012{font-family:Arial,serif;font-size:8.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_011{font-family:Arial,serif;font-size:8.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_011{font-family:Arial,serif;font-size:8.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_013{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_013{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_014{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_014{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_015{font-family:Arial,serif;font-size:9.1px;color:rgb(255,255,255);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_015{font-family:Arial,serif;font-size:9.1px;color:rgb(255,255,255);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_019{font-family:Arial,serif;font-size:12.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_019{font-family:Arial,serif;font-size:12.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_020{font-family:Arial,serif;font-size:11.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_020{font-family:Arial,serif;font-size:11.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_021{font-family:Arial,serif;font-size:8.1px;color:rgb(255,255,255);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_021{font-family:Arial,serif;font-size:8.1px;color:rgb(255,255,255);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_036{font-family:Arial,serif;font-size:7.6px;color:rgb(0,0,255);font-weight:normal;font-style:normal;text-decoration: underline}
+            div.cls_036{font-family:Arial,serif;font-size:7.6px;color:rgb(0,0,255);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_023{font-family:Arial,serif;font-size:7.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_023{font-family:Arial,serif;font-size:7.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_024{font-family:Arial,serif;font-size:7.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_024{font-family:Arial,serif;font-size:7.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_025{font-family:Arial,serif;font-size:11.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_025{font-family:Arial,serif;font-size:11.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            span.cls_031{font-family:Times,serif;font-size:9.1px;color:rgb(255,255,255);font-weight:bold;font-style:normal;text-decoration: none}
+            div.cls_031{font-family:Times,serif;font-size:9.1px;color:rgb(255,255,255);font-weight:bold;font-style:normal;text-decoration: none}
+            span.cls_032{font-family:Times,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+            div.cls_032{font-family:Times,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+            span.cls_029{font-family:Times,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:bold;font-style:italic;text-decoration: none}
+            div.cls_029{font-family:Times,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:bold;font-style:italic;text-decoration: none}
+            span.cls_033{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:bold;font-style:italic;text-decoration: none}
+            div.cls_033{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:bold;font-style:italic;text-decoration: none}
+            span.cls_035{font-family:"Latha",serif;font-size:6.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            div.cls_035{font-family:"Latha",serif;font-size:6.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+            .sortOptions > label {
+                font-size:          10px;
+            }
+            .sortOptions > input[type=radio] {
+                width:              10px;
+                height:             10px;
+            }
+            input[type="text"]{
+                font-size: 10px;
+            }
+            input[type="number"]{
+                font-size: 10px;
+            }
+            input[type="date"]{
+                font-size: 10px;
+            }
+            textarea{
+                font-size: 10px;
+            }
+            ul{
+                list-style: none;
+            }
+            select{
+                font-size: 10px;
+            }
+            label{
+                font-size: 10px;
+            }
+            .container {
+            max-width: 500px;
+            }
+            .lh-condensed { line-height: 1.25; }
+        </style>
+    </head>
+    <body>
+        <form name="formNewsLetter">
+            <div style="position:absolute;left:50%;margin-left:-297px;top:0px;width:595px;height:841px;border-style:outset;overflow:hidden">
+                <div style="position:absolute;left:242px;top:10px" class="cls_004">
+                    <span class="cls_004">貸款轉介服務申請表格</span>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    <span class="cls_003" style="font-weight:bold;" id="uniqueNumber"></span>
+                </div>
+                <div style="position:absolute;left:40px;top:28px" class="cls_009"><span class="cls_009">致</span><span class="cls_010">  </span><span class="cls_009">銀行</span><span class="cls_010">/</span><span class="cls_009">金融機構告示</span></div>
+                <div style="position:absolute;left:40px;top:46px" class="cls_009"><span class="cls_009">貴行對貸款批核擁有絶對決定權。</span><span class="cls_010"> </span><span class="cls_009">本公司不會核實任何有關轉介客戶之資料。</span><span class="cls_010"> </span><span class="cls_009">因此</span><span class="cls_010">，</span><span class="cls_009">本公司不會就</span><span class="cls_010">  </span><span class="cls_009">貴行</span><span class="cls_010"> (i)</span><span class="cls_009">因轉介客戶在此申請表格內或另外遞交</span></div>
+                <div style="position:absolute;left:40px;top:64px" class="cls_009"><span class="cls_009">之任何陳述或資料與</span><span class="cls_010">/</span><span class="cls_009">或</span><span class="cls_010"> (ii)</span><span class="cls_009">因批核貸款直接或間接而招致之任何損失或損害承擔任何法律責任。</span></div>
+                <div style="position:absolute;left:40px;top:82px" class="cls_012">
+                    <span class="cls_012"><span class="cls_003" id="agency" style="color:lightblue;text-decoration:underline;"></span>現免費提供樓宇貸款轉介服務。</span></div>
+                <div style="position:absolute;left:278px;top:100px" class="cls_012"><span class="cls_012">貸款人資料</span></div>
+                
+                <div style="position:absolute;left:40px;top:120px" class="cls_013">
+                    <div class="container">
+                        <span class="cls_013">申請人</span>
+                        <span class="cls_014">（1）：</span>
+                        <span class="cls_003" id="userAEng" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_014">(</span>
+                        <span class="cls_013">英文</span>
+                        <span class="cls_014">)(</span>
+                        <span class="cls_003" id="userAExclusive" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_014">)  </span>
+                        <span class="cls_013">身份證號碼</span>
+                        <span class="cls_014">: </span>
+                        <span class="cls_003" id="userAIDNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_014">(</span>
+                        <span class="cls_003" id="userAIDBRNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_014">)</span>
+                        <br>
+                        <span class="cls_013">出生日期</span>
+                        <span class="cls_014">:</span>
+                        <span class="cls_003" id="userABirthday" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">教育程度</span>
+                        <span class="cls_014">:</span>
+                        <span class="cls_003" id="userAEducation" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">電郵</span>
+                        <span class="cls_014">:</span>
+                        <span class="cls_003" id="userAEmail" style="color:lightblue;text-decoration:underline;"></span>
+                        <br>
+                        <span class="cls_013">流動電話:</span>
+                        <span class="cls_003" id="userAMobilePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">辦公室電話:</span>
+                        <span class="cls_003" id="userAOfficePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">住宅電話:</span>
+                        <span class="cls_003" id="userATelePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">傳真:</span>
+                        <span class="cls_003" id="userAFaxNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">職位:</span>
+                        <span class="cls_003" id="userAPosition" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">業務性質:</span>
+                        <span class="cls_003" id="userABusinessNature" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_003" id="userAEmploy" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">每月個人收入$:</span>
+                        <span class="cls_003" id="userAIncomeDollar"  readonly size="8"></span>
+                        <span class="cls_003" id="userAIncome" style="color:lightblue;text-decoration:underline;"></span>
+                    </div>
+                </div>
+                <div style="position:absolute;left:40px;top:190px" class="cls_013">
+                    <div class="container">
+                        <span class="cls_013">申請人</span>
+                        <span class="cls_014">（2）：</span>
+                        <span class="cls_003" id="userBEng" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_014">(</span>
+                        <span class="cls_013">英文</span>
+                        <span class="cls_014">)(</span>
+                        <span class="cls_003" id="userBExclusive" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_014">)  </span>
+                        <span class="cls_013">身份證號碼</span>
+                        <span class="cls_014">: </span>
+                        <span class="cls_003" id="userBIDNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_014">(</span>
+                        <span class="cls_003" id="userBIDBRNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_014">)</span>
+                        <br>
+                        <span class="cls_013">出生日期</span>
+                        <span class="cls_014">:</span>
+                        <span class="cls_003" id="userBBirthday" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">教育程度</span>
+                        <span class="cls_014">:</span>
+                        <span class="cls_003" id="userBEducation" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">電郵</span>
+                        <span class="cls_014">:</span>
+                        <span class="cls_003" id="user=BEmail" style="color:lightblue;text-decoration:underline;"></span>
+                        <br>
+                        <span class="cls_013">流動電話:</span>
+                        <span class="cls_003" id="userBMobilePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">辦公室電話:</span>
+                        <span class="cls_003" id="userBOfficePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">住宅電話:</span>
+                        <span class="cls_003" id="userBTelePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">傳真:</span>
+                        <span class="cls_003" id="userBFaxNumber" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">職位:</span>
+                        <span class="cls_003" id="userBPosition" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">業務性質:</span>
+                        <span class="cls_003" id="userBBusinessNature" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_003" id="userBEmploy" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">每月個人收入$:</span>
+                        <span class="cls_003" id="userBIncomeDollar"  readonly size="8"></span>
+                        <span class="cls_003" id="userBIncome" style="color:lightblue;text-decoration:underline;"></span>
+                    </div>
+                </div>
+                <div style="position:absolute;left:40px;top:250px" class="cls_013">
+                    <div class="container">
+                        <span class="cls_013">聯絡人(如客戶為公司)</span>
+                        <span class="cls_013"><span class="cls_003" id="contractPerson" style="color:lightblue;text-decoration:underline;"></span>
+                        <br>
+                        <span class="cls_013">通訊地址(英文) : Flat</span>
+                        <span class="cls_013"><span class="cls_003" id="contractFlat" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">Floor</span>
+                        <span class="cls_013"><span class="cls_003" id="contractFloor" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">Block</span>
+                        <span class="cls_013"><span class="cls_003" id="contractBlock"  style="color:lightblue;text-decoration:underline;"></span>
+                    </div>
+                </div>
+                
+                <div style="position:absolute;left:283px;top:300px" class="cls_012"><span class="cls_012">物業資料</span></div>
+                <div style="position:absolute;left:40px;top:320px" class="cls_013">
+                    <div class="container">
+                        <span class="cls_013">按揭物業地址(請以英文正楷填寫) : Flat</span>
+                        <span class="cls_013"><span class="cls_003" id="propertyFlat" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">Floor</span>
+                        <span class="cls_013"><span class="cls_003" id="propertyFloor" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">Block</span>
+                        <span class="cls_013"><span class="cls_003" id="propertyBlock" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">車位地址</span>
+                        <span class="cls_013"><span class="cls_003" id="carAddress" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013"><span class="cls_003" id="contractBlock"  style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013"><span class="cls_003" id="cover" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">購入價 $ </span>
+                        <span class="cls_013"><span class="cls_003" id="price" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">成交/擬提取貸款日期</span>
+                        <span class="cls_013"><span class="cls_003" id="propertyDate" style="color:lightblue;text-decoration:underline;"></span>
+                        <br>
+                        <span class="cls_013">物業種類：</span>
+                        <span class="cls_003" id="propertyCat" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_003" id="propertyOther" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">物業狀況<input type="checkbox" name="propertyStatus" value=1><label for=1>現樓</label>
+                        <span class="cls_013">( 請註明: </span>
+                        <span class="cls_003" id="market" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">)</span>
+                        <span class="cls_013"><input type="checkbox" name="propertyOffPlan" value=1><label for=1>樓花</label></span>
+                    </div>
+                </div>
+
+                <div style="position:absolute;left:283px;top:380px" class="cls_012"><span class="cls_012">貸款資料及要求</span></div>
+                <div style="position:absolute;left:40px;top:400px" class="cls_013">
+                    <div class="container">
+                        <span class="cls_013">貸款目的：</span>
+                        <span class="cls_003" id="loanPurpose" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">附帶貸款計劃 :</span>
+                        <span class="cls_003" id="additionalLoanPlan" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">貸款要求 :</span>
+                        <span class="cls_013"><input type="checkbox" name="loanRequest" value=1><label for=1>貸款額額</label></span>
+                        <span class="cls_013">(不少於＄</span>
+                        <span class="cls_003" id="loanRequestMoney" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">或</span>
+                        <span class="cls_003" id="loanRequestPer" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">%)</span>
+                        <span class="cls_013"><input type="checkbox" name="interestRate" value=1><label for=1>利率</label></span>
+                        <span class="cls_013">(不高於</span>
+                        <span class="cls_013" id="interestRatePer" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">%)</span>
+                        <br>
+                        <span class="cls_013"><input type="checkbox" name="repaymentPeriod" value=1><label for=1>還款年期</label></span>
+                        <span class="cls_013">(不超過</span>
+                        <span class="cls_013" id="repaymentPeriodYear" style="color:lightblue;text-decoration:underline;" ></span>
+                        <span class="cls_013">年)</span>
+                        <span class="cls_003" id="userAIncome" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_003" id="contribution" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013"><input type="checkbox" name="penaltyPeriod" value=1><label for=1>罰息期</label></span>
+                        <span class="cls_013">(不超過</span>
+                        <span class="cls_013" id="penaltyPeriodYear" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">年)</span>
+                        <span class="cls_013"><input type="checkbox" name="cashRebate" value=1><label for=1>現金回贈</label></span>
+                        <span class="cls_013">(不少過</span>
+                        <span class="cls_013" id="cashRebatePer" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">%)</span>
+                        <span class="cls_013"><input type="checkbox" name="approvalLoan" value=1><label for=1>批核時間</label></span>
+                        <span class="cls_013">(不超過</span>
+                        <span class="cls_013" id="approvalLoanDay" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_013">日)</span>
+                    </div>
+                </div>
+                <div style="position:absolute;left:274px;top:460px" class="cls_012"><span class="cls_012">現有按揭資料</span></div>
+                <div style="position:absolute;left:40px;top:480px" class="cls_012">
+                    <div class="container">
+                        <span class="cls_012">尚餘供款期</span><span class="cls_011"> </span>
+                        <span class="cls_012"><span class="cls_003" id="remainingContributionPeriodYear" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_012">年</span><span class="cls_011"> </span>
+                        <span class="cls_012">尚餘罰款期</span><span class="cls_011"> </span>
+                        <span class="cls_012"><span class="cls_003" id="surlusFineYear" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_012">年</span><span class="cls_011"> </span>
+                        <span class="cls_012">尚餘欠款額</span><span class="cls_011"> $  </span>
+                        <span class="cls_012"><span class="cls_003" id="AmountOwned" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_012">按揭銀行</span><span class="cls_011"></span>
+                        <span class="cls_012"><span class="cls_003" id="bankMortgage" style="color:lightblue;text-decoration:underline;"></span>
+                        <span class="cls_012">現有按揭息率</span><span class="cls_011"></span>
+                        <span class="cls_012"><span class="cls_003" id="existingMortgageRate" style="color:lightblue;text-decoration:underline;"></span>
+                    </div>
+                </div>
+                <div style="position:absolute;left:265px;top:520px" class="cls_012"><span class="cls_012">選擇銀行</span><span class="cls_011">/</span><span class="cls_012">金融機構</span></div>
+                <div style="position:absolute;left:40px;top:540px" class="cls_012">
+                    <div class="container">
+                        <span class="cls_012">若閣下欲優先選擇任何銀行</span>
+                        <span class="cls_011">/</span>
+                        <span class="cls_012">金融機構</span>
+                        <span class="cls_011">，</span>
+                        <span class="cls_012">請列出名稱</span>
+                        <span class="cls_011">：</span>
+                        <span class="cls_003" id="BankChoose" style="color:lightblue;text-decoration:underline;"></span>
+                        <br>
+                        <span class="cls_012">如閣下欲拒絕被轉介到任何一間銀行</span>
+                        <span class="cls_011">/</span>
+                        <span class="cls_012">金融機構</span>
+                        <span class="cls_011">，</span>
+                        <span class="cls_012">請列出名稱</span>
+                        <span class="cls_011">：</span>
+                        <span class="cls_003" id="otherBankChoose" style="color:lightblue;text-decoration:underline;"></span>
+                    </div>
+                </div>
+                <div style="position:absolute;left:283px;top:580px" class="cls_012"><span class="cls_012">客戶聲明</span></div>
+                <div style="position:absolute;left:40px;top:600px" class="cls_012"><span class="cls_012">
+                本人(等)已參閱並明白及同意以下條款:-
+                </div>
+                <div style="position:absolute;left:13px;top:605px" class="cls_012"><span class="cls_012">
+                    <div class="container">
+                        <ol type="1" class="container">
+                            <li>本人(等)不須支付任何費用予經絡及有權拒絕接受經絡介紹的銀行/金融機構貸款。</li>
+                            <li>本人(等)確認上述資料均屬正確並授權本公司可將本人(等)之個人資料轉介至本人(等)所選之銀行/金融機構，以便有關銀行/金融機構可直接聯絡本人(等)辦理貸款
+                                申請手續。</li>
+                            <li>本人(等)明確表示同意及授權本公司代表本人(等)為轉介目的跟進及轉遞本人(等)向銀行/金融機構提交的申請及向銀行/金融機構收取有關本人(等)的申請進度資料。
+                                <br>
+                                本人(等)亦授權銀行/金融機構接受經絡轉介及利用此表格所載之個人資料與本人(等)直接聯繫及向經絡發放有關本人(等)的申請進度的資料。
+                            </li>
+                            <li>本人(等)明白銀行/金融機構對貸款事宜擁有最終批核權。</li>
+                            <li>如本人(等)接受任何一間由經絡介紹之銀行/金融機構貸款，本人(等)明白並同意經絡將會獲得該銀行之介紹費。</li>
+<!--                            <li>除非於下述選項中提出反對，本人(等)同意在貸款提取後只有申請人（1）獲得並接受本公司之會籍並同意使用及/或轉移本人(等)之個人資料（包括姓名、-->
+<!--                                電話號碼及電郵地址）用作處理會員申請和提供會員福利、優惠、服務、活動及/或獎賞的用途（詳情載於本公司的網頁-->
+<!--                                及/或本公司私隱政策聲明內所列之其他第三方(下稱「其他第三方」)作直接促銷，本人（等）明白即使已同意經絡使用及/或轉移本人（等）之個人資料至本公司-->
+<!--                                及/或其他第三方，本人(等)仍有權隨時要求本公司在不收費的情況下停止使用及/或轉移本人(等)之個人資料至本公司及<br>/或其他第三方作前述用途，詳情可參考-->
+<!--                                本公司之私隱政策聲明。</li>-->
+                        </ol>
+                    </div>
+                </div>
+                <div style="position:absolute;left:40px;top:720px" class="cls_013">
+                    <div class="container">
+                        <span class="cls_013">本人(等)反對本公司:</span>
+                        <span class="cls_013"><input type="checkbox" name="rejectForDirectMarket" value=1><label>將本人(等)之個人資料轉移予其他第三方作直接促銷用途</label></span>
+                        <span class="cls_013"><input type="checkbox" name="rejectForLoanReferral" value=1><label>使用本人(等)之個人資料作直接促銷本公司之貸款轉介服務</label></span>
+                        <span class="cls_013"><input type="checkbox" name="rejectForSendData" value=1><label>將本人(等)之個人資料轉移予其他公司</label></span>
+                    </div>
+                </div>
+                <div style="position:absolute;left:40px;top:760px" class="cls_025">
+                    <div class="container">
+                        <span class="cls_025">客戶簽署</span>
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                        <span class="cls_025"></span><span class="cls_025">日期</span><span class="cls_019">:</span>
+                        <span class="cls_025" id="userSignDate" style="color:lightblue;text-decoration:underline;"></span>
+                     </div>
+                </div>
+                <div style="position:absolute;left:40px;top:780px" class="cls_012"><span class="cls_012">
+                    <span class="cls_003">
+                    <img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" id="svgUser" width="40" height="40">
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

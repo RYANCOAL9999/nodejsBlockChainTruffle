@@ -1,27 +1,39 @@
 //function can not be init submit and cancel
-function insertNewProperty()
+
+function insertNewProperty(form_id, language)
 {
-    var radioButtonIndex = Number($('#radioUpdate1').val());
-    //event listeners
-    var row = $(`<tr>`);
-    row.append($(`<td style="width:150px;height:100px;border-style:outset;overflow:hidden"><textarea rows="8" cols="20" id="showPropertyName${inputproperty}T" name="showPropertyName${inputproperty}"></textarea></td>`))
-       .append($(`<td style="width:150px;height:100px;border-style:outset;overflow:hidden"><textarea rows="8" cols="20" id="showPropertyDate${inputproperty}T" name="showPropertyDate${inputproperty}"></textarea></td>`))
-       .append($(`<td style="width:150px;height:100px;border-style:outset;overflow:hidden"><span class="sortOptions"><input type="radio" name="propertyRelase${inputproperty}" value=${radioButtonIndex} checked><label for=${radioButtonIndex}>是</label><input type="radio" name="propertyRelase${inputproperty}" value=${radioButtonIndex+1}><label for=${radioButtonIndex+1}>否</label></span></td>`))
-       .append($(`<td style="width:150px;height:100px;border-style:outset;overflow:hidden"><span class="sortOptions"><input type="radio" name="propertyRelation${inputproperty}" value=${radioButtonIndex+2} checked><label for=${radioButtonIndex+2}>單邊代理</label></span><span class="sortOptions"><input type="radio" name="propertyRelation${inputproperty}" value=${radioButtonIndex+3}><label for=${radioButtonIndex+3}>雙邊代理</label><input type="radio" name="propertyRelation${inputproperty}" value=${radioButtonIndex+4}><label for=${radioButtonIndex+4}>有可能代表雙方的代理</label></span></td>`))
-       .append($(`<td style="width:150px;height:100px;border-style:outset;overflow:hidden"><textarea rows="8" cols="20" id="sellerCommission${inputproperty}T" name="sellerCommission${inputproperty}"></textarea></td>`))
-       .append($(`<td style="width:150px;height:100px;border-style:outset;overflow:hidden"><textarea rows="8" cols="20" id="buyerCommission${inputproperty}T" name="buyerCommission${inputproperty}"></textarea></td>`))
-       .append($(`<td style="width:150px;height:100px;border-style:outset;overflow:hidden"><span class="cls_003"><div id="signature${inputproperty}"></div><script type="text/javascript" src="/js/dsSign.js"></script></span></td>`))
-       .append($(`<td style="width:80px;height:100px"><span class="cls_013"><button type="button" class="deletebtn" title="Remove row">X</button></span><span class="cls_003"><input type="button" value="reset" onclick="inputSignReset()"></span></td>`));
-    $("#myTable tbody").append(row);
-    radioButtonIndex += 4;
+    var keepDataLangugae = keepData[language][form_id];
+    
+    var div = $(`<div class="row flex-nowrap">`);
 
-    $('#radioUpdate1')[0].value   =  radioButtonIndex + 1;
-    $('#radioUpdate2')[0].htmlFor =  radioButtonIndex + 1;
-    $('#radioUpdate3')[0].value   =  radioButtonIndex + 2;
-    $('#radioUpdate4')[0].htmlFor =  radioButtonIndex + 2;
+    var ul = $(`<ul>`);
+    
+    var rightTrue = keepDataLangugae["rightTrue"];
+    var rightFalse = keepDataLangugae["rightFalse"];
+    var relationOne = keepDataLangugae["relationOne"];
+    var relationTwo = keepDataLangugae["relationTwo"];
+    var relationThree = keepDataLangugae["relationThree"];
 
+    ul.append(`<li> ${keepDataLangugae["property"]} : <input type="text" name="showPropertyName${inputproperty}"></li>`)
+      .append(`<li> ${keepDataLangugae["date"]} : <input type="text" name="showPropertyDate${inputproperty}"></li>`)
+    .append(`<li> ${keepDataLangugae["right"]} : <span class="sortOptions"><input type="radio" name="propertyRelase${inputproperty}" value="${rightTrue}" checked><label for="${rightTrue}">${rightTrue}</label><input type="radio" name="propertyRelase${inputproperty}" value="${rightFalse}"><label for="${rightFalse}">${rightFalse}</label></span></li>`)
+      .append(`<li> ${keepDataLangugae["relation"]} : <span class="sortOptions"><input type="radio" name="propertyRelation${inputproperty}" value="${relationOne}" checked><label for="${relationOne}">${relationOne}</label><input type="radio" name="${relationTwo}" value="${relationTwo}"><label for="${relationTwo}">${relationTwo}</label><input type="radio" name="propertyRelation${inputproperty}" value="${relationThree}"><label for="${relationThree}">${relationThree}</label></span></li>`)
+      .append(`<li> ${keepDataLangugae["seller"]} : <input type="text" name="sellerCommission${inputproperty}"></li>`)
+      .append(`<li> ${keepDataLangugae["user"]} : <input type="text" name="buyerCommission${inputproperty}"></li>`)
+      .append(`<li><button type="button" class="deletebtn" title="Remove row">X</button></li>`);
+    div.append(ul);
+
+    $("#myTable").append(div);
+
+    var formDataObject = formData[language][form_id];
+
+    formDataObject[`showPropertyName${inputproperty}`] = keepDataLangugae['showPropertyNameString'];
+    formDataObject[`showPropertyDate${inputproperty}`] = keepDataLangugae['showPropertyDateString'];
+    formDataObject[`propertyRelase${inputproperty}`]   = keepDataLangugae['propertyRelaseString'];
+    formDataObject[`propertyRelation${inputproperty}`] = keepDataLangugae['propertyRelationString'];
+    formDataObject[`sellerCommission${inputproperty}`] = keepDataLangugae['sellerCommissionString'];
+    formDataObject[`buyerCommission${inputproperty}`]  = keepDataLangugae['buyerCommissionString'];
     inputproperty += 1;
-    radioButtonIndex += 2;
     
 }
 
@@ -31,17 +43,17 @@ $(document).on('click', 'button.deletebtn', function () {
     {
         inputproperty -= 1;
     }
+
+    var radioButtonIndex = Number($('#radioUpdate1').val());
     if(radioButtonIndex >= 10)
     {
-        radioButtonIndex -=4;
-        $('#radioUpdate1')[0].value   = radioButtonIndex -2;
-        $('#radioUpdate2')[0].htmlFor = radioButtonIndex -2;
-        $('#radioUpdate3')[0].value   = radioButtonIndex -1;
-        $('#radioUpdate4')[0].htmlFor = radioButtonIndex -1;
-
-        radioButtonIndex -= 2;
+        radioButtonIndex -= 5;
+        $('#radioUpdate1')[0].value   = radioButtonIndex;
+        $('#radioUpdate2')[0].htmlFor = radioButtonIndex;
+        $('#radioUpdate3')[0].value   = radioButtonIndex + 1
+        $('#radioUpdate4')[0].htmlFor = radioButtonIndex + 1;
 
     }
-    $(this).closest('tr').remove();
+    $(this)[0].parentNode.parentNode.parentNode.parentNode.removeChild($(this)[0].parentNode.parentNode.parentNode);
     return false;
 });

@@ -1,0 +1,175 @@
+
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>form3</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .dropbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px;
+                font-size: 10px;
+                border: none;
+            }
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 1.5rem;
+                }
+            }
+            ul{
+                list-style: none;
+            }
+            ul li{
+                padding : 10px;
+            }
+            ol li{
+                padding: 10px;
+            }
+            .container {
+                max-width: 960px;
+            }
+            .lh-condensed { line-height: 1.25; }
+        </style>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    </head>
+    <body class="bg-light">
+        <div style="position:absolute;left:350px;top:20px" class="col-4 text-center">
+            <span class="cls_003" style="font-weight:bold;"><h6>ESTATE AGENCY AGREEMENT FOR SALE OF RESIDENTIAL<br>PROPERTIES IN HONG KONG</h6></span>
+        </div>
+        <div style="position:relative;left:1450px;top:20px">
+            <span class="cls_003" style="font-weight:bold;" id="uniqueNumber"></span>
+        </div>
+        <div style="position:absolute;left:28px;top:80px" class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-between">
+                <p>GENERAL CAUTION：Read this Agreement carefully and follow its instructions.  If you do not understand any thing in this Agreement then ask for an explanation to be given.  If you do not understand or agree with any explanation given then it is best to consult you solicitor before signing this Agreement.</p>
+                <p>Information note：Where any thing in this Agreement is followed by a number in brackets (e.g.<sup>(1)</sup>), then immediately read the explanatory note that bears that number in Schedule 4 to this Agreement.  Where any thing in this Agreement refers to a Schedule to this Agreement, then immediately read that Schedule.</p>
+            </nav>
+        </div>
+        <div style="position:absolute;left:0px;top:200px">
+            <div id="formOnePage">
+                <div style="position:relative;left:50px;top:0px">Signature of the Vendor：&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Signature of the estate agent/salesperson signing for and on behalf of the Agent:</div>
+                <div style="position:relative;left:50px;top:20px"><img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" id="svgUser" width="200" height="200">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" id="svgAgency" width="200" height="200"></div>
+                <div style="position:relative;left:800px;top:20px">
+                    <ul>
+                        <li>Name of the signatory:<span class="cls_003" id="iDNumber" style="color:lightblue;text-decoration:underline;"></span><br><br>licence number of the signatory:：<span class="cls_003" id="agencyNumber" style="color:lightblue;text-decoration:underline;"></span></li>
+                    </ul>
+                </div>
+                <div style="position:relative;left:50px;top:-70px">Hong Kong identity card(s) number(s):<span class="cls_003" id="iDNumber" style="color:lightblue;text-decoration:underline;"></span><span class="cls_013" style="color:lightblue;text-decoration:underline;">(</span><span class="cls_003" id="iDBRNumber" style="color:lightblue;text-decoration:underline;"></span><span class="cls_013" style="color:lightblue;text-decoration:underline;">)</span><br>(if applicable)
+                </div>
+                
+                <div style="position:relative;left:50px;top:0px" class="cls_003">
+                    <span class="cls_003">Where the Vendor is a company, please state:</span>
+                </div>
+                <div style="position:relative;left:0px;top:0px" class="cls_003">
+                    <ul>
+                        <li>
+                            <span class="cls_003" id="referenceForCompany" style="color:lightblue;text-decoration:underline;">N/A</span>
+                        </li>
+                    </ul>
+                </div>
+                <div style="position:relative;left:0px;top:0px" class="cls_003">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <ul style="width: 1600px;">
+                                <li>Name of the Signatory:<span class="cls_003" id="user" style="color:lightblue;text-decoration:underline;"></span></li>
+                                <li>Position of the Signatory:<span class="cls_003" id="userPosition" style="color:lightblue;text-decoration:underline;"></span></li>
+                                <li>Business Registration Certificate number of the Vendor:<span class="cls_003" id="userBDN" style="color:lightblue;text-decoration:underline;"></span></li>
+                                <li>Address&nbsp;:</li>
+                                <li><div style="position:relative;left:-30px;top:0px"><div class="col-md-6"><div class="col-lg-4"><span class="cls_003" id="userAddress" style="color:lightblue;text-decoration:underline;"></span></div></div></div></li>
+                                <li>Telephone number：<span class="cls_003" id="userPhone" style="color:lightblue;text-decoration:underline;"></span></li>
+                                <li>Fax number：<span class="cls_003" id="userFax" style="color:lightblue;text-decoration:underline;"></span style="color:lightblue;text-decoration:underline;"></span></li>
+                                <li>Date：<span class="cls_003" id="userSignDate" style="color:lightblue;text-decoration:underline;"></span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul style="width: 1600px;">
+                                <li>Number of Agent’s statement of particulars of business:<span class="cls_003" id="agencyBDN" style="color:lightblue;text-decoration:underline;"></li>
+                                <li>Address&nbsp;:</li>
+                                <li><div style="position:relative;left:-30px;top:0px"><div class="col-md-6"><div class="col-lg-4"><span class="cls_003" id="agencyAddress" style="color:lightblue;text-decoration:underline;"></span></div></div></div></li>
+                                <li>Telephone number：<span class="cls_003" id="agencyPhone" style="color:lightblue;text-decoration:underline;"></span></li>
+                                <li>Fax number：<span class="cls_003" id="agencyFax" style="color:lightblue;text-decoration:underline;"></span style="color:lightblue;text-decoration:underline;"></span></li>
+                                <li>Date：<span class="cls_003" id="agencySignDate" style="color:lightblue;text-decoration:underline;"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="position:relative;left:50px;top:0px">[CAUTION: Immediately after this Agreement has been signed, the Vendor must be given the original or a copy of this Agreement as signed.]</div>
+                    
+
+                <div style="position:relative;left:10px;top:20px" class="cls_003">
+                    <p class="text-center" style="font-weight:bold;">Schedule&nbsp;1</p>
+                    <p class="text-center" style="font-weight:bold;">Duties of Agent</p>
+                    <p>&emsp;&nbsp;The Agent shall&emsp;—</p>
+                    <ol type="a" >
+                        <li>market the Property on behalf of the Vendor;</li>
+                        <li>obtain information in relation to the Property for the Vendor;</li>
+                        <li>arrange for purchasers to inspect the Property;</li>
+                        <li>conduct negotiation and submit all offers in relation to the Property to the Vendor; and</li>
+                        <li>assist the Vendor in entering into a binding agreement for sale and purchase with a purchaser.</li>
+                    </ol>
+                    <p class="text-center" style="font-weight:bold;">Schedule&nbsp;2</p>
+                    <p class="text-center" style="font-weight:bold;">Commission to be Paid by Vendor</p>
+                    <ol type="1" >
+                        <li>Subject to section 2 of this Schedule, if during the Validity Period the Vendor through the Agent enters into a binding agreement for sale and purchase with a purchaser in respect of the Property then the Vendor is liable to pay the Agent commission in the amount of $ <span class="cls_003" id="toAgencyMoney" style="color:lightblue;text-decoration:underline;"></span>/at the rate of<span class="cls_003" id="propertyPercentage" style="color:lightblue;text-decoration:underline;"></span>%of the transacted price of the Property.
+                            <br>
+                            <input type="checkbox" name="signatureCheck" value=1><label for=1>upon the signing of the agreement for sale and purchase.</label>
+                            <br>
+                            <input type="checkbox" name="propertyFinished" value=1><label for=1>upon the completion of the property transaction as specified in the agreement for sale and purchase.</label>
+                        </li>
+                        <li>Subject to section 3 of this Schedule, the Vendor shall have no obligation to pay any commission to the Agent if completion of the property transaction falls through without fault on the part of the Vendor and, in such case, if the commission has already been paid it shall be refunded by the Agent to the Vendor as soon as is practicable and in any case not later than 5 working days from the completion date as specified in the agreement for sale and purchase with<span class="cls_003" id="moneyIncrease" style="color:lightblue;text-decoration:underline;"></span>
+                        </li>
+                        <li>The commission shall become payable to the Agent in the case of mutual cancellation of a binding agreement for sale and purchase of the Property not arising from any provisions of the agreement for sale and purchase.</li>
+                        <li>The Vendor is not liable to pay any commission to other estate agents with whom the Agent co-operates in the marketing of the Property.</li>
+                    </ol>
+                
+                    <p class="text-center" style="font-weight:bold;" >Schedule&nbsp;3</p>
+                    <p class="text-center" style="font-weight:bold;">Interests in Property</p>
+                    <p>&emsp;&nbsp;&nbsp;In accordance with clause 9 of this Agreement, particulars of the pecuniary or other beneficial interests(6) in respect of the Property are as follows:</p>
+                </div>
+                <div style="position:relative;left:0px;top:20px" class="cls_003">
+                    <ul>
+                        <li><span class="cls_003" id="reference" style="color:lightblue;text-decoration:underline;"></span></li>
+                    </ul>
+                </div>
+                <div style="position:relative;left:10px;top:20px" class="cls_003">
+                    <p class="text-center" style="font-weight:bold;" >Schedule&nbsp;4</p>
+                    <p class="text-center" style="font-weight:bold;" >Explanatory Notes</p>
+                    <ol type="1">
+                        <li>Enter the name of the estate agency business entity concerned in clause 1 of this Agreement.</li>
+                        <li>Exclusive Agency - this means the Agent is the only estate agent acting for the Vendor. If during the Validity Period the Vendor enters into a binding agreement for sale and purchase with a purchaser in respect of the Property through another estate agent, the Agent has a right to claim commission as specified in section 1 of Schedule 2 from
+                            the Vendor.
+                            <br>
+                            Single agency – this means the Agent acts for the Vendor only.
+                            <br>
+                            Dual agency – this means the Agent acts for both the Vendor and a purchaser of the Property.
+                            <br>
+                            Potentially dual agency – this means the Agent acts for the Vendor only but may also act for a purchaser of the Property at a later stage.
+                        </li>
+                        <li>The amount or rate of commission is negotiable between the Vendor and the Agent.</li>
+                        <li>Specified relative – this means the spouse, parent, child, brother or sister.</li>
+                        <li>Substantial shareholder – this means a person who is entitled to exercise or control the exercise of 10% or more of the voting power
+                            at any general meeting of the Agent.</li>
+                        <li>Having a pecuniary or other beneficial interest includes:
+                            <ol type="a">
+                                <li>being a member of a company or any other body which has a pecuniary or other beneficial interest in respect of the Property;</li>
+                                <li> being in partnership with or is in the employment of a person who has a pecuniary or other beneficial interest in respect of the Property; or</li>
+                                <li>being a party to any arrangement or agreement (whether enforceable or not) concerning the Property.</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

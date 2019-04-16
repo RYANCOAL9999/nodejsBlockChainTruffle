@@ -1,6 +1,6 @@
 'use strict';
 
-let _MongoConnectionHelper = require(base_path+'/Connection/mongoConnectionHelper.js');
+let _MongoConnectionHelper = require(base_path+'/connection/mongoConnectionHelper.js');
 
 class modelMongo
 {
@@ -19,14 +19,18 @@ class modelMongo
         return this.mongoConnectionHelper.mongoIsConnected;
     }
 
-    search(query)
+    search(query, model)
     {
         var answer = undefined;
         return new Promise((resolve)=>{
-            this.db.find(query, (err, result)=>
-            {
+            model.find(query, (err, result)=>{
                 if(!err)
                 {
+                    result = JSON.parse(JSON.stringify(result));
+                    result.forEach((value)=>{
+                        delete value["__v"];
+                        delete value["_id"];
+                    })
                     if(result.length == 1)
                     {
                         answer = result[0];
@@ -71,22 +75,17 @@ class modelMongo
         })
     }
 
-    update(key, value)
+    update(query, data, model)
     {
-        var result = {};
-	    if(key && value){
-		    result['$set'] = value;
-	    }
-	    if(!result){
-            console.logh(`empty input`);
-            return;
+        if(query && data && model)
+        {
+            model.updateMany(query, data, (err)=>{
+                if(err)
+                {
+                    console.log(`error : ${err}`);
+                }
+            })
         }
-        this.db.update(key, result, (err)=>{
-            if(err)
-            {
-                console.log(`error : ${err}`);
-            }
-        })
     }
 }
 

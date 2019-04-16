@@ -41,70 +41,66 @@ async function render(data, hash)
     $("#blockChainHash").val(blockHash);
 }
 
-function formTest(data, hash)
+function formTest(url, data, hash)
 {
-    var textareaObject = data.textareaObject;
-    var signatureObject = data.signatureObject;
-    for(var textarea in textareaObject)
-    {
-        $(`#${textarea}T`).val(textareaObject[textarea]);
-    }
-
-    for(var signature in signatureObject)
-    {
-        var image = new Image();
-        image.src = signatureObject[signature];
-        document.body.append(image);
-    }
+    window.open(url, '_blank');
     render(data, hash);
-
 }
 function readContract()
 {
-    var value = $('input[name="date"]:checked').val();
-    var agency = $('input[name="account"]').val();
+    var uniqueNumber = $('input[name="uniqueNumber"]').val();
+    document.getElementById("spanOPText").innerHTML = "";
     $.ajax({
         type: 'get',
         url: `/api/users/balance`,
-        data:`agency=${agency}&createDay=${value}`,
+        data:`uniqueNumber=${uniqueNumber}`,
         success: function (data) {
-            data = JSON.parse(data);
-            // console.log(data);
-            $("#spanOPT").append(`<br>`);
-            $("#spanOPT").append(`<br>`);
-            $("#spanOPT").append(data.html);
-            formTest(data.json, data.hash);
+            var json = JSON.parse(data);
+            if(json.url)
+            {
+                window.open(json.url, '_blank');
+            }
+            else
+            {
+                $("#spanOPText").append(`<br>`);
+                $("#spanOPText").append(`<br>`);
+                $("#spanOPText").html(json.html);
+            }
         },
         error: function (data) {
             alert(data.responseJSON.error);
         },
     });
 }
+
+function addField(uniqueNumber)
+{
+    $('input[name="uniqueNumber"]').val(uniqueNumber);
+}
+
+
 function clickSubmit()
 {
-    
     var form = $(`#dataForm`);
+    document.getElementById("spanOPT").innerHTML = "";
+    document.getElementById("spanOPText").innerHTML = "";
     $.ajax({
         type: form.attr('method'),
         url: form.attr('action'),
         data: form.serialize(),
         success: function (data) {
             data = JSON.parse(data);
+            var contract = data.contract;
             var spendOptions = $(`<span class="sortOptions" id="resolutionSpan">`);
-            var date = data.date;
-            for(let i of date)
+            for(var i of contract)
             {
-                var date = new Date(i);
-                spendOptions.append(`<br><input type="radio" name="date" value=${i} ><label for=${i}>${date}</label>`);
+                spendOptions.append(`&emsp;<input type="radio" name="name" value=${i} onclick="addField('${i}')" >合約編號: <label for=${i}>${i}</label>`);
             }
-            $("#spanOPT").append(`<br>`);
             $("#spanOPT").append(spendOptions);
-            $("#spanOPT").append(`<br>`);
-            $("#spanOPT").append(`<br>`);
-            $("#spanOPT").append(`<button class="dropbtn" onclick="readContract()">觀看智能合約</button>`)
         },
         error: function (data) {
             alert(data.responseJSON.error);
         },
     });
 }
+

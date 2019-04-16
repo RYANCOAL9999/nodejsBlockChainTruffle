@@ -1,0 +1,399 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>form5</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .dropbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px;
+                font-size: 10px;
+                border: none;
+            }
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 1.0rem;
+                }
+            }
+			.sortOptions > input[type=radio] {
+			    width:              16px;
+			    height:             16px;
+			}
+            input[type="text"]{
+				font-size: 16px;
+			}
+			input[type="number"]{
+				font-size: 16px;
+
+			}
+			input[type="date"]{
+				font-size: 16px;
+			}
+			textarea{
+				font-size: 16px;
+			}
+            select{
+                font-size: 14px;
+            }
+            label{
+                font-size: 16px;
+            }
+            ul{
+                list-style: none;
+            }
+            ul li{
+                padding : 5px;
+            }
+            ol li{
+                padding: 5px;
+            }
+
+            .container {
+                max-width: 960px;
+            }
+            .lh-condensed { line-height: 1.25; }
+        </style>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/prismic-javascript"></script>
+		<script type="text/javascript" src="/js/popUpsignatureHTML.js"></script>
+		<script type="text/javascript" src="/js/formDataSetting.js"></script>
+        <script type="text/javascript" src="/js/submitContract.js"></script>
+    </head>
+    <body class="bg-light">
+        <div class="container">
+            <header class="blog-header py-3">
+                <div class="row flex-nowrap justify-content-between align-items-center">
+                    <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                    <div class="col-4 text-center"><h6>ESTATE AGENCY AGREEMENT FOR LEASING OF RESIDENTIAL PROPERTIES IN HONG KONG<br>(for use between an estate agent and a landlord)</h6></div>
+                    <div class="col-4 d-flex justify-content-end align-items-center" id="uniqueNumber"><h6>FORM 5</h6></div>
+                </div>
+            </header>
+            <div class="nav-scroller py-1 mb-2">
+                <nav class="nav d-flex justify-content-between">
+                    <p>GENERAL CAUTION：Read this Agreement carefully and follow its instructions.  If you do not understand any thing in this Agreement then ask for an explanation to be given.  If you do not understand or agree with any explanation given then it is best to consult you solicitor before signing this Agreement.</p>
+                    <p>Information note：Where any thing in this Agreement is followed by a number in brackets (e.g.<sup>(1)</sup>), then immediately read the explanatory note that bears that number in Schedule 4 to this Agreement.  Where any thing in this Agreement refers to a Schedule to this Agreement, then immediately read that Schedule.</p>
+                </nav>
+            </div>
+            <form name="formNewsLetter" action="/process" method="POST" id="form5Letter">
+            <div class="row">
+            <ol type="1">
+                <li>Appointment of Agent and Validity Period of this Agreement
+                    <br>
+                    <span class="sortOptions">
+                        <input type="radio" name="opening" value="I" checked><label for="I">I</label>
+                        <input type="radio" name="opening" value="We"><label for="We">We</label>
+                    </span>
+                    ,
+                    <input type="text" name="userEng" placeholder="Please input English Name">
+                    <input type="text" name="userChi" placeholder="Please input Chinese Name">
+                    (“Landlord”), appoint
+                    <input type="text" name="agency" placeholder="Please input Agency's Name" >
+                    ( “ Agent ” <sup>(1)</sup>) subject to and in accordance with the terms of this Agreement to act as
+                    <span class="sortOptions">
+                        <input type="radio" name="exclusive" value="my"><label for="my">my</label>
+                        <input type="radio" name="exclusive" value="our exclusive"><label for="our exclusive">our exclusive<sup>(1)</sup></label>
+                        <input type="radio" name="exclusive" value="non-exclusive" checked><label for="non-exclusive">non-exclusive</label>
+                    </span>
+                    agent in the marketing for letting purpose of
+                    <input type="text" name="property" placeholder="Please input property's Name">
+                    ( “ Property ” )This Agreement shall take effect on
+                    <input type="text" id="datepicker0" name="createDay" placeholder="click">
+                    and expire on <input type="text" id="datepicker1" name="expiresDay" placeholder="click">
+                    (both days inclusive)(“Validity Period”).<br>[CAUTION: In the case of exclusive agency, the Landlord may be liable to pay commission to the Agent even if the Property is not let through the Agent within the Validity Period. The Landlord should therefore consider carefully when he enters into an exclusive agency relationship with the Agent. Special obligations to be performed by the Agent under exclusive agency may be specified as extra terms under clause 12.]
+                </li>
+                <li>Agency Relationship and Duties of Agent
+                    <br>
+                    The Agent agrees with the Landlord that &ensp;—
+                    <br>
+                    <ol type="a">
+                        <li>the agency relationship between them in respect of the Property shall be a
+                            <span class="sortOptions">
+                                <input type="radio" name="relationship" value="single agency" checked><label for="single agency">single agency</label>
+                                    <input type="radio" name="relationship" value="dual agency"><label for="dual agency">dual agency</label>
+                                        <input type="radio" name="relationship" value="potentially dual agency"><label for="potentially dual agency">potentially dual agency</label>
+                            </span>
+                            <sup>(2)</sup>；
+                        </li>
+                        <li>in the case of dual agency, the Agent shall as soon as is practicable disclose in writing to the Landlord the
+                            amount or rate of commission to be received by the Agent from a tenant;</li>
+                        <li>in the case of potentially dual agency, the Agent shall as soon as is practicable after dual agency arises disclose in writing to the Landlord such agency relationship and the amount or rate of commission to be received by the Agent from a tenant; and</li>
+                        <li>The Agent’s duties shall be as set out in Schedule 1 to this Agreement, in addition to the duties placed on the Agent by this Agreement or any enactment.</li>
+                    </ol>
+                </li>
+                <li>List Rental [CAUTION: The Landlord does not confer upon the Agent, by virtue of this clause, the right to accept an offer on behalf of the Landlord. The list rental is for the purpose of listing and advertising only.]
+                    <br>
+                    The list rental shall be Hong Kong Dollars <input type="text" name="dollar" placeholder="Please input English of Dollar" >thousand(HK$<input type="text" class="amount" name="dollarHK" placeholder="Please input the Arabic number" >)per months <span class="sortOptions">
+                        <input type="radio" name="included" value="inclusive" checked readonly><label for="inclusive">inclusive</label><input type="radio" name="included" value="exclusive" readonly><label for="exclusive">"exclusive"</label></span> of rates and management fee. The list rental can only be varied with written instructions of the Landlord and such instructions shall form part of this Agreement.
+                </li>
+                <li>Commission
+                    <br>
+                    The provisions of this Agreement applicable to the commission to be paid by the Landlord to the Agent shall be as set out in Schedules 2 and 4 to this Agreement<sup>(3)</sup>.
+                </li>
+                <li>Property Information
+                    <br>
+                    The Agent shall provide to the Landlord the Property Information Form prescribed under the Estate Agents Practice (General Duties and Hong Kong Residential Properties) Regulation duly completed and signed by the Agent.</li>
+                <li>Property Inspection
+                    <br>
+                    <ol type="a">
+                        <li>The Landlord agrees to allow viewing of the Property by the
+                            <select id="userAgreeSeeProperty">
+                                <option value="Agent">Agent</option>
+                                <option value="purchaser(s)">purchaser(s)</option>
+                                <option value="Agent And purchaser(s)">Agent And purchaser(s)</option>
+                            </select>
+                            at a mutually agreeable time.
+                            <br>
+                            <span class="sortOptions">
+                                <input type="radio" name="showProperty" value="agrees" checked>
+                                    <label for="agrees">Yes</label>
+                                    <input type="radio" name="showProperty" value="disagrees">
+                                        <label for="disagrees">No</label>
+                                        </span>
+                        </li>
+                        <li>The Landlord agrees to pass the keys of the Property to the Agent for safe custody and for the viewing of the Property.
+                            <br>
+                            <span class="sortOptions">
+                                <input type="radio" name="keepProperty" value="agrees" checked>
+                                    <label for="agrees">Yes</label>
+                                    <input type="radio" name="keepProperty" value="disagrees">
+                                        <label for="disagrees">No</label>
+                                        </span>
+                        </li>
+                        <li>The Landlord authorizes the Agent to pass the keys to other estate
+                            <select id="userAgreeKeepKey">
+                                <option value="agents">agents</option>
+                                <option value="persons">persons</option>
+                            </select>
+                            for the viewing of the Property.
+                            <br>
+                            <span class="sortOptions">
+                                <input type="radio" name="watchProperty" value="is authorized" checked>
+                                    <label for="is authorized">Yes</label>
+                                    <input type="radio" name="watchProperty" value="is not authorized">
+                                        <label for="is not authorized">No</label>
+                                        </span>
+                        </li>
+                    </ol>
+                </li>
+                <li>Sub-listing
+                    <br>
+                    <ol type="a" >
+                        <li>The Landlord authorizes the Agent to sub-list the Property and pass relevant information about the Landlord and the Property supplied by the Landlord to other estate agents for sub-listing purposes.
+                            <br>
+                            <span class="sortOptions">
+                                <input type="radio" name="distributProperty" value="agrees" checked>
+                                    <label for="agrees">Yes</label>
+                                    <input type="radio" name="distributProperty" value="disagrees">
+                                        <label for="disagrees">No</label>
+                                        </span>
+                        </li>
+                        <li>If the Agent sub-lists the Property to another estate agent (“sub-listing agent”), the Agent shall ensure that the sub-listing agent shall observe the Estate Agents Practice (General Duties and Hong Kong Residential Properties) Regulation regarding advertising.</li>
+                    </ol>
+                </li>
+                <li>Advertising
+                    <br>
+                    <ol type="a" >
+                        <li>The Landlord authorizes the Agent to issue advertisement in respect of the Property.
+                            <br>
+                            <span class="sortOptions">
+                                <input type="radio" name="advertisements" value="is authorized" checked><label for="is authorized">Yes</label>
+                                    <input type="radio" name="advertisements" value="is not authorized"><label for="is not authorized">No</label>
+                                        </span>
+                        </li>
+                        <li>If the answer to the above is “yes”, then the advertising fees will be borne by the Agent unless otherwise specified in this Agreement.</li>
+                    </ol>
+                </li>
+                <li>Disclosure of Interest by Agent
+                    <br>
+                    <ol type="a" >
+                        <li>The person signing this Agreement on behalf of the Agent discloses that he or his specified relative
+                            (5), or anynominee of his or of his specified relative, or the Agent or any employee/substantial
+                            shareholder(6)  /partner/director of the Agent has a pecuniary or other beneficial interest(7) in the Property:
+                            <br>
+                            <span class="sortOptions">
+                                <input type="radio" name="showRightInterests" value="has" checked><label for="has">Yes</label>
+                                    <input type="radio" name="showRightInterests" value="has not"><label for="has not">No</label>
+                                        </span>
+                            
+                        </li>
+                        <li>If the answer to the above is “yes”, then the particulars of the interest must be specified in Schedule 3 to this
+                            Agreement.</li>
+                        <li>The person signing this Agreement on behalf of the Agent shall as soon as is practicable disclose in writing to the Landlord any interest referred to in paragraph (a) above that may arise during the Validity Period.</li>
+                    </ol>
+                </li>
+                <li>Acknowledgement by Landlord
+                    <br>
+                    The Landlord acknowledges that he has &ensp;—
+                    <ol type="a" >
+                        <li>read and understood the terms of this Agreement; and </li>
+                        <li>
+                            <input type="checkbox" name="fiveAgreement" value=1>
+                            <label for=1> received the Leasing Information Form required to be provided under clause 5 of this Agreement.</label>
+                            <br>
+                            <input type="checkbox" name="salePurchaseAgreement" value=1>
+                                <label for=1> agreed to receive the Leasing Information Form before entering into a binding lease between the
+                                    Landlord and a tenant.</label>
+                        </li>
+                    </ol>
+                </li>
+                <li>Schedules
+                    <br>
+                    <p>The Schedules to this Agreement form part of this Agreement.</p>
+                </li>
+                <li>Extra Terms [CAUTION: These extra terms cannot conflict with or limit the other terms of this Agreement.]:
+                    <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="4" id="additionalLawT" name="additionalLaw"></textarea></div></div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <div class="row no-gutters overflow-hidden flex-md-row mb-4 position-relative">
+                                <div class="mb-1 text-muted">Landlord&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+                                <div class="mb-1 text-muted">Hong Kong identity card(s) number(s):<input type="text" name="iDNumber">(<input type="text" name="iDBRNumber" size="1">)</div>
+                                <p class="card-text mb-auto">(if applicable)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                <p class="card-text mb-auto">Agency&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                <div class="mb-1 text-muted">Name of the signatory:<input type="text" name="agencyName" placeholder="Please input Agency Name"></div>
+                                <div class="mb-1 text-muted">licence number of the signatory:<input type="text" name="agencyNumber" placeholder="Please input Agency licence number"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="mb-3">Where the Landlord is a company, please state:</h6>
+                    <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="4" id="referenceForCompanyT" name="referenceForCompany"></textarea></div></div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <div class="row no-gutters overflow-hidden flex-md-row mb-4 position-relative">
+                                <div class="mb-1 text-muted">Name of the Signatory:<input type="text" name="user" placeholder="Please input Name of Landlord"></div>
+                                <div class="mb-1 text-muted">Position of the Signatory:<input type="text" name="userPosition" placeholder="Please input Landlord Position for Landlord is Company"></div>
+                                <div class="mb-1 text-muted">Business Registration Certificate number of the Landlord:<input type="text" name="userBDN"  placeholder="Please BR Number for Landlord is Company"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                    <div class="mb-1 text-muted">Number of Agent’s statement of particulars of business:<input type="text" name="agencyBDN"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <div class="row no-gutters overflow-hidden flex-md-row mb-4 position-relative">
+                                <div class="mb-1 text-muted">Address:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+                                <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="5" id="userAddressT" placeholder="Please input Address of Landlord" name="userAddress"></textarea></div></div>
+                                <div class="mb-1 text-muted">Telephone number：<input type="number" name="userPhone" placeholder="Please input Telephone of Landlord"></div>
+                                <div class="mb-1 text-muted">Fax number：<input type="number" name="userFax" placeholder="Please input Fax number of Landlord"></div>
+                                <!-- <div class="mb-1 text-muted">日期：<input type="text" id="datepicker2" name="userSignDate" placeholder="請輸入業主的簽署日期">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div> -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                <div class="mb-1 text-muted">Address:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+                                <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="5" id="agencyAddressT" placeholder="Please input Address of Agency" name="agencyAddress"></textarea></div></div>
+                                <div class="mb-1 text-muted">Telephone number：<input type="number" name="agencyPhone" placeholder="Please input Telephone of Agency"></div>
+                                <div class="mb-1 text-muted">Fax number：<input type="number" name="agencyFax" placeholder="Please input Fax number of Agency"></div>
+                                <!-- <div class="mb-1 text-muted">日期：<input type="text" id="datepicker3" name="agencySignDate" placeholder="請輸入代理的簽署日期">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    [CAUTION: Immediately after this Agreement has been signed, the Landlord must be given the original or a copy of this Agreement as signed.]
+                    </li>
+                </ol>
+            </div>
+                        <p class="text-center" style="font-weight:bold;">Schedule&nbsp;1</p>
+                        <p class="text-center" style="font-weight:bold;">Duties of Agent</p>
+                        &emsp;&ensp;&ensp;&nbsp;The Agent shall&emsp;—
+                        <ol type="a" >
+                            <li>market the Property on behalf of the Landlord;</li>
+                            <li>obtain information in relation to the Property for the Landlord;</li>
+                            <li>arrange for tenants to inspect the Property;</li>
+                            <li>conduct negotiation and submit all offers in relation to the Property to the Landlord; and</li>
+                            <li>assist the Landlord in entering into a binding lease with a tenant.</li>
+                        </ol>
+                        
+                        <p class="text-center" style="font-weight:bold;">Schedule&nbsp;2</p>
+                        <p class="text-center" style="font-weight:bold;">Commission to be Paid by Landlord</p>
+                        <ol type="1" >
+                            <li>Subject to section 2 of this Schedule, if during the Validity Period the Landlord through the Agent enters into a binding lease with a tenant in respect of the Property then the Landlord is liable to pay the Agent commission in the amount of  <input type="text" class="amount" name="toAgencyMoney" placeholder="Please input currency" size="18">/at the rate of<input type="number" name="propertyPercentage" size="18" placeholder="Please input Percentage"> % of the transacted rental:
+                                <br>
+                                <input type="checkbox" name="signatureCheck" value=1><label for=1>upon the signing of the lease.</label>
+                                <br>
+                                <input type="checkbox" name="propertyFinished" value=1><label for=1> upon the commencement of the tenancy as specified in the lease.</label>
+                            </li>
+                            <li>Subject to section 3 of this Schedule, the Landlord shall have no obligation to pay any commission to the Agent if commencement of the binding lease falls through without fault on the part of the Landlord and, in such case, if the commission has already been paid it shall be refunded by the Agent to the Landlord as soon as is practicable and in any case not later than 5 working days from the commencement date of the lease with
+                                <span class="sortOptions">
+                                    <input type="radio" name="moneyIncrease" value="interest" checked><label for="interest">interest</label>
+                                        <input type="radio" name="moneyIncrease" value="without interest"><label for="without interest">without interest</label>
+                                            </span>
+                            </li>
+                            <li>The commission shall become payable to the Agent in the case of mutual cancellation of the binding lease not arising from any provisions of the lease.</li>
+                            <li>The Landlord is not liable to pay any commission to other estate agents with whom the Agent co-operates in letting the Property.</li>
+                        </ol>
+
+                        <p class="text-center" style="font-weight:bold;">Schedule&nbsp;3</p>
+                        <p class="text-center" style="font-weight:bold;">Interests in Property</p>
+                        <div class="container">
+                            <div class="container">
+                                In accordance with clause 9 of this Agreement, particulars of the pecuniary or other beneficial interests (6) Property are as follows:
+                            </div>
+                        </div>
+                        <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="4" id="referenceT" name="reference"></textarea></div></div>
+                        <p class="text-center" style="font-weight:bold;">Schedule&nbsp;4</p>
+                        <p class="text-center" style="font-weight:bold;">Explanatory Notes</p>
+                        <ol type="1">
+                            <li>Enter the name of the estate agency business entity concerned in clause 1 of this Agreement.</li>
+                            <li>Exclusive Agency - this means the Agent is the only estate agent acting for the Landlord. If during the Validity Period the Landlord enters into a binding lease with a tenant in respect of the Property through another estate agent, the Agent has a right to claim commission as specified in section 1 of Schedule 2 from the Landlord.
+                                <br>
+                                Single agency – this means the Agent acts for the Landlord only.
+                                <br>
+                                Dual agency – this means the Agent acts for both the Landlord and a tenant of the Property.
+                                <br>
+                                Potentially dual agency – this means the Agent acts for the Landlord only but may also act for a tenant of the Property at a later stage.
+                            </li>
+                            <li>The amount or rate of commission is negotiable between the Landlord and the Agent.</li>
+                            <li>Specified relative – this means the spouse, parent, child, brother or sister.</li>
+                            <li>Substantial shareholder – this means a person who is entitled to exercise or control the exercise of 10% or more of the voting power at any general meeting of the Agent.</li>
+                            <li>Having a pecuniary or other beneficial interest includes:
+                                <ol type="a" class="container">
+                                    <li>being a member of a company or any other body which has a pecuniary or other beneficial interest in respect of the Property;</li>
+                                    <li>being in partnership with or is in the employment of a person who has a pecuniary or other beneficial interest in respect of the Property; or </li>
+                                    <li>being a party to any arrangement or agreement (whether enforceable or not) concerning the Property.</li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="save draft" onclick="playSave(5, 'eng')">
+                        <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <div class="row no-gutters overflow-hidden flex-md-row mb-4 position-relative">
+                                        <div class="mb-1 text-muted">Signature of the Landlord：<button type="button" class="dropbtn" onclick="openPopUp('svgUser', 'eng')">digital signature</button><input type="hidden" id="svgUserID" name="svgUser" readonly /></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                        <div class="mb-1 text-muted">Signature of the estate agent/salesperson signing for and on behalf of the Agent:<button type="button" class="dropbtn" onclick="openPopUp('svgAgency', 'eng')">digital signature</button><input type="hidden" id="svgAgencyID" name="svgAgency" readonly /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="Submit smart contract" onclick="playSubmit(5, 'eng')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="Cancel" onclick="playReset('eng')">
+                        <input type="hidden" name="shaOneReturnUrl">
+                        <!-- <input type="hidden" name="uniqueNumber"> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

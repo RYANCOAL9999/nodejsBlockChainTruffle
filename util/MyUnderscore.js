@@ -25,7 +25,7 @@ _.mixin({
   	},
   	sha1 : function(str){
   		return crypto.createHash('sha1').update(str).digest('hex');
-  	},
+	},
   	base64_encode : function(str){ 
   		return new Buffer(str).toString('base64'); 
   	},
@@ -72,7 +72,7 @@ _.mixin({
 				}
 			}
 		}
-		return newArray.concat(concatArray);
+		return concatArray.concat(newArray);
 	},
 	generalFormObject : function(array, object)
 	{
@@ -81,13 +81,32 @@ _.mixin({
 			for(let i  = 0; i < array.length;i++)
 			{
 				var key = array[i];
-				if(object.hasOwnProperty(key))
+				if(object[key])
 				{
 					newObject[key] = object[key];
 				}
 			}
 		}
 		return newObject;
+	},
+	convectorArrayToObjectWithKey:function(resultList)
+	{
+		var answerList = {};
+		for(var result of resultList)
+		{
+			if(result){
+                var keyList = Object.keys(result);
+                keyList.forEach((key)=>{
+                   if(key != "")
+                   {
+                      answerList[key] = result[key];
+                   }
+                })
+			}
+		}
+		return answerList;	
 	}
+
+
 });
 

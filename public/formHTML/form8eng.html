@@ -1,0 +1,287 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>form8</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .dropbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px;
+                font-size: 10px;
+                border: none;
+            }
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 1.0rem;
+                }
+            }
+			.sortOptions > input[type=radio] {
+			    width:              16px;
+			    height:             16px;
+			}
+            ul{
+                list-style: none;
+            }
+
+            ol li{
+                padding: 5px;
+            }
+
+            p{
+                padding: 5px;
+            }
+
+            .container {
+                max-width: 960px;
+            }
+            .lh-condensed { line-height: 1.25; }
+            
+        </style>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/prismic-javascript"></script>
+		<script type="text/javascript" src="/js/popUpsignatureHTML.js"></script>
+		<script type="text/javascript" src="/js/formDataSetting.js"></script>
+        <script type="text/javascript" src="/js/submitContract.js"></script>
+    </head>
+    <body class="bg-light">
+        <div class="container">
+            <header class="blog-header py-3">
+                <div class="row flex-nowrap justify-content-between align-items-center">
+                    <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                    <div class="col-4 text-center"><h6>Loan Referral Service Application Form</h6></div>
+                    <div class="col-4 d-flex justify-content-end align-items-center" id="uniqueNumber"><!--<h6>表格 3</h6>--></div>
+                </div>
+            </header>
+            <form name="formNewsLetter" action="/process" method="POST" id="form8Letter">
+                <div class="nav-scroller py-1 mb-2">
+                    <nav class="nav d-flex justify-content-between">
+                        <p>Notice to Banks/Financial Institutions:</p>
+                        <p>The grant of any Loans shall be at your absolute discretion. This company shall not verify any information regarding the Prospective Borrowers and therefore shall not be held liable to you for (i) any statement or information stated in the referral form and/or submitted by the Prospective Borrowers and/or (ii) any loss or damage suffered by you as a result of or in connection with the grant of Loans.</p>
+                        <p><input type="text" name="agency" placeholder="請輸入代理名稱" >offer professional and free loan referral service to our clients.</p>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>Customer’s Information</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        <p>Applicant（1）: <input type="text" name="userAEng">
+                            <span class="sortOptions">
+                                <input type="radio" name="userAExclusive" value="Mr" checked><label for="Mr">Mr</label>
+                                    <input type="radio" name="userAExclusive" value="Ms"><label for="Ms">Ms</label>
+                                        <input type="radio" name="userAExclusive" value="Mrs"><label for="Mrs">Mrs</label>
+                                            <input type="radio" name="userAExclusive" value="Company"><label for="Company">Company</label>
+                                            </span><br>
+                           HKID No : <input type="text" name="userAIDNumber">(<input type="text" name="userAIDBRNumber" size="1">)<br>
+                           Date of Birth : <input type="text" id="datepicker0" name="userABirthday"><br>
+                           Education : <span class="sortOptions"><input type="radio" name="userAEducation" value="Primary" checked><label for="Primary">Primary</label><input type="radio" name="userAEducation" value="Secondary"><label for="Secondary">Secondary</label><input type="radio" name="userAEducation" value="University or above"><label for="University or above">University or above</label></span><br>
+                           E-mail : <input type="text" name="userAEmail"><br>
+                           Mobile No : <input type="number" name="userAMobilePhoneNumber" size="10"><br>
+                           Office No : <input type="number" name="userAOfficePhoneNumber" size="10"><br>
+                           Home No: <input type="number" name="userATelePhoneNumber"><br>
+                           Fax No: <input type="number" name="userAFaxNumber"><br>
+                           Job : <input type="text" name="userAPosition"><br>
+                           Nature :<input type="text" name="userABusinessNature">
+                           <span class="sortOptions"><input type="radio" name="userAEmploy" value="Self-employed"><label for="Self-employed">Self-employed</label><input type="radio" name="userAEmploy" value="僱員"><label for="僱員">僱員</label></span><br>
+                           Monthly Income $:<input type="text" class="amount" name="userAIncomeDollar">
+                           <span class="sortOptions"><input type="radio" name="userAIncome" value="Regular" checked><label for="Regular">Regular</label><input type="radio" name="userAIncome" value="Non-regular"><label for="Non-regular">Non-regular</label></span><br>
+                        </p>
+                        <p>Applicant（2）: <input type="text" name="userBEng">
+                            <span class="sortOptions">
+                                <input type="radio" name="userBExclusive" value="Mr" checked><label for="Mr">Mr</label>
+                                    <input type="radio" name="userBExclusive" value="Ms"><label for="Ms">Ms</label>
+                                        <input type="radio" name="userBExclusive" value="Mrs"><label for="Mrs">Mrs</label>
+                                            <input type="radio" name="userBExclusive" value="Company"><label for="Company">Company</label>
+                                                </span><br>
+                            HKID No : <input type="text" name="userBIDNumber">(<input type="text" name="userBIDBRNumber" size="1">)<br>
+                                Date of Birth : <input type="text" id="datepicker0" name="userBBirthday"><br>
+                                    Education : <span class="sortOptions"><input type="radio" name="userBEducation" value="Primary" checked><label for="Primary">Primary</label><input type="radio" name="userBEducation" value="Secondary"><label for="Secondary">Secondary</label><input type="radio" name="userBEducation" value="University or above"><label for="University or above">University or above</label></span><br>
+                                    E-mail : <input type="text" name="userBEmail"><br>
+                                        Mobile No : <input type="number" name="userBMobilePhoneNumber" size="10"><br>
+                                            Office No : <input type="number" name="userBOfficePhoneNumber" size="10"><br>
+                                                Home No: <input type="number" name="userBTelePhoneNumber"><br>
+                                                    Fax No: <input type="number" name="userBFaxNumber"><br>
+                                                        Job : <input type="text" name="userBPosition"><br>
+                                                            Nature :<input type="text" name="userBBusinessNature">
+                                                                <span class="sortOptions"><input type="radio" name="userBEmploy" value="Self-employed"><label for="Self-employed">Self-employed</label><input type="radio" name="userBEmploy" value="僱員"><label for="僱員">僱員</label></span><br>
+                                                                Monthly Income $:<input type="text" class="amount" name="userBIncomeDollar">
+                                                                    <span class="sortOptions"><input type="radio" name="userBIncome" value="Regular" checked><label for="Regular">Regular</label><input type="radio" name="userBIncome" value="Non-regular"><label for="Non-regular">Non-regular</label></span><br>
+                                                                    </p>
+                       
+                        <p>Contact Person (For Corporate Customer) <input type="text" name="contractPerson" ></p>
+                        <p>Correspondence Address: Flat <input type="text" name="contractFlat"> Floor <input type="text" name="contractFloor"> Block <input type="text" name="contractBlock">
+                        </p>
+                        <br>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>Information of property to be mortgaged</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        <br>
+                        <p> Flat <input type="text" name="propertyflat">
+                            Floor <input type="text" name="propertyfloor">
+                            Block <input type="text" name="propertyblock" >
+                            Car Park <input type="text" name="carAddress" >
+                            <span class="sortOptions"><input type="radio" name="cover" value="Covered" checked><label for="Covered">Covered</label><input type="radio" name="cover" value="無蓋"><label for="無蓋">無蓋</label></span>
+                            Purchase Price $ <input type="text" name="price" class="amount" >
+                            Completion / Drawdown Date <input type="text" id="datepicker2" name="propertyDate" >
+                            Property type：<span class="sortOptions"><input type="radio" name="propertyCat" value="Private Residential" checked><label for="Private Residential">Private Residential</label><input type="radio" name="propertyCat" value="HOS"><label for="HOS">HOS</label><input type="radio" name="propertyCat" value="SCHS"><label for="SCHS">SCHS</label><input type="radio" name="propertyCat" value="Village House"><label for="Village House">Village House</label><input type="radio" name="propertyCat" value="Office"><label for="Office">Office</label><input type="radio" name="propertyCat" value="Industrial Bldg"><label for="Industrial Bldg">Industrial Bldg</label><input type="radio" name="propertyCat" value="Shop"><label for="Shop">Shop</label><input type="radio" name="propertyCat" value="Others"><label for="Others">Others</label><input type="text" name="propertyOther" >
+                            </span>
+                            Property status:<input type="checkbox" name="propertyStatus" value=1><label for=1>Legal Charge</label>(Please specify: <span class="sortOptions"><input type="radio" name="market" value="Primary market" checked><label for="Primary market">Primary market</label><input type="radio" name="market" value="Secondary market"><label for="Secondary market">Secondary market</label></span>)
+                            <input type="checkbox" name="propertyOffPlan" value=1><label for=1>Equitable Mortgage</label>
+                        </p>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>Loan Information And Requirements</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        <p>Objective：
+                        <span class="sortOptions"><input type="radio" name="loanPurpose" value="NewMortgage" checked><label for="NewMortgage">NewMortgage</label><input type="radio" name="loanPurpose" value="Refinancing"><label for="Refinancing">Refinancing</label><input type="radio" name="loanPurpose" value="Cash-OutRefinancing"><label for="Cash-OutRefinancing">Cash-OutRefinancing</label><input type="radio" name="loanPurpose" value="Pre-approval"><label for="Pre-approval">Pre-approval</label><input type="radio" name="loanPurpose" value="PersonalLoan"><label for="PersonalLoan">PersonalLoan</label>
+                            </span>
+                            &emsp;&emsp;
+                            Associated mortgage plan :
+                            <span class="sortOptions"><input type="radio" name="additionalLoanPlan" value="HALS" checked><label for="HALS">HALS</label><input type="radio" name="additionalLoanPlan" value="MIP"><label for="MIP">MIP</label><input type="radio" name="additionalLoanPlan" value="Second Mortgage (Developer)"><label for="Second Mortgage (Developer)">Second Mortgage (Developer)</label><input type="radio" name="additionalLoanPlan" value="Second Mortgage (Civil Servant)"><label for="Second Mortgage (Civil Servant)">Second Mortgage (Civil Servant)</label>
+                            </span>
+                        </p>
+                        <p>Loan Amount：
+                            <input type="checkbox" name="loanRequest" value=1><label for=1>(Not less than $</label><input type="text" class="amount" name="loanRequestMoney" > or <input type="number" name="loanRequestPer"> %)
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="interestRate" value=1><label for=1>Interest Rate</label>(Not more than <input type="number" name="interestRatePer" > %)
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="repaymentPeriod" value=1><label for=1>Tenor</label>(No longer than <input type="number" name="repaymentPeriodYear" > year(s))
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<span class="sortOptions"><input type="radio" name="contribution" value="Bi-weekly instalment" checked><label for="Bi-weekly instalment">Bi-weekly instalment</label><input type="radio" name="contribution" value="Monthly instalment"><label for="Monthly instalment">Monthly instalment</label></span>
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="penaltyPeriod" value=1><label for=1>Penalty Period</label>(Not more than <input type="number" name="penaltyPeriodYear" > year(s))
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="cashRebate" value=1><label for=1>Cash Rebate</label>(Not less than <input type="number" name="cashRebatePer" > %)
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="approvalLoan" value=1><label for=1>Approval Time</label>(Not more than <input type="number" name="approvalLoanDay" > days)
+                        </p>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>Existing Loan Information</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        <p>O/S Tenor<input type="number" name="remainingContributionPeriodYear" >yr(s) O/S Penalty Period<input type="number" name="surlusFineYear" > yr(s) O/S Amt $<input type="text" class="amount" name="AmountOwned" >Bank<input type="text" name="bankMortgage" >Existing mortgage rate<input type="number" name="existingMortgageRate" >
+                        </p>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>Choice of Banks/Financial Institutions</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                            <p>Please specify if : 1)Any lender(s) which you prefer in first priority:<input type="text" name="BankChoose" ></p>
+                            <p>2)Any lender(s) which you do not prefer to submit your application: <input type="text" name="otherBankChoose" ></p>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>Customer’s Agreement and Declaration</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        I/We acknowledge and agree to the following terms and conditions: -
+                        <ol type="1">
+                            <li>I am/We are not required to pay any fee to mReferral and I/we have the right to refuse any offer made by the lender(s) through this company.</li>
+                            <li>I/We confirm that the above information provided by me/us is true. I/We hereby authorize this company to refer or provide to the lender(s) selected by me/us any personal information relating to myself/ourselves so that the relevant lender(s) may contact me/us directly in completing the application procedure.</li>
+                            <li>I/We expressly agree and authorize mReferral to follow up on and to forward my/our application(s) to individual lender(s) on my/our behalf for referral purpose and to receive information on the progress of my/our application(s) from the individual lender(s). I/We also authorize individual lender(s) to accept referral from mReferral and to contact me/us directly using the personal data provided in this form and to release information on the progress of my/our application(s) to this company.
+                            </li>
+                            <li>I/We understand that the above application is subject to the final approval of the individual lender(s).</li>
+                            <li>I/We acknowledge and agree that upon my/our acceptance of loan from any lender(s), this company will receive a referral fee from the lender(s).</li>
+<!--                            <li>Unless objection is raised by the option below, on drawdown of loan, only Applicant (1) will be granted with and agrees to accept the membership of Midland Club and I/we consent to mReferral using and/or transferring my/our personal data (including name, telephone number and email address) to Midland Club for processing application for membership and for the purposes of providing membership benefits, special offers, services, activities and/or rewards (details are outlined in the website of Midland Club www.midlandclub.com.hk) and/or to third parties set out in the Privacy Policy Statement (“third parties”) for direct marketing. I/We understand that even if I/we have given consent to mReferral to use and/or transfer my/our personal data to Midland Club and/or third parties, I/we may still have the right, at any time without charge, to request mReferral to cease to use and/or transfer my/our personal data to Midland Club and/or third parties for the purposes before mentioned (details are outlined in the Privacy Policy Statement posted in https://www.mReferral.com)..</li>-->
+                        </ol>
+                        I/We object to this company: <input type="checkbox" name="rejectForDirectMarket" value=1><label>transferring my/our personal data to third parties for use in direct marketing.</label> <input type="checkbox" name="rejectForLoanReferral" value=1><label>using my/our personal data for direct marketing of mortgage and loan referral services provided.</label> <input type="checkbox" name="rejectForSendData" value=1><label>transferring my/our personal data.</label>
+                            <br><br>
+<!--                            <div class="row border rounded shadow-sm">-->
+<!--                                <div class="col-md-4 order-md-2 mb-4">-->
+<!--                                    <h6 class="d-flex justify-content-between align-items-center mb-3">-->
+<!--                                        <span class="text-muted"><br>&emsp;&emsp;&emsp;只供內部填寫</span>-->
+<!--                                    </h6>-->
+<!--                                    <ul class="list-group mb-3">-->
+<!--                                        <li>檔案編號 : <input type="text" name="fileNumber" ></li>-->
+<!--                                        <li>職員姓名 : <input type="text" name="staff" ></li>-->
+<!--                                        <li>聯絡電話 : <input type="text" name="staffContract" > </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-8 order-md-1">-->
+<!--                                    <h6 class="d-flex justify-content-between align-items-center mb-3">-->
+<!--                                        <span class="text-muted"><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;本人從以下途徑得知本公司按揭轉介之服務 (只供客戶填寫) </span>-->
+<!--                                    </h6>-->
+<!--                                    <div class="container">-->
+<!--                                        <ol type="1" class="container">-->
+<!--                                            <li>報紙 :-->
+<!--                                                <input type="checkbox" name="headlineDaily" value=1><label>頭條</label>-->
+<!--                                                <input type="checkbox" name="hket" value=1><label>經濟</label>-->
+<!--                                                <input type="checkbox" name="stheadline" value=1><label>星島</label>-->
+<!--                                                <input type="checkbox" name="orientaldaily" value=1><label>東方</label>-->
+<!--                                                <input type="checkbox" name="appledaily" value=1><label>蘋果</label>-->
+<!--                                                <input type="checkbox" name="mingpao" value=1><label>明報</label>-->
+<!--                                                <input type="checkbox" name="wenweipo" value=1><label>文匯</label>-->
+<!--                                                <input type="checkbox" name="hkej" value=1><label>信報</label>-->
+<!--                                                <input type="checkbox" name="metrodaily" value=1><label>都市日報</label>-->
+<!--                                                <input type="checkbox" name="otherNewsPaper" value=1><label>其他<input type="text" name="otherNewsPaperText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>雜誌 :-->
+<!--                                                <input type="checkbox" name="ownerShip" value=1><label>置業家居</label>-->
+<!--                                                <input type="checkbox" name="superLouWang" value=1><label>超級睇樓王</label>-->
+<!--                                                <input type="checkbox" name="edigest" value=1><label>經濟一週</label>-->
+<!--                                                <input type="checkbox" name="iMoney" value=1><label>iMoney</label>-->
+<!--                                                <input type="checkbox" name="MetroPop" value=1><label>Metro Pop</label>-->
+<!--                                                <input type="checkbox" name="otherMagzine" value=1><label>其他<input type="text" name="otherMagzineText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>電子傳媒 :-->
+<!--                                                <input type="checkbox" name="tvb" value=1><label>無線</label>-->
+<!--                                                <input type="checkbox" name="now" value=1><label>NOW</label>-->
+<!--                                                <input type="checkbox" name="cabletv" value=1><label>有線</label>-->
+<!--                                                <input type="checkbox" name="metroradio" value=1><label>新城</label>-->
+<!--                                                <input type="checkbox" name="881903" value=1><label>商台</label>-->
+<!--                                                <input type="checkbox" name="rthk" value=1><label>港台</label>-->
+<!--                                                <input type="checkbox" name="othertv" value=1><label>其他<input type="text" name="othertvText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>戶外媒體 :-->
+<!--                                                <input type="checkbox" name="taxi" value=1><label>的士</label>-->
+<!--                                                <input type="checkbox" name="minibus" value=1><label>小巴</label>-->
+<!--                                                <input type="checkbox" name="othertransportation" value=1><label>其他<input type="text" name="othertransportationText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>網站 :-->
+<!--                                                <input type="checkbox" name="google" value=1><label>Google</label>-->
+<!--                                                <input type="checkbox" name="yahoo" value=1><label>Yahoo</label>-->
+<!--                                                <input type="checkbox" name="facebook" value=1><label>Facebook</label>-->
+<!--                                                <input type="checkbox" name="uwants" value=1><label>Uwants</label>-->
+<!--                                                <input type="checkbox" name="hkdiscuss" value=1><label>香港討論區</label>-->
+<!--                                                <input type="checkbox" name="otherwebsite" value=1><label>其他<input type="text" name="otherwebsiteText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>其他途徑 :-->
+<!--                                                <input type="checkbox" name="friends" value=1><label>朋友</label>-->
+<!--                                                <input type="checkbox" name="oldcustomer" value=1><label>舊有客戶</label>-->
+<!--                                                <input type="checkbox" name="leaflets" value=1><label>宣傳單張</label>-->
+<!--                                                <input type="checkbox" name="mobileapps" value=1><label>手機應用程式</label>-->
+<!--                                                <input type="checkbox" name="othersources" value=1><label>其他<input type="text" name="othersourcesText" ></label>-->
+<!--                                            </li>-->
+<!--                                        </ol>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        <br>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="save draft" onclick="playSave(8, 'eng')">
+                        <p>Customer’s Signature(s) <button type="button" class="dropbtn" onclick="openPopUp('svgUser', 'eng')">digital signature</button><input type="hidden" id="svgUserID" name="svgUser" readonly />
+                        <!--&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;日期 : <input type="text" id="datepicker3" name="userSignDate"  > -->
+                        </p>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="Submit smart contract" onclick="playSubmit(8, 'eng')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="Cancel" onclick="playReset('eng')">
+                        <input type="hidden" name="shaOneReturnUrl">
+                        <!-- <input type="hidden" name="uniqueNumber"> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

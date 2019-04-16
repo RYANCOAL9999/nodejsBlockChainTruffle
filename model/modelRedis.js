@@ -1,5 +1,5 @@
 'use strict';
-let _RedisConnectionHelper = require(base_path+'/Connection/redisConnectHelper.js');
+let _RedisConnectionHelper = require(base_path+'/connection/redisConnectHelper.js');
 let _Setting               = require(base_path+'/enum/setting');
 
 class modelRedis
@@ -25,36 +25,37 @@ class modelRedis
      * @param {*} key 
      * @param {*} callback 
      */
-    getData(key, callback)
+    getData(key)
     {
-        callback = _.callback(Null);
-        this.workingClient.get(key, (err, reply)=>
-        {
-            if(err)
-            {
-                console.log(`get data for Redis error with ${key}`);
-                callback(undefined);
-            }
-            else
-            {
-                callback(reply);
-            }
-        });
+        var answer = undefined;
+        return new Promise((resolve)=>{
+            this.workingClient.get(key, (err, reply)=>{
+                if(!err)
+                {
+                    answer = reply;
+                }
+                resolve(answer);
+            })          
+        })
     }
 
     /**
      * 
      * @param {*} key 
      * @param {*} data 
-     * @param {*} callback 
      */
-    saveData(key, data, callback)
+    saveData(key, data)
     {
-        callback = _.callback(Null);
-        if(key){
-            data = typeof(data) == 'string' ? data : JSON.stringify(data);
-            this.workingClient.set(key, data, callback);
-        }
+        var answer = undefined;
+        return new Promise((resolve)=>{
+            this.workingClient.set(key, data, (err, reply)=>{
+                if(!err)
+                {
+                    answer = reply;
+                }
+                resolve(answer);
+            })          
+        })
     }
 
     /**
@@ -74,51 +75,58 @@ class modelRedis
      * @param {*} key 
      * @param {*} field 
      * @param {*} data 
-     * @param {*} callback 
      */
-    saveDataWithH(key, field, data, callback)
+    saveDataWithH(key, field, data)
     {
-        if(key && !(field))
-        {
-            data = typeof(data) == 'string' ? data : JSON.stringify(data);
-            this.workingClient.hset(key, field, data, callback);
-        }
+        var answer = undefined;
+        data = typeof(data) == 'string' ? data : JSON.stringify(data);
+        return new Promise((resolve)=>{
+            this.workingClient.hset(key, field, data, (err, reply)=>{
+                if(!err)
+                {
+                    answer = reply;
+                }
+                resolve(answer);
+            })
+        })
     }
 
     /**
      * 
      * @param {*} key 
      * @param {*} field 
-     * @param {*} callback 
      */
-    getDataWithH(key, field, callback)
+    getDataWithH(key, field)
     {
-        this.workingClient.hget(key, field, (err, reply)=>
-        {
-            if(err)
-            {
-                console.log(`get data for Redis error with ${key}`);
-                callback(undefined);
-            }
-            else
-            {
-                callback(reply);
-            }
-        });
+        var answer = undefined;
+        return new Promise((resolve)=>{
+            this.workingClient.hget(key, field, (err, reply)=>{
+                if(!err)
+                {
+                    answer = reply;
+                }
+                resolve(answer);
+            })
+        })
     }
 
     /**
      * 
      * @param {*} key 
      * @param {*} data 
-     * @param {*} callback 
      */
-    saveDataWithHM(key, data, callback)
+    saveDataWithHM(key, data)
     {
-        if(key && data)
-        {
-            this.workingClient.hmset(key, data, callback);
-        }
+        var answer = undefined;
+        return new Promise((resolve)=>{
+            this.workingClient.hmset(key, data, (err, reply)=>{
+                if(!err)
+                {
+                    answer = reply;
+                }
+                resolve(answer);
+            })
+        })
     }
 
     /**
@@ -137,22 +145,19 @@ class modelRedis
     /**
      * 
      * @param {*} key 
-     * @param {*} callback 
      */
-    hasValuesWithHM(key, callback)
+    hasValuesWithHM(key)
     {
-        this.workingClient.hvals(key, (err, reply)=>
-        {
-            if(err)
-            {
-                console.log(`get data for Redis error with ${key}`);
-                callback(undefined);
-            }
-            else
-            {
-                callback(reply);
-            }
-        });
+        var answer = undefined;
+        return new Promise((resolve)=>{
+            this.workingClient.hgetall(key, (err, reply)=>{
+                if(!err)
+                {
+                    answer = reply;
+                }
+                resolve(answer);
+            })
+        })
     }
 
     /**
@@ -322,6 +327,43 @@ class modelRedis
 	} 
 
     /**
+     * 
+     * @param {*} key 
+     */
+    incrSN(key, isGetData)
+    {
+        return new Promise( async(resolve)=>{
+            var answer = isGetData ? await this.getData(key): null;
+            var data = {};
+            if(!answer)
+            {
+                this.incrKey(key, (reply)=>{
+                    if(reply)
+                    {
+                        answer = reply;
+                    }
+                    data[key] = Number(answer);
+                    resolve(data);
+                })
+            }
+            else
+            {
+                data[key] = Number(answer);
+                resolve(data);
+            }
+        })
+    }
+    
+    /**
+     * 
+     * @param {String} key 
+     */
+    resetCrKey(key)
+    {
+        this.saveData(key, 1);
+    }
+
+    /**
 	 * incr Target Socket Size for redis
 	 * @param {String} key 			identify key
 	 * @param {Function} callback  	back to which functions call this functions  
@@ -329,17 +371,7 @@ class modelRedis
 	incrCid(key, callback)
 	{
 		this.incrKey(key, callback);
-	}
-
-	/**
-	 * get Cid size for redis
-	 * @param {String} key 			identify key
-	 * @param {Function} callback  	back to which functions call this functions  
-	 */
-	getCidSize(key, callback)
-	{
-		this.getData(key, callback);
-	}
+    }
 
 	/**
 	 * using publish to event to other subscribe cluster

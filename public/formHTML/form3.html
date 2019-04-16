@@ -1,46 +1,43 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<script type="text/javascript" src="/js/formScale.js"></script> 
-		<meta name="viewport">
-		<style type="text/css">
-			span.cls_003{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			div.cls_003{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_002{font-family:Times,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			div.cls_002{font-family:Times,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_021{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: underline}
-			div.cls_021{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_008{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			div.cls_008{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_007{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			div.cls_007{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_009{font-family:Times,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			div.cls_009{font-family:Times,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_011{font-family:Times,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			div.cls_011{font-family:Times,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_013{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			div.cls_013{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_015{font-family:Times,serif;font-size:10px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			div.cls_015{font-family:Times,serif;font-size:10px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_022{font-family:Times,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: underline}
-			div.cls_022{font-family:Times,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_023{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: underline}
-			div.cls_023{font-family:Arial,serif;font-size:15.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			span.cls_016{font-family:Arial,serif;font-size:8px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			div.cls_016{font-family:Arial,serif;font-size:8px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
-			.sortOptions > label {
-			    font-size:          15px;
-			}
 
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>form3</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .dropbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px;
+                font-size: 10px;
+                border: none;
+            }
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 1.0rem;
+                }
+            }
 			.sortOptions > input[type=radio] {
-			    width:              15px;
-			    height:             15px;
+			    width:              16px;
+			    height:             16px;
 			}
-			input[type="text"]{
+            input[type="text"]{
 				font-size: 16px;
 			}
 			input[type="number"]{
 				font-size: 16px;
+
 			}
 			input[type="date"]{
 				font-size: 16px;
@@ -48,1014 +45,365 @@
 			textarea{
 				font-size: 16px;
 			}
-		</style>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+            select{
+                font-size: 14px;
+            }
+            label{
+                font-size: 16px;
+            }
+            ul{
+                list-style: none;
+            }
+            ul li{
+                padding : 5px;
+            }
+            ol li{
+                padding: 5px;
+            }
+            input.currency {
+                text-align: right;
+                padding-right: 15px;
+            }
+        
+            .container {
+                max-width: 960px;
+            }
+            .lh-condensed { line-height: 1.25; }
+        </style>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/prismic-javascript"></script>
 		<script type="text/javascript" src="/js/popUpsignatureHTML.js"></script>
 		<script type="text/javascript" src="/js/formDataSetting.js"></script>
         <script type="text/javascript" src="/js/submitContract.js"></script>
-        <script type="text/javascript" src="/js/wz_jsgraphics.js"></script>
-	</head>
-	<body onload="test()">
-		<form name="formNewsLetter" action="/process" method="POST" id="form3Letter">
-			<div style="position:relative;width:1024px;height:1600px;border-style:outset;overflow:hidden">
-				<div style="position:relative;;left:392px;top:50px" class="cls_003">
-					<span class="cls_003">出售香港住宅物業用的地產代理協議</span>
-				</div>
- 				<div style="position:relative;;left:852px;top:30px" class="cls_003">
-					<span class="cls_003">表格</span>
-					<span class="cls_002"> 3 </span>
-				</div>
-
-				<div style="position:relative;;left:128px;top:50px" class="cls_021">
-					<span class="cls_021">一般注意事項</span>
-					<span class="cls_008">：</span>
-					<span class="cls_007">請仔細閱讀本協議並按指示填寫。如你不明白本協議內的任何字句</span>
-					<span class="cls_008">，</span>
-					<span class="cls_007">請要求代理解釋。如你不明白</span>
-				</div>
-				<div style="position:relative;;left:128px;top:55px" class="cls_007">
-					<span class="cls_007">或不同意代理的解釋</span>
-					<span class="cls_008">，</span>
-					<span class="cls_007">則最佳的做法是在簽署本協議前諮詢你的律師。</span>
-				</div>
-		        <div style="position:relative;;left:128px;top:65px" class="cls_021">
-		            <span class="cls_021">備註</span>
-		            <span class="cls_007">：凡本協議內的任何字句尾隨有括號的數字</span>
-		            <span class="cls_007">(例如</span>
-		            <span class="cls_011"><sup>(1)</sup></span>
-		            <span class="cls_009">)</span>
-		            <span class="cls_007">，請立即參閱本協議附表4內相同編號的註釋。凡本協議內</span>
-		        </div>
-		        <div style="position:relative;;left:128px;top:70px" class="cls_007">
-		            <span class="cls_007">的任何字句提述本協議的某附表</span>
-		            <span class="cls_008">，</span>
-		            <span class="cls_007">亦請立即參閱該附表。</span>
-		        </div>
-
-		        <div style="position:relative;;left:128px;top:86px" class="cls_013">
-		            <span class="cls_013">1.</span>
-		        </div>
-		        <div style="position:relative;left:160px;top:67px" class="cls_003">
-		            <span class="cls_003">代理的委任及本協議的有效期</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:78px" class="cls_003">
-					<span class="sortOptions">
-						<input type="radio" name="opening" value=0 checked>
-						<label for=0>本人</label>
-						<input type="radio" name="opening" value=1>
-						<label for=1>我們</label>
-					</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003"><input type="text" name="userEng" placeholder="請輸入英文姓名" style="height:18px;"></span>
-					<span class="cls_003"><input type="text" name="userChi" placeholder="請輸入中文姓名" style="height:18px;"></span>
-					<span class="cls_003">(“ 賣方 ”)</span>
-					<span class="cls_003">現按照本協議的條款並在該等條款</span>
-				</div>
-		        <div style="position:relative;left:160px;top:88px" class="cls_003">
-					<span class="cls_003">的規限下委任</span>
-					<span class="cls_003"><input type="text" name="agency" size="42" placeholder="請輸入代理帳號" style="height:18px;"></span>
-					<span class="cls_002">(</span>
-		            <span class="cls_013">“</span>
-		            <span class="cls_003">代理</span>
-		            <span class="cls_013">”</span>
-		            <span class="cls_015"><sup>(2)</sup></span>
-					<span class="cls_002">)</span>
-					<span class="sortOptions">
-						<input type="radio" name="exclusive" value=2 checked>
-						<label for=2>為本人</label>
-						<input type="radio" name="exclusive" value=3>
-						<label for=3>我們的獨家</label>
-						<input type="radio" name="exclusive" value=4>
-						<label for=4>非獨家</label>
-					</span>
-				</div>
-		        <div style="position:relative;;left:160px;top:98px" class="cls_002">
-		            <span class="cls_003">代理</span>
-		            <span class="cls_013">，</span>
-					<span class="cls_003">以推銷位於</span>
-					<span class="cls_003"><input type="text" name="property" placeholder="請輸入大廈名稱" size="58" style="height:18px;"></span>
-		            <span class="cls_003">的物業 ( “ 物業 ” ) </span>
-		            <span class="cls_003">。本協議</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:108px" class="cls_003">
-		            <span class="cls_003">由</span>
-		            <span class="cls_022"><input type="date" name="createDay"></span>
-		            <span class="cls_003">日起生效</span>
-		            <span class="cls_013">，</span>
-		            <span class="cls_003">並於</span>
-		            <span class="cls_022"><input type="date" name="expiresDay"></span>
-		            <span class="cls_003">日屆滿</span>
-		            <span class="cls_002">(首尾</span>
-					<span class="cls_003"></span>
-					<span class="cls_003">兩天包括在內</span>
-		            <span class="cls_002">)(</span>
-		            <span class="cls_013">“</span>
-		            <span class="cls_003">有效期</span>
-		            <span class="cls_013">”</span>
-		            <span class="cls_002">)</span>
-		            <span class="cls_003">。</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:118px" class="cls_008">
-		        	<span class="cls_008">[</span>
-		        	<span class="cls_021">注意</span>
-		        	<span class="cls_008">﹕</span>
-		        	<span class="cls_007">如屬獨家代理的關係</span>
-		        	<span class="cls_008">，</span>
-		        	<span class="cls_007">則即使物業在有效期內並非經由代理出售</span>
-		        	<span class="cls_008">，</span>
-					<span class="cls_007">業主仍可能須向代理支付佣金</span>
-					<span class="cls_008">，</span>
-		        </div>
-				<div style="position:relative;;left:160px;top:128px" class="cls_007">
-					<span class="cls_007">因此當賣方與代理建立獨家代理關係時應謹慎考慮</span>
-					<span class="cls_008">。</span>
-					<span class="cls_007">代理以獨家代理身分行事時須履行的特別責任</span>
-					<span class="cls_008">，</span>
-					<span class="cls_007">可在第</span>
-				</div>
-				<div style="position:relative;;left:160px;top:138px" class="cls_007">
-					<span class="cls_008"> 13</span>
-					<span class="cls_007">條下以額外條款的形式指明。</span>
-					<span class="cls_008">]</span>
-				</div>
-
-		        <div style="position:relative;;left:128px;top:154px" class="cls_013">
-		        	<span class="cls_013">2.</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:135px" class="cls_003">
-		        	<span class="cls_003">代理關係及代理的責任</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:145px" class="cls_003">
-		        	<span class="cls_003">代理與賣方同意</span>
-		        	<span class="cls_002"> </span>
-		        	<span class="cls_013">—</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:155px" class="cls_002">
-		        	<span class="cls_002">(a)</span>
-		        </div>
-		        <div style="position:relative;left:190px;top:135px" class="cls_003">
-					<span class="cls_003">代理與賣方之間就物業而有的代理關係屬</span>
-					<span class="sortOptions">
-						<input type="radio" name="relationship" value=5 checked>
-						<label for=5>單邊代理</label>
-						<input type="radio" name="relationship" value=6>
-						<label for=6>雙邊代理</label>
-						<input type="radio" name="relationship" value=7>
-						<label for=7>有可能代表雙方的代理</label>
-					</span>
-					<span class="cls_015"><sup>(3)(1)</sup></span>
-					<span class="cls_003">關係</span>
-		        	<span class="cls_013">；</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:150px" class="cls_002">
-		        	<span class="cls_002">(b)</span>
-		        </div>
-		        <div style="position:relative;;left:190px;top:130px" class="cls_007">
-		        	<span class="cls_003">如屬雙邊代理關係</span>
-		        	<span class="cls_013">，</span>
-		        	<span class="cls_003">則代理須在切實可行的範圍內</span>
-		        	<span class="cls_013">，</span>
-		        	<span class="cls_003">盡快以書面向賣方披露代理將向買方收取的佣金的</span>
-		        </div>
-		        <div style="position:relative;;left:190px;top:140px" class="cls_003">
-		        	<span class="cls_003">數額或收費率</span>
-		        	<span class="cls_013">；</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:150px" class="cls_002">
-		        	<span class="cls_002">(c)</span>
-		        </div>
-		        <div style="position:relative;;left:190px;top:130px" class="cls_003">
-		        	<span class="cls_003">如屬有可能代表雙方的代理關係</span>
-		        	<span class="cls_013">，</span>
-		        	<span class="cls_003">則代理須在建立雙邊代理關係後</span>
-		        	<span class="cls_013">，</span>
-		        	<span class="cls_003">在切實可行的範圍內</span>
-		        	<span class="cls_013">，</span>
-		        	<span class="cls_003">盡快以書面</span>
-		        </div>
-		        <div style="position:relative;;left:190px;top:140px" class="cls_003">
-		        	<span class="cls_003">向賣方披露該代理關係以及代理將向買方收取的佣金的數額或收費率</span>
-		        	<span class="cls_013">；</span>
-		        	<span class="cls_003">及</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:155px" class="cls_002">
-		        	<span class="cls_002">(d)</span>
-		        </div>
-		        <div style="position:relative;;left:190px;top:135px" class="cls_003">
-		        	<span class="cls_003">代理除須履行本協議或任何成文法則委予代理的責任外</span>
-		        	<span class="cls_013">，</span>
-		        	<span class="cls_003">亦須履行本協議附表</span>
-		        	<span class="cls_002"> 1</span>
-		        	<span class="cls_013"> </span>
-		        	<span class="cls_003">內所列的責任。</span>
-		        </div> 
-		        <div style="position:relative;;left:128px;top:155px" class="cls_013">
-		        	<span class="cls_013">3.</span>
-		        </div>
-
-		        <div style="position:relative;;left:160px;top:135px" class="cls_003">
-		        	<span class="cls_003">放盤價</span> 
-		        	<span class="cls_013">[</span>
-		        	<span class="cls_023">注意</span>
-		        	<span class="cls_013">：</span>
-		        	<span class="cls_003">賣方並沒有藉本條授權代理代賣方接受任何要約。放盤價只供放盤及作廣告宣傳之用。</span>
-		        	<span class="cls_013">]</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:145px" class="cls_003">
-					<span class="cls_003">放盤價為港幣</span>
-					<input type="text" name="dollar" placeholder="請輸入中國大寫數目" style="height:18px;">
-					<span class="cls_003">元</span>
-					<span class="cls_002">(HK$</span>
-					<input type="number" name="dollarHK" placeholder="請輸入阿拉伯數字" style="height:18px;">
-					<span class="cls_002">)</span>
-					<span class="cls_003">。放盤價只在賣方的書面指示下方可更</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:155px" class="cls_003">
-		        	<span class="cls_003">改</span>
-		        	<span class="cls_013">，</span>
-		        	<span class="cls_003">而該等指示將構成本協議一部分。</span>
-		        </div>
-		        <div style="position:relative;;left:128px;top:175px" class="cls_013">
-		        	<span class="cls_013">4.</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:155px" class="cls_003">
-		        	<span class="cls_003">佣金</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:165px" class="cls_003">
-					<span class="cls_003">本協議適用於賣方須向代理支付的佣金的規定</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">列於本協議附表</span>
-					<span class="cls_013"> 2 </span>
-					<span class="cls_003">及</span>
-					<span class="cls_013"> 4 </span>
-					<span class="cls_003">內</span>
-					<span class="cls_016"><sup>(4)</sup></span>
-					<span class="cls_003">。</span>
-				</div>
-		        <div style="position:relative;;left:128px;top:185px" class="cls_013">
-					<span class="cls_013">5.</span>
-				</div>
-		        <div style="position:relative;;left:160px;top:165px" class="cls_003">
-					<span class="cls_003">物業資料</span>
-				</div>
-		        <div style="position:relative;;left:160px;top:175px" class="cls_003">
-					<span class="cls_003">代理須向賣方提供《 地產代理常規</span>
-					<span class="cls_013">(</span>
-					<span class="cls_003">一般責任及香港住宅物業</span>
-					<span class="cls_013">)</span>
-					<span class="cls_003">規例 》訂明並經代理</span>
-					<span class="cls_003">填妥和簽署的物業資料</span>
-				</div>
-		        <div style="position:relative;;left:160px;top:185px" class="cls_003">
-					<span class="cls_003">表格</span>
-					<span class="cls_013">(</span>
-					<span class="cls_003">包括賣方的陳述</span>
-					<span class="cls_013">)</span>
-					<span class="cls_003">。</span>
-				</div>		     
-				<div style="position:relative;left:128px;top:205px" class="cls_013">
-		        	<span class="cls_013">6.</span>
-		        </div>
-		        <div style="position:relative;left:160px;top:185px" class="cls_003">
-		        	<span class="cls_003">視察物業</span>
-		        </div>
-		        <div style="position:relative;left:160px;top:200px" class="cls_002">
-		        	<span class="cls_002">(a)</span>
-		        </div>
-		        <div style="position:relative;;left:200px;top:180px" class="cls_003">
-					<span class="cls_003">賣方同意容許</span>
-					<span class="cls_003">
-						<select id="userAgreeSeeProperty">
-							<option id="agency">代理</option>
-							<option id="user">買方</option>
-							<option id="All">代理及買方</option>
-						</select>
-					</span>
-		        	<span class="cls_015"><sup>(1)</sup></span>
-		        	<span class="cls_003">於雙方議定的時間查看物業。</span>
-		        </div>
-		        <div style="position:relative;;left:200px;top:190px" class="cls_003">
-		            <span class="sortOptions">
-		                <input type="radio" name="showProperty" value=8 checked>
-		                <label for=8>同意</label>
-		                <input type="radio" name="showProperty" value=9>
-		                <label for=>不同意</label>
-		            </span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:205px" class="cls_002">
-		        	<span class="cls_002">(b)</span>
-		        </div>
-		        <div style="position:relative;;left:200px;top:185px" class="cls_003">
-		        	<span class="cls_003">賣方同意將物業的鎖匙交由代理妥為保管</span>
-		        	<span class="cls_013">，</span>
-		        	<span class="cls_003">以供查看物業之用。</span>
-		        </div>
-		        <div style="position:relative;;left:200px;top:195px" class="cls_003">
-		        	<span class="sortOptions">
-		                <input type="radio" name="keepProperty" value=10 checked>
-		                <label for=10>同意</label>
-		                <input type="radio" name="keepProperty" value=11>
-		                <label for=11>不同意</label>
-		            </span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:210px" class="cls_002">
-		        	<span class="cls_002">(c)</span>
-		        </div>
-		        <div style="position:relative;;left:200px;top:190px" class="cls_003">
-					<span class="cls_003">賣方授權代理將鎖匙交予其他地產</span>
-					<span class="cls_003">
-							<select id="userAgreeKeepKey">
-								<option id="agency">其他地產代理</option>
-								<option id="user">其他地產代人士</option>
-								<option id="All">代理及買方</option>
-							</select>
-					</span>
-		        	<span class="cls_015"><sup>(1)</sup></span>
-		        	<span class="cls_013">，</span><span class="cls_003">以供查看物業之用。</span>
-		        </div>
-		        <div style="position:relative;;left:200px;top:200px" class="cls_003">
-		        	<span class="sortOptions">
-		                <input type="radio" name="watchProperty" value=12 checked>
-		                <label for=12>同意</label>
-		                <input type="radio" name="watchProperty" value=13>
-		                <label for=13>不同意</label>
-		            </span>
-		            <span class="cls_015"><sup>(8)</sup></span>
-		        </div>
-		        <div style="position:relative;;left:128px;top:210px" class="cls_013">
-		        	<span class="cls_013">7.</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:190px" class="cls_003">
-		        	<span class="cls_003">分銷放盤</span>
-		        </div>
-		        <div style="position:relative;;left:160px;top:200px" class="cls_002">
-		        	<span class="cls_002">(a)</span>
-		        </div>
-		        <div style="position:relative;;left:200px;top:180px" class="cls_003">
-		        	<span class="cls_003">賣方授權代理將物業分銷放盤</span>
-		        	<span class="cls_013">，</span>
-		        	<span class="cls_003">並將由賣方提供的關於賣方及物業的資料交予其他地產代理以供分銷</span>
-		        </div>
-		        <div style="position:relative;;left:200px;top:190px" class="cls_003">
-					<span class="cls_003">放盤之用。</span>
-				</div>
-		        <div style="position:relative;;left:200px;top:200px" class="cls_003">
-		        	<span class="sortOptions">
-		                <input type="radio" name="distributProperty" value=14 checked>
-		                <label for=14>同意</label>
-		                <input type="radio" name="distributProperty" value=15>
-		                <label for=15>不同意</label>
-		            </span>
-		            <span class="cls_015"><sup>(8)</sup></span>
-		        </div> 
-			</div>
-
-			<div style="position:relative;width:1024px;height:1600px;border-style:outset;overflow:hidden">
-
-				<div style="position:relative;;left:160px;top:50px" class="cls_002">
-					<span class="cls_002">(b)</span>
-				</div>
-				<div style="position:relative;;left:200px;top:30px" class="cls_003">
-					<span class="cls_003">如代理將物業交由另一地產代理</span>
-					<span class="cls_002">(</span>
-					<span class="cls_013">“</span>
-					<span class="cls_003">分銷放盤代理</span>
-					<span class="cls_013">”</span>
-					<span class="cls_002">)</span>
-					<span class="cls_003">分銷放盤</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">則代理須確保分銷放盤代理遵守</span>
-				</div>
-				<div style="position:relative;;left:200px;top:40px" class="cls_003">
-					<span class="cls_003">《地產代理常規</span>
-					<span class="cls_002">(</span>
-					<span class="cls_003">一般責任及香港住宅物業</span>
-					<span class="cls_002">)</span>
-					<span class="cls_003">規例》中關於廣告宣傳的規定。</span>
-				</div>
-				<div style="position:relative;;left:128px;top:60px" class="cls_013">
-					<span class="cls_013">8.</span>
-				</div>
-				<div style="position:relative;;left:160px;top:40px" class="cls_003">
-					<span class="cls_003">廣告宣傳</span>
-				</div>
-				<div style="position:relative;;left:160px;top:60px" class="cls_002">
-					<span class="cls_002">(a)</span>
-				</div>
-				<div style="position:relative;;left:200px;top:40px" class="cls_003">
-					<span class="cls_003">賣方授權代理發出關於物業的廣告。</span>
-				</div>
-				<div style="position:relative;;left:200px;top:50px" class="cls_003">
-					<span class="sortOptions">
-		                <input type="radio" name="advertisements" value="16" checked>
-		                <label for="16">同意</label>
-		                <input type="radio" name="advertisements" value="17">
-		                <label for="17">不同意</label>
-		            </span>
-		            <span class="cls_015"><sup>(8)</sup></span>
-				</div>
-				<div style="position:relative;;left:160px;top:70px" class="cls_002">
-					<span class="cls_002">(b)</span>
-				</div>
-				<div style="position:relative;;left:200px;top:50px" class="cls_003">
-					<span class="cls_003">如對以上問題的回答是</span>
-					<span class="cls_013">“</span><span class="cls_003">同意</span>
-					<span class="cls_013">”</span><span class="cls_003">的話</span>
-					<span class="cls_013">，</span><span class="cls_003">則除本協議另有指明外</span>
-					<span class="cls_013">，</span><span class="cls_003">廣告宣傳費將由代理承擔。</span>
-				</div>
-				<div style="position:relative;;left:128px;top:70px" class="cls_013">
-					<span class="cls_013">9.</span>
-				</div>
-				<div style="position:relative;;left:160px;top:50px" class="cls_003">
-					<span class="cls_003">代理須披露權益</span>
-				</div>
-				<div style="position:relative;;left:160px;top:70px" class="cls_002">
-					<span class="cls_002">(a)</span>
-				</div>
-				<div style="position:relative;;left:200px;top:50px" class="cls_003">
-					<span class="cls_003">代表代理簽署本協議的人現披露</span>
-					<span class="cls_013">：</span>
-					<span class="cls_003">他或其指明親屬</span>
-					<span class="cls_015"><sup>(5)</sup></span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">或其任何代名人</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">或其指明親屬的</span>
-				</div>
-				<div style="position:relative;;left:200px;top:60px" class="cls_003">
-					<span class="cls_003">任何代名人，</span>
-					<span class="cls_003">或代理或代理的任何僱員</span>
-					<span class="cls_002">/</span>
-					<span class="cls_003">大股東</span>
-					<span class="cls_015"><sup>(6)</sup></span>
-					<span class="cls_002">/</span>
-					<span class="cls_003">合夥人</span>
-					<span class="cls_002">/</span>
-					<span class="cls_003">董事對物業擁有金錢上的或其他</span>
-				</div>
- 				<div style="position:relative;;left:200px;top:70px" class="cls_003">
-					<span class="cls_003">實益的權益</span>
-					<span class="cls_015"><sup>(7)</sup></span>
-					<span class="cls_013">：</span>
-				</div>
- 				<div style="position:relative;;left:200px;top:80px" class="cls_003">
-					<span class="sortOptions">
-		                <input type="radio" name="showRightInterests" value=18 checked>
-		                <label for=18>有</label>
-		                <input type="radio" name="showRightInterests" value=19>
-		                <label for=19>沒有</label>
-		            </span>
-		            <span class="cls_015"><sup>(8)</sup></span>
-				</div>
- 				<div style="position:relative;;left:160px;top:100px" class="cls_002">
-					<span class="cls_002">(b)</span>
-				</div>
- 				<div style="position:relative;;left:200px;top:80px" class="cls_003">
-					<span class="cls_003">如對以上問題的回答是</span>
-					<span class="cls_013">“</span>
-					<span class="cls_003">有</span>
-					<span class="cls_013">”</span>
-					<span class="cls_003">的話</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">則必須在本協議附表</span>
-					<span class="cls_002"> 3</span>
-					<span class="cls_013"> </span>
-					<span class="cls_003">述明有關權益的詳情。</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:100px" class="cls_002">
-					<span class="cls_002">(c)</span>
-				</div>
-				<div style="position:relative;;left:200px;top:80px" class="cls_003">
-				<span class="cls_003">代表代理簽署本協議的人須在切實可行的範圍內</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">盡快以書面向賣方披露在有效期內產生</span>
-				</div>
- 				<div style="position:relative;;left:200px;top:90px" class="cls_003">
-					<span class="cls_003">的上述</span>
-					<span class="cls_002">(a)</span>
-					<span class="cls_003">段所提述的任何權益。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:100px" class="cls_013">
-					<span class="cls_013">10.</span>
-				</div>
-				<div style="position:relative;;left:160px;top:80px" class="cls_003">
-					<span class="cls_003">賣方的確認</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:90px" class="cls_003">
-					<span class="cls_003">賣方確認他已</span>
-					<span class="cls_013">  —</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:100px" class="cls_002">
-					<span class="cls_002">(a)</span>
-				</div>
- 				<div style="position:relative;;left:200px;top:80px" class="cls_003">
-					<span class="cls_003">閱讀並明白本協議的條款</span>
-					<span class="cls_013">；</span>
-					<span class="cls_003">及</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:90px" class="cls_002">
-					<span class="cls_002">(b)</span>
-				</div>
- 				<div style="position:relative;;left:200px;top:70px" class="cls_013">
-					<span class="cls_013">
-						<input type="checkbox" name="fiveAgreement" value=1>
-						<label for=1>收取本協議第5條規定提供的物業資料表格格(包括賣方的陳述)。</label>
-					</span>
-					<span class="cls_015"><sup>(8)</sup></span>
-				</div>
-				<div style="position:relative;;left:200px;top:80px" class="cls_013">
-					<span class="cls_013">
-						<input type="checkbox" name="salePurchaseAgreement" value=1>
-						<label for=1> 同意於賣方與一名買方訂立具約束力的買賣協議之前收取物業資料表格(包括賣方的陳述)。</label>
-					</span>
-					<span class="cls_015"><sup>(8)</sup></span>
-				</div>
-				<div style="position:relative;;left:128px;top:90px" class="cls_013">
-					<span class="cls_013">11.</span>
-				</div>
-				<div style="position:relative;;left:160px;top:70px" class="cls_003">
-					<span class="cls_003">附表</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:80px" class="cls_003">
-					<span class="cls_003">本協議的附表構成本協議的一部分。</span>
-				</div>
-				<div style="position:relative;;left:128px;top:90px" class="cls_013">
-					<span class="cls_013">12.</span>
-				</div>
-				<div style="position:relative;;left:160px;top:73px" class="cls_003">
-					<span class="cls_003">如物業不容許作住宅用途則本協議即屬無效</span>
-				</div>
-				<div style="position:relative;;left:160px;top:80px" class="cls_003">
-					<span class="cls_003">如物業的佔用許可證所規定的用途並不包括住宅用途或不容許作住宅用途</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">則本協議即屬無效。</span>
-				</div>
-				<div style="position:relative;;left:128px;top:100px" class="cls_013">
-					<span class="cls_013">13.</span>
-				</div>
-				<div style="position:relative;;left:160px;top:80px" class="cls_003">
-					<span class="cls_003">額外條款</span>
-					<span class="cls_013">[</span>
-					<span class="cls_023">注意</span>
-					<span class="cls_013">：</span>
-					<span class="cls_003">這些額外條款不得與本協議的其他條款有所抵觸</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">亦不得限制本協議的其他條款。]</span>
-					<span class="cls_013">︰</span>
-				</div> 				
- 				<div style="position:relative;;left:160px;top:90px" class="cls_003">
-					<textarea rows="2" cols="100" id="additionalLawT" name="additionalLaw"></textarea>
-				</div>
-				<div style="position:relative;left:160px;top:100px" class="cls_003">
-					<span class="cls_003">賣方的簽署</span>
-					<span class="cls_013">：</span>
-					<button type="button" onclick="openPopUp('svgUser')">Signature</button>
-					<input type="hidden" id="svgUserID" name="svgUser" readonly="readonly" />
-				</div>
-				<!--svgUser display-->
-				<!-- <div style="position:relative;left:160px;top:100px;width:100px;height:100;" class="cls_003" id="svgUserGraphic"></div> -->
-
-				<div style="position:relative;left:550px;top:80px" class="cls_003">
-					<span class="cls_003">為代理及代代理簽署的地產代理</span>
-					<span class="cls_002">/</span>
-					<span class="cls_003">營業員的簽署</span>
-					<span class="cls_013">：</span>
-					<button type="button" onclick="openPopUp('svgAgency')">Signature</button>
-					<input type="hidden" id="svgAgencyID" name="svgAgency" readonly="readonly" />
-				</div>
-				<!--svgAgency display-->
-				<!-- <div style="position:relative;left:160px;top:80px;width:400px;height:200;" class="cls_003" id="svgAgencyGraphic"></div> -->
-				<div style="position:relative;left:160px;top:100px" class="cls_003">
-					<span class="cls_003">香港身分證號碼</span>
-					<span class="cls_013">：</span>
-					<span class="cls_003"><input type="text" name="iDNumber" style="height:18px;"></span>
-					<span class="cls_013">（</span>
-					<span class="cls_003"><input type="text" name="iDBRNumber" size="1" style="height:18px;"></span>
-					<span class="cls_003"> )</span>
-				</div>
-				<div style="position:relative;left:550px;top:75px" class="cls_003">
-					<span class="cls_003">簽署人的姓名或名稱</span>
-					<span class="cls_013">：</span>
-					<span class="cls_003"><input type="text" name="agencyName" placeholder="請輸入代理的姓名或名稱" style="height:18px;"></span>
-				</div>
-				<div style="position:relative;left:160px;top:100px" class="cls_002">
-					<span class="cls_002">(</span>
-					<span class="cls_003">如適用的話</span><span class="cls_002">)</span>
-				</div>
-				<div style="position:relative;left:550px;top:75px" class="cls_003">
-						<span class="cls_003">牌照號碼</span>
-						<span class="cls_013">：</span>
-						<span class="cls_003"><input type="text" name="agencyNumber" placeholder="請輸入代理的牌照號碼" style="height:18px;"></span>
-				</div> 
-				<div style="position:relative;left:160px;top:100px" class="cls_003">
-					<span class="cls_003">如賣方是一間公司</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">請述明</span><span class="cls_013">： </span>
-				</div>
-				<div style="position:relative;left:550px;top:80px" class="cls_003">
-					<span class="cls_003">
-						<textarea rows="4" cols="70" id="referenceForCompanyT" name="referenceForCompany"></textarea>
-					</span>
-				</div>
-				<div style="position:relative;left:160px;top:100px" class="cls_003">
-					<span class="cls_003">簽署人的姓名或名稱</span>
-					<span class="cls_013">：</span>
-					<input type="text" name="user" placeholder="請輸入賣家的牌照號碼" style="height:18px;">
-				</div>
-				<div style="position:relative;left:550px;top:78px" class="cls_003">
-					<span class="cls_003">代理的營業詳情說明書號碼</span>
-					<span class="cls_013">：</span>
-					<input type="text" name="agencyBDN" style="height:18px;">
-				</div> 	  
-				<div style="position:relative;left:160px;top:85px" class="cls_003">
-					<span class="cls_003">簽署人的職位</span>
-					<span class="cls_013">：</span>
-					<input type="text" name="userPosition" placeholder="請輸入簽署人的職位(如賣方是一間公司)" style="height:18px;">
-				</div>
-				<div style="position:relative;left:160px;top:100px" class="cls_003">
-					<span class="cls_003">賣方的商業登記證號碼</span>
-					<span class="cls_013">：</span>
-					<input type="text" name="userBDN"  placeholder="請輸入賣方的商業登記證號碼(如賣方是一間公司)" style="height:18px;">
-				</div>	
-				<div style="position:relative;left:160px;top:110px" class="cls_003">
-					<span class="cls_003">地址</span>
-					<span class="cls_013">：</span>
-					<br>
-					<span class="cls_003">
-					<textarea rows="5" cols="38.5" id="userAddressT" placeholder="請輸入賣方的地址" name="userAddress"></textarea>
-					</span> 
-				</div>
-				<div style="position:relative;left:550px;top:13px" class="cls_003">
-					<span class="cls_003">地址</span>
-					<span class="cls_013">：</span>
-					<br>
-					<span class="cls_003">
-					<textarea rows="5" cols="38.5" id="agencyAddressT" placeholder="請輸入代理的地址" name="agencyAddress"></textarea>
-					</span> 
-				</div>
-				<div style="position:relative;left:160px;top:25px" class="cls_003">
-						<span class="cls_003">電話號碼</span>
-						<span class="cls_013">：</span>
-						<span class="cls_003"><input type="number" name="userPhone" placeholder="請輸入賣方的電話號碼" style="height:18px;"></span>
-				</div>
-				<div style="position:relative;left:550px;top:5px" class="cls_003">
-						<span class="cls_003">電話號碼</span>
-						<span class="cls_013">：</span>
-						<span class="cls_003"><input type="number" name="agencyPhone" placeholder="請輸入代理的電話號碼" style="height:18px;"></span>
-				</div>
-				<div style="position:relative;left:160px;top:25px" class="cls_003">
-					<span class="cls_003">傳真號碼</span>
-					<span class="cls_013">：</span>
-					<span class="cls_003"><input type="number" name="userFax"  placeholder="請輸入賣方的傳真號碼"style="height:18px;"></span>
-				</div>
-				<div style="position:relative;left:550px;top:0px" class="cls_003">
-					<span class="cls_003">傳真號碼</span>
-					<span class="cls_013">：</span>
-					<span class="cls_003"><input type="number" name="agencyFax" placeholder="請輸入賣方的傳真號碼" style="height:18px;"></span>
-				</div>
-				<div style="position:relative;left:160px;top:20px" class="cls_003">
-					<span class="cls_003">日期</span>
-					<span class="cls_013">：</span>
-					<input type="date" name="userSignDate" placeholder="請輸入賣方的簽署日期" style="height:18px;">
-				</div>
-				<div style="position:relative;left:550px;top:0px" class="cls_003">
-					<span class="cls_003">日期</span>
-					<span class="cls_013">：</span>
-					<input type="date" name="agencySignDate" placeholder="請輸入代理的簽署日期" style="height:18px;">
-				</div>
-				<div style="position:relative;left:160px;top:15px" class="cls_002">
-					<span class="cls_002">[</span>
-					<span class="cls_023">注意</span>
-					<span class="cls_013">：</span>
-					<span class="cls_003">在本協議簽署後</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">必須立即給予業主一份經簽署的本協議的正本或副本。</span>
-					<span class="cls_002">]</span>
-				</div>
-			</div>
-
-			<div style="position:relative;width:1024px;height:1600px;border-style:outset;overflow:hidden">
-
- 				<div style="position:relative;;left:550px;top:50px" class="cls_003">
-					<span class="cls_003">附表</span>
-					<span class="cls_013"> 1</span>
-				</div>
- 				<div style="position:relative;;left:480px;top:55px" class="cls_003">
-					<span class="cls_003">代理的責任</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:80px" class="cls_003">
-					<span class="cls_003">代理須</span>
-					<span class="cls_002"> </span>
-					<span class="cls_013">—</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:100px" class="cls_002">
-					<span class="cls_002">(a)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:80px" class="cls_003">
-					<span class="cls_003">代賣方推銷物業</span>
-					<span class="cls_013">；</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:100px" class="cls_002">
-					<span class="cls_002">(b)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:80px" class="cls_003">
-					<span class="cls_003">為賣方取得關於物業的資料</span>
-					<span class="cls_013">；</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:100px" class="cls_002">
-					<span class="cls_002">(c)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:80px" class="cls_003">
-					<span class="cls_003">安排買方視察物業</span>
-					<span class="cls_013">；</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:100px" class="cls_002">
-					<span class="cls_002">(d)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:80px" class="cls_003">
-					<span class="cls_003">進行商議</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">並向賣方提交所有關於物業的要約</span>
-					<span class="cls_013">；</span>
-					<span class="cls_003">及</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:100px" class="cls_002">
-					<span class="cls_002">(e)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:80px" class="cls_003">
-					<span class="cls_003">協助賣方與買方訂立具約束力的買賣協議。</span>
-				</div>
-				<div style="position:relative;;left:550px;top:90px" class="cls_003">
-					<span class="cls_003">附表</span><span class="cls_013"> 2</span>
-				</div>
- 				<div style="position:relative;;left:450px;top:100px" class="cls_003">
-					<span class="cls_003">賣方須支付的佣金</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:120px" class="cls_002">
-					<span class="cls_002">1.</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:100px" class="cls_003">
-					<span class="cls_003">除本附表第</span><span class="cls_002"> 2</span>
-					<span class="cls_013"> </span>
-					<span class="cls_003">條另有規定外</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">如賣方在有效期內經由代理與買方就物業訂立具約束力的買賣協議</span>
-					<span class="cls_013">，</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:110px" class="cls_003">
-					<span class="cls_003">則賣方須於</span>
-					<span class="cls_013">：</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:120px" class="cls_013">
-					<span class="cls_013">
-						<input type="checkbox" name="signatureCheck" value=1>
-						<label for=1><sup>(8)</sup>簽署買賣協議時，</label>
-					</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:130px" class="cls_013">
-					<span class="cls_013">
-						<input type="checkbox" name="propertyFinished" value=1>
-						<label for=1><sup>(8)</sup>買賣協議指明的物業交易完成時，</label>
-					</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:140px" class="cls_003">
-					<span class="cls_003">向代理支付一筆數額</span>
-					<span class="cls_002">$</span>
-					<span class="cls_003"><input type="number" name="toAgencyMoney" placeholder="請輸入金額" size="18" style="height:18px;"></span>
-					<span class="cls_002">/</span>
-					<span class="cls_003">物業成交價的</span>
-					<span class="cls_003"><input type="number" name="propertyPercentage" size="18" placeholder="請輸入物業成交價" style="height:18px;"></span>
-					<span class="cls_002">%</span>
-					<span class="cls_015"><sup>(1)</sup></span>
-					<span class="cls_003">作為代理的佣金。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:160px" class="cls_002">
-					<span class="cls_002">2.</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:140px" class="cls_003">
-					<span class="cls_003">除本附表第</span>
-					<span class="cls_002"> 3</span>
-					<span class="cls_013"> </span>
-					<span class="cls_003">條另有規定外</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">如非因賣方犯錯而令物業交易未能完成</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">則賣方沒有責任向代理支付</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:150px" class="cls_003">
-					<span class="cls_003">任何佣金。在此情況下</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">如賣方已支付佣金</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">則代理須在切實可行的範圍內盡快</span>
-					<span class="cls_002">(</span>
-					<span class="cls_003">但無論如何不得遲</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:160px" class="cls_003">
-					<span class="cls_003">於由買賣協議指明的完成交易日期起計的</span>
-					<span class="cls_002"> 5</span>
-					<span class="cls_013"> </span>
-					<span class="cls_003">個工作日</span>
-					<span class="cls_002">)</span>
-					<span class="sortOptions">
-						<input type="radio" name="moneyIncrease" value=20 checked>
-						<label for=20>將佣金連同利息</label>
-						<input type="radio" name="moneyIncrease" value=21>
-						<label for=21>不連同利息</label>
-					</span>
-					<span class="cls_015"><sup>(1)</sup></span>
-					<span class="cls_003">退還予賣方。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:180px" class="cls_002">
-					<span class="cls_002">3.</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:160px" class="cls_003">
-					<span class="cls_003">如買賣雙方非基於物業的買賣協議的條文而共同取消該具約束力的買賣協議</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">則賣方須向代理支付佣金</span>
-					<span class="cls_003">。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:180px" class="cls_002">
-					<span class="cls_002">4.</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:160px" class="cls_003">
-					<span class="cls_003">如代理為推銷物業而與其他地產代理合作</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">則賣方無須向該等其他地產代理支付任何佣金。</span>
-				</div>
- 				<div style="position:relative;;left:550px;top:170px" class="cls_003">
-					<span class="cls_003">附表</span>
-					<span class="cls_013"> 3</span>
-				</div>
- 				<div style="position:relative;;left:450px;top:180px" class="cls_003">
-					<span class="cls_003">對物業所擁有的權益</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:190px" class="cls_003">
-					<span class="cls_003">按照本協議第</span>
-					<span class="cls_002"> 9</span>
-					<span class="cls_013"> </span>
-					<span class="cls_003">條</span>
-					<span class="cls_013">，</span>
-					<span class="cls_003">就物業所擁有的金錢上的或其他實益的權益</span>
-					<span class="cls_015"><sup>(7)</sup></span>
-					<span class="cls_003">的詳情如下</span>
-					<span class="cls_013">：</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:200px" class="cls_003">
-		            <span class="cls_003">
-		            	<textarea rows="2" cols="100" id="referenceT" name="reference"></textarea>
-		            </span>
-		        </div>
- 				<div style="position:relative;;left:550px;top:205px" class="cls_003">
-					<span class="cls_003">附表</span>
-					<span class="cls_013"> 4</span>
-				</div>
- 				<div style="position:relative;;left:550px;top:215px" class="cls_003">
-					<span class="cls_003">註釋</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:235px" class="cls_009">
-					<span class="cls_009">(1)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:215px" class="cls_007">
-					<span class="cls_007">指刪去不適用者。所有刪除必須加以簡簽。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:245px" class="cls_009">
-					<span class="cls_009">(2)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:225px" class="cls_007">
-					<span class="cls_007">在本協議第</span>
-					<span class="cls_009"> 1</span><span class="cls_008"> </span>
-					<span class="cls_007">條內填上有關地產代理業務實體</span>
-					<span class="cls_009">(</span><span class="cls_007">即俗稱商號</span>
-					<span class="cls_009">)</span><span class="cls_007">的名稱。</span>
-				</div>
-				<div style="position:relative;;left:128px;top:255px" class="cls_009">
-					<span class="cls_009">(3)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:235px" class="cls_007">
-					<span class="cls_007">獨家代理</span>
-					<span class="cls_009"> </span>
-					<span class="cls_008">－</span><span class="cls_009"> </span>
-					<span class="cls_008"> </span><span class="cls_007">指代理是唯一為賣方行事的地產代理。如賣方在有效期內經由另一地產代理與一名買方就物業</span>
-				</div>				
-				<div style="position:relative;;left:245px;top:245px" class="cls_007">
-					<span class="cls_007">訂立具約束力的買賣協議</span>
-					<span class="cls_008">，</span>
-					<span class="cls_007">則代理有權向賣方追討附表</span>
-					<span class="cls_009"> 2</span>
-					<span class="cls_008"> </span>
-					<span class="cls_007">第</span>
-					<span class="cls_009"> 1</span><span class="cls_008"></span>
-					<span class="cls_007">條所指明的佣金。</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:255px" class="cls_007">
-					<span class="cls_007">單邊代理</span>
-					<span class="cls_009"> </span>
-					<span class="cls_008">—</span>
-					<span class="cls_009"> </span>
-					<span class="cls_008"> </span>
-					<span class="cls_007">指代理只為賣方行事。</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:265px" class="cls_007">
-					<span class="cls_007">雙邊代理</span>
-					<span class="cls_009"> </span>
-					<span class="cls_008">—</span>
-					<span class="cls_009"> </span>
-					<span class="cls_008"> </span>
-					<span class="cls_007">指代理既為賣方亦為物業的買方行事。</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:275px" class="cls_007">
-					<span class="cls_007">有可能代表雙方的代理</span>
-					<span class="cls_009"> </span>
-					<span class="cls_008">—</span>
-					<span class="cls_009"> </span>
-					<span class="cls_008"> </span>
-					<span class="cls_007">指代理只為賣方行事</span>
-					<span class="cls_008">，</span>
-					<span class="cls_007">但於稍後亦可能為物業的買方行事。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:295px" class="cls_009">
-					<span class="cls_009">(4)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:275px" class="cls_007">
-					<span class="cls_007">佣金的數額或收費率可由賣方與代理商議。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:290px" class="cls_009">
-					<span class="cls_009">(5)</span>
-
-				</div>
- 				<div style="position:relative;;left:160px;top:270px" class="cls_007">
-					<span class="cls_007">指明親屬</span>
-					<span class="cls_009"> </span>
-					<span class="cls_008">—</span>
-					<span class="cls_009"> </span>
-					<span class="cls_008"> </span>
-					<span class="cls_007">指配偶、父母、子女、兄弟或姊妹。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:290px" class="cls_008">
-					<span class="cls_008">(6)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:270px" class="cls_007">
-					<span class="cls_007">大股東</span>
-					<span class="cls_008"> —   </span>
-					<span class="cls_007">指在代理的股東大會上</span>
-					<span class="cls_008">，</span>
-					<span class="cls_007">有權行使百分之十或以上的投票權或控制百分之十或以上的投票權的行</span>
-				</div>
- 				<div style="position:relative;;left:230px;top:280px" class="cls_007">
-					<span class="cls_007">使的人。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:300px" class="cls_009">
-					<span class="cls_009">(7)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:280px" class="cls_007">
-					<span class="cls_007">擁有金錢上的或其他實益的權益</span>
-					<span class="cls_008">，</span>
-					<span class="cls_007">包括</span>
-					<span class="cls_008">：</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:290px" class="cls_009">
-					<span class="cls_009">(a) </span>
-					<span class="cls_008">  </span>
-					<span class="cls_007">身為對物業擁有金錢上的或其他實益的權益的公司或任何其他團體的成員</span>
-					<span class="cls_008">；</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:300px" class="cls_009">
-					<span class="cls_009">(b) </span>
-					<span class="cls_008">  </span>
-					<span class="cls_007">與對物業擁有金錢上的或其他實益的權益的人有合夥關係</span>
-					<span class="cls_008">，</span>
-					<span class="cls_007">或受僱於該人</span>
-					<span class="cls_008">；</span>
-					<span class="cls_007">或</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:310px" class="cls_009">
-					<span class="cls_009">(c) </span>
-					<span class="cls_008">  </span>
-					<span class="cls_007">屬於任何關乎物業的安排或協議</span>
-					<span class="cls_009">(</span>
-					<span class="cls_007">不論是否可強制執行</span>
-					<span class="cls_009">)</span>
-					<span class="cls_007">的一方。</span>
-				</div>
- 				<div style="position:relative;;left:128px;top:320px" class="cls_009">
-					<span class="cls_009">(8)</span>
-				</div>
- 				<div style="position:relative;;left:160px;top:300px" class="cls_007">
-					<span class="cls_007">請於適當的方格內劃上</span>
-					<span class="cls_008">“  ”</span>
-					<span class="cls_007">號。</span>
-				</div> 
-			</div>
-            <div style="position:relative;margin:0 auto;width:1800px;height:40px">
-                <input type="button" value="save" onclick="playSave(3)">
-                <input type="button" value="submit" onclick="playSubmit(3)">
-				<input type="button" value="cancel" onclick="playReset()">
-				<input type="hidden" name="shaOneReturnUrl">
-				<input type="hidden" name="oldCreateDay">
+    </head>
+    <body class="bg-light">
+        <div class="container">
+            <header class="blog-header py-3">
+                <div class="row flex-nowrap justify-content-between align-items-center">
+                    <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                    <div class="col-4 text-center"><h6>出售香港住宅物業用的地產代理協議</h6></div>
+                    <div class="col-4 d-flex justify-content-end align-items-center" id="uniqueNumber"><h6>表格 3</h6></div>
+                </div>
+            </header>
+            <div class="nav-scroller py-1 mb-2">
+                <nav class="nav d-flex justify-content-between">
+                    <p>一般注意事項：請仔細閱讀本協議並按指示填寫。如你不明白本協議內的任何字句，請要求代理解釋。如你不明白或不同意代理的解釋，則最佳的做法是在簽署本協議前諮詢你的律師。</p>
+                    <p>備註：凡本協議內的任何字句尾隨有括號的數字(例如<sup>(1)</sup>)，請立即參閱本協議附表4內相同編號的註釋。凡本協議內的任何字句提述本協議的某附表，亦請立即參閱該附表。</p>
+                </nav>
             </div>
-		</form>
-	</body>
+            <form name="formNewsLetter" action="/process" method="POST" id="form3Letter">
+                <div class="row">
+                <ol type="1">
+                    <li>代理的委任及本協議的有效期
+                        <br>
+                        <span class="sortOptions">
+                            <input type="radio" name="opening" value="本人" checked><label for="本人">本人</label>
+                            <input type="radio" name="opening" value="我們"><label for="我們">我們</label>
+                        </span>
+                        ，
+                        <input type="text" name="userEng" placeholder="請輸入英文姓名">
+                        <input type="text" name="userChi" placeholder="請輸入中文姓名">
+                        (“ 賣方 ”) 現按照本協議的條款並在該等條款的規限下委任的規限下委任
+                        <input type="text" name="agency" placeholder="請輸入代理帳號" >
+                        ( “ 代理 ” <sup>(1)</sup>)為
+                        <span class="sortOptions">
+                            <input type="radio" name="exclusive" value="本人"><label for="本人">本人</label>
+                            <input type="radio" name="exclusive" value="我們的獨家"><label for="我們的獨家">我們的獨家</label>
+                            <input type="radio" name="exclusive" value="獨家" checked><label for="獨家">非獨家</label>
+                        </span>
+                        代理，以推銷位於
+                        <input type="text" name="property" placeholder="請輸入大廈名稱">
+                        的物業 ( “ 物業 ” ) 。本協議由
+                        <input type="text" id="datepicker0" name="createDay" placeholder="按">
+                        日起生效，並於<input type="text" id="datepicker1" name="expiresDay" placeholder="按">
+                        日屆滿 (首尾兩天包括在內)(“有效期”)。[注意﹕如屬獨家代理的關係，則即使物業在有效期內並非經由代理出售，賣方仍可能須向代理支付佣金，因此當賣方與代理建立獨家代理關係時應謹慎考慮。代理以獨家代理身分行事時須履行的特別責任，可在第13條下以額外條款的形式指明。]
+                    </li>
+                    <li>代理關係及代理的責任
+                        <br>
+                        代理與賣方同意&ensp;—
+                        <ol type="a">
+                            <li>代理與賣方之間就物業而有的代理關係屬
+                                <span class="sortOptions">
+                                    <input type="radio" name="relationship" value="單邊代理" checked>
+                                    <label for="單邊代理">單邊代理</label>
+                                    <input type="radio" name="relationship" value="雙邊代理">
+                                    <label for="雙邊代理">雙邊代理</label>
+                                    <input type="radio" name="relationship" value="有可能代表雙方的代理">
+                                    <label for="有可能代表雙方的代理">有可能代表雙方的代理</label>
+                                </span>
+                                <sup>(2)</sup>關係</span>；
+                            </li>
+                            <li>如屬雙邊代理關係，則代理須在切實可行的範圍內，盡快以書面向賣方披露代理將向買方收取的佣金的數額或收費率；</li>
+                            <li>如屬有可能代表雙方的代理關係，則代理須在建立雙邊代理關係後，在切實可行的範圍內，盡快以書面向賣方披露該代理關係以及代理將向買方收取的佣金的數額或收費率 ； 及</li>
+                            <li>代理除須履行本協議或任何成文法則委予代理的責任外，亦須履行本協議附表1內所列的責任。</li>
+                        </ol>
+                    </li>
+                    <li>放盤價[注意：賣方並沒有藉本條授權代理代賣方接受任何要約。放盤價只供放盤及作廣告宣傳之用。 ]
+                        <br>
+                        放盤價為港幣<input type="text" name="dollar" placeholder="請輸入中國大寫數目" >萬元(HK$<input type="text" class="amount" name="dollarHK" placeholder="請輸入阿拉伯數字" >)。放盤價只在賣方的書面指示下方可更改，而該等指示將構成本協議一部分。
+                    </li>
+                    <li>佣金
+                        <br>
+                        本協議適用於賣方須向代理支付的佣金的規定，列於本協議附表2 及 4 內<sup>(3)</sup>。
+                    </li>
+                    <li>物業資料
+                        <br>
+                        代理須向賣方提供《 地產代理常規(一般責任及香港住宅物業)規例 》訂明並經代理填妥和簽署的物業資料表格(包括賣方的陳述)。
+                    </li>
+                    <li>視察物業
+                        <br>
+                        <ol type="a">
+                            <li>賣方同意容許
+                                    <select id="userAgreeSeeProperty">
+                                    <option value="代理">代理</option>
+                                    <option value="買方">買方</option>
+                                    <option value="代理及買方">代理及買方</option>
+                                    </select>
+                                    於雙方議定的時間查看物業。
+                                <br>
+                                <span class="sortOptions">
+                                    <input type="radio" name="showProperty" value="同意" checked>
+                                    <label for="同意">同意</label>
+                                    <input type="radio" name="showProperty" value="不同意">
+                                    <label for="不同意">不同意</label>
+                                </span>
+                            </li>
+                            <li>賣方同意將物業的鎖匙交由代理妥為保管 ，以供查看物業之用。
+                                <br>
+                                <span class="sortOptions">
+                                    <input type="radio" name="keepProperty" value="同意" checked>
+                                    <label for="同意">同意</label>
+                                    <input type="radio" name="keepProperty" value="不同意">
+                                    <label for="不同意">不同意</label>
+                                </span>
+                            </li>
+                            <li>賣方授權代理將鎖匙交予
+                                <select id="userAgreeKeepKey">
+                                    <option value="其他地產代理">其他地產代理</option>
+                                    <option value="其他地產代人士">其他地產代人士</option>
+                                </select>
+                                ，以供查看物業之用。
+                                <br>
+                                <span class="sortOptions">
+                                    <input type="radio" name="watchProperty" value="同意" checked>
+                                    <label for="同意">同意</label>
+                                    <input type="radio" name="watchProperty" value="不同意">
+                                    <label for="不同意">不同意</label>
+                                </span>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>分銷放盤
+                        <br>
+                        <ol type="a" >
+                            <li>賣方授權代理將物業分銷放盤，並將由賣方提供的關於賣方及物業的資料交予其他地產代理以供分銷放盤之用。
+                                <br>
+                                <span class="sortOptions">
+                                    <input type="radio" name="distributProperty" value="同意" checked>
+                                    <label for="同意">同意</label>
+                                    <input type="radio" name="distributProperty" value="不同意">
+                                    <label for="不同意">不同意</label>
+                                </span>
+                            </li>
+                            <li>如代理將物業交由另一地產代理 ( “ 分銷放盤代理 ” ) 分銷放盤 ， 則代理須確保分銷放盤代理遵守《地產代理常規 ( 一般責任及香港住宅物業 ) 規例》中關於廣告宣傳的規定。</li>
+                        </ol>
+                    </li>
+                    <li>廣告宣傳
+                        <br>
+                        <ol type="a" >
+                            <li>賣方授權代理發出關於物業的廣告。
+                                <br>
+                                <span class="sortOptions">
+                                    <input type="radio" name="advertisements" value="同意" checked><label for="同意">同意</label>
+                                    <input type="radio" name="advertisements" value="不同意"><label for="不同意">不同意</label>
+                                </span>
+                            </li>
+                            <li>如對以上問題的回答是 “同意 ”的話 ，則除本協議另有指明外 ，廣告宣傳費將由代理承擔。。</li>
+                        </ol>
+                    </li>
+                    <li>代理須披露權益
+                        <br>
+                        <ol type="a" >
+                            <li>代表代理簽署本協議的人現披露 ： 他或其指明親屬 (5) ， 或其任何代名人 ， 或其指明親屬的任何代名人， 或代理或代理的任何僱員 / 大股東 (6) / 合夥人 / 董事對物業擁有金錢上的或其他實益的權益 (7) ：
+                                <br>
+                                <span class="sortOptions">
+                                    <input type="radio" name="showRightInterests" value="擁有" checked><label for="擁有">有</label>
+                                    <input type="radio" name="showRightInterests" value="沒有"><label for="沒有">沒有</label>
+                                </span>
+                                
+                            </li>
+                            <li>如對以上問題的回答是 “ 有 ” 的話 ， 則必須在本協議附表 3 述明有關權益的詳情。</li>
+                            <li>代表代理簽署本協議的人須在切實可行的範圍內 ， 盡快以書面向賣方披露在有效期內產生的上述 (a) 段所提述的任何權益。</li>
+                        </ol>
+                    </li>
+                    <li>賣方的確認
+                        <br>
+                        賣方確認他已&ensp;—
+                        <br>
+                        <ol type="a" >
+                            <li>閱讀並明白本協議的條款 ； 及 </li>
+                            <li>
+                                <input type="checkbox" name="fiveAgreement" value=1>
+                                <label for=1>收取本協議第5條規定提供的物業資料表格(包括賣方的陳述)。</label>
+                                <br>
+                                <input type="checkbox" name="salePurchaseAgreement" value=1>
+                                <label for=1> 同意於賣方與一名買方訂立具約束力的買賣協議之前收取物業資料表格(包括賣方的陳述)。</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>附表
+                        <br>
+                        <p>本協議的附表構成本協議的一部分。</p>
+                    </li>
+                        <li>如物業不容許作住宅用途則本協議即屬無效
+                        <br>
+                        <p>如物業的佔用許可證所規定的用途並不包括住宅用途或不容許作住宅用途 ， 則本協議即屬無效。</p>
+                    </li>
+                    <li>額外條款 [ 注意 ： 這些額外條款不得與本協議的其他條款有所抵觸 ， 亦不得限制本協議的其他條款。] ︰
+                        <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="4" id="additionalLawT" name="additionalLaw"></textarea></div></div>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <div class="row no-gutters overflow-hidden flex-md-row mb-4 position-relative">
+                                    <div class="card-text mb-auto">賣方&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+                                    <div class="mb-1 text-muted">香港身分證號碼：<input type="text" name="iDNumber">(<input type="text" name="iDBRNumber" size="1">)</div>
+                                    <p class="card-text mb-auto">(如適用的話)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                             <p class="card-text mb-auto">代理&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                                            <div class="mb-1 text-muted">簽署人的姓名或名稱：<input type="text" name="agencyName" placeholder="請輸入代理的姓名或名稱"></div>
+                                            <div class="mb-1 text-muted">牌照號碼：<input type="text" name="agencyNumber" placeholder="請輸入代理的牌照號碼"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <h6 class="mb-3">如賣方是一間公司，請述明︰</h6>
+                                    <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="4" id="referenceForCompanyT" name="referenceForCompany"></textarea></div></div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters overflow-hidden flex-md-row mb-4 position-relative">
+                                            <div class="mb-1 text-muted">簽署人的姓名或名稱：<input type="text" name="user" placeholder="請輸入賣方的姓名或名稱"></div>
+                                            <div class="mb-1 text-muted">簽署人的職位：<input type="text" name="userPosition" placeholder="請輸入簽署人的職位(賣方)"></div>
+                                            <div class="mb-1 text-muted">賣方的商業登記證號碼：<input type="text" name="userBDN"  placeholder="請輸入賣方的商業登記證號碼(如賣方是一間公司)"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                                <div class="mb-1 text-muted">代理的營業詳情說明書號碼：<input type="text" name="agencyBDN"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters overflow-hidden flex-md-row mb-4 position-relative">
+                                            <div class="mb-1 text-muted">地址:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+                                            <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="5" id="userAddressT" placeholder="請輸入賣方的地址" name="userAddress"></textarea></div></div>
+                                            <div class="mb-1 text-muted">電話號碼：<input type="number" name="userPhone" placeholder="請輸入賣方的電話號碼"></div>
+                                            <div class="mb-1 text-muted">傳真號碼：<input type="number" name="userFax" placeholder="請輸入賣方的傳真號碼"></div>
+                                            <!-- <div class="mb-1 text-muted">日期：<input type="text" id="datepicker2" name="userSignDate" placeholder="請輸入賣方的簽署日期">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                            <div class="mb-1 text-muted">地址:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+                                            <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="5" id="agencyAddressT" placeholder="請輸入代理的地址" name="agencyAddress"></textarea></div></div>
+                                            <div class="mb-1 text-muted">電話號碼：<input type="number" name="agencyPhone" placeholder="請輸入代理的電話號碼"></div>
+                                            <div class="mb-1 text-muted">傳真號碼：<input type="number" name="agencyFax" placeholder="請輸入代理的傳真號碼"></div>
+                                            <!-- <div class="mb-1 text-muted">日期：<input type="text" id="datepicker3" name="agencySignDate" placeholder="請輸入代理的簽署日期">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                [注意：在本協議簽署後，必須立即給予業主一份經簽署的本協議的正本或副本。]
+                            </li>
+                        </ol>
+                    </div>
+
+                        <p class="text-center" style="font-weight:bold;">附表&nbsp;1</p>
+                        <p class="text-center" style="font-weight:bold;">代理的責任</p>
+                        &emsp;&ensp;&ensp;&nbsp;代理的責任代理須&emsp;—
+                        <ol type="a" >
+                            <li>代賣方推銷物業；</li>
+                            <li>為賣方取得關於物業的資料 ；</li>
+                            <li>安排買方視察物業 ；</li>
+                            <li>進行商議，並向賣方提交所有關於物業的要約；及</li>
+                            <li>協助賣方與買方訂立具約束力的買賣協議。</li>
+                        </ol>
+                        
+                        <p class="text-center" style="font-weight:bold;">附表&nbsp;2</p>
+                        <p class="text-center" style="font-weight:bold;">賣方須支付的佣金</p>
+                        <ol type="1" >
+                            <li>除本附表第 2 條另有規定外 ， 如賣方在有效期內經由代理與買方就物業訂立具約束力的買賣協議 ，則賣方須於 ：
+                                <br>
+                                <input type="checkbox" name="signatureCheck" value=1><label for=1>簽署買賣協議時，</label>
+                                <br>
+                                <input type="checkbox" name="propertyFinished" value=1><label for=1>買賣協議指明的物業交易完成時，</label>
+                                <br>
+                                向代理支付一筆數額$<input type="text" class="amount" name="toAgencyMoney" placeholder="請輸入金額" size="18">/物業成交價的<input type="number" name="propertyPercentage" size="18" placeholder="請輸入物業成交價">%作為代理的佣金。
+                            </li>
+                            <li>除本附表第3條另有規定外，如非因賣方犯錯而令物業交易未能完成，則賣方沒有責任向代理支付任何佣金。在此情況下，如賣方已支付佣金，則代理須在切實可行的範圍內盡快 ( 但無論如何不得遲於由買賣協議指明的完成交易日期起計的 5 個工作日 ) 
+                                <span class="sortOptions">
+                                    <input type="radio" name="moneyIncrease" value="將佣金連同利息" checked><label for="將佣金連同利息">將佣金連同利息</label>
+                                    <input type="radio" name="moneyIncrease" value="不連同利息"><label for="不連同利息">不連同利息</label>
+                                </span>
+                                退還予賣方。
+                            </li>
+                            <li>如買賣雙方非基於物業的買賣協議的條文而共同取消該具約束力的買賣協議 ， 則賣方須向代理支付佣金 。</li>
+                            <li>如代理為推銷物業而與其他地產代理合作 ， 則賣方無須向該等其他地產代理支付任何佣金。</li>
+                        </ol>
+                        <p class="text-center" style="font-weight:bold;" >附表&nbsp;3</p>
+                        <p class="text-center" style="font-weight:bold;">對物業所擁有的權益</p>
+                        <div class="container">
+                            <div class="container">
+                                按照本協議第 9 條 ， 就物業所擁有的金錢上的或其他實益的權益 (6) 的詳情如下 ：
+                            </div>
+                        </div>
+                        <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><textarea rows="4" id="referenceT" name="reference"></textarea></div></div>
+                        <p class="text-center" style="font-weight:bold;" >附表&nbsp;4</p>
+                        <p class="text-center" style="font-weight:bold;" >註釋</p>
+                        <ol type="1">
+                            <li>在本協議第 1 條內填上有關地產代理業務實體 (即俗稱商號 )的名稱。</li>
+                            <li>獨家代理 － 指代理是唯一為賣方行事的地產代理。如賣方在有效期內經由另一地產代理與一名買方就物業訂立具約束力的買賣協議 ， 則代理有權向賣方追討附表 2 第 1 條所指明的佣金。
+                                <br>
+                                單邊代理 — 指代理只為賣方行事。
+                                <br>
+                                雙邊代理 — 指代理既為賣方亦為物業的買方行事。
+                                <br>
+                                有可能代表雙方的代理 — 指代理只為賣方行事 ， 但於稍後亦可能為物業的買方行事。
+                            </li>
+                            <li>佣金的數額或收費率可由賣方與代理商議。</li>
+                            <li>指明親屬 — 指配偶、父母、子女、兄弟或姊妹。</li>
+                            <li>大股東 — 指在代理的股東大會上 ， 有權行使百分之十或以上的投票權或控制百分之十或以上的投票權的行使的人。</li>
+                            <li>擁有金錢上的或其他實益的權益 ， 包括 ：
+                                <ol type="a" class="container">
+                                    <li>身為對物業擁有金錢上的或其他實益的權益的公司或任何其他團體的成員 ；</li>
+                                    <li> 與對物業擁有金錢上的或其他實益的權益的人有合夥關係 ， 或受僱於該人 ； 或</li>
+                                    <li>屬於任何關乎物業的安排或協議 ( 不論是否可強制執行 ) 的一方。</li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="臨時儲存" onclick="playSave(3, 'chi')">
+                        <br>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <div class="row no-gutters overflow-hidden flex-md-row mb-4 position-relative">
+                                    <div class="mb-1 text-muted">賣方的簽署：<button type="button" class="dropbtn" onclick="openPopUp('svgUser', 'chi')">電子簽署</button><input type="hidden" id="svgUserID" name="svgUser" readonly /></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                    <div class="mb-1 text-muted">為代理及代代理簽署的地產代理/營業員的簽署：<button type="button" class="dropbtn" onclick="openPopUp('svgAgency', 'chi')">電子簽署</button><input type="hidden" id="svgAgencyID" name="svgAgency" readonly /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="遞交智能合約" onclick="playSubmit(3, 'chi')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="取消" onclick="playReset('chi')">
+                        <input type="hidden" name="shaOneReturnUrl">
+                        <!-- <input type="hidden" name="uniqueNumber"> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

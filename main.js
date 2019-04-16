@@ -51,35 +51,36 @@ process.on('SIGINT', () => {
 /**
  * for exception using
  */
-process.on('unhandledRejection', (reason)=>{
-	console.log('Unhandled Rejection reason : ', reason);
-	global.exit();
-});
+// process.on('unhandledRejection', (reason)=>{
+// 	console.log('Unhandled Rejection reason : ', reason);
+// 	global.exit();
+// });
 
 /**
  * for uncaught Exception
  */
-process.on('uncaughtException', (err)=>{
-	console.log('uncaught Exception err : ', err);
-	global.exit();
-});
+// process.on('uncaughtException', (err)=>{
+// 	console.log('uncaught Exception err : ', err);
+// 	global.exit();
+// });
 
 /**
  * for rejeact handled
  */
-process.on('rejectionHandled', (promise) => {
-	console.log('rejectionHandled promise : ', promise);
-	global.exit();
-});
+// process.on('rejectionHandled', (promise) => {
+// 	console.log('rejectionHandled promise : ', promise);
+// 	global.exit();
+// });
 
 var StartServer = ()=>
 {
     app.use(_Express.static(__dirname + '/public'));
-    app.use(_BodyParser.urlencoded({ extended: true }));
+    app.use(_BodyParser.json({limit: '50mb'}));
+    app.use(_BodyParser.urlencoded({limit: '50mb', extended: true}));
     // parse application/json
-    app.use(_BodyParser.json());
+    
 
-    let _ControllerWeb3  =  require('./Controller/controllerWeb3'); 
+    let _ControllerWeb3  =  require('./controller/controllerWeb3'); 
     
     var controllerWeb3   =  new _ControllerWeb3(mongodb, redis);
 
@@ -97,27 +98,36 @@ var StartServer = ()=>
 
     app.get('/contract/6/form', controllerWeb3.loadfrom6.bind(controllerWeb3));
 
+    app.get('/contract/8/form', controllerWeb3.loadfrom8.bind(controllerWeb3));
+
+    app.get('/contract/3Eng/form', controllerWeb3.loadfrom3Eng.bind(controllerWeb3));
+
+    app.get('/contract/4Eng/form', controllerWeb3.loadfrom4Eng.bind(controllerWeb3));
+
+    app.get('/contract/5Eng/form', controllerWeb3.loadfrom5Eng.bind(controllerWeb3));
+
+    app.get('/contract/6Eng/form', controllerWeb3.loadfrom6Eng.bind(controllerWeb3));
+
+    app.get('/contract/8Eng/form', controllerWeb3.loadfrom8Eng.bind(controllerWeb3));
+
     app.get('/show/contract', controllerWeb3.loadGetForm.bind(controllerWeb3));
 
     /**
      * request get for api 
-     */     
-    app.get('/api/users', controllerWeb3.getAgentLogInID.bind(controllerWeb3));
-
-    app.get('/api/users/date', controllerWeb3.getContractCreatingDate.bind(controllerWeb3));
+     */
+    app.get('/admin', controllerWeb3.adminCorrect.bind(controllerWeb3));
+     
+    app.get('/api/users/date', controllerWeb3.getContractBalanceByAgent.bind(controllerWeb3));
 
     app.get('/api/users/balance', controllerWeb3.getContractBalance.bind(controllerWeb3));
 
-    // app.get('/api/users/balance/encryption', controllerWeb3.getContractBalanceEncryption.bind(controllerWeb3));
+    app.get('/api/users/contracts', controllerWeb3.getContracts.bind(controllerWeb3));
 
-    app.get('/api/users/transactionCount', controllerWeb3.getContractCount.bind(controllerWeb3));
-
-    app.get('/api/users/price', controllerWeb3.getContractCount.bind(controllerWeb3));
+    
 
     /**
      * request post for api 
      */
-    app.post('/api/encryption', controllerWeb3.renderCallback.bind(controllerWeb3));
 
     app.post('/process', controllerWeb3.contractCallback.bind(controllerWeb3));
 

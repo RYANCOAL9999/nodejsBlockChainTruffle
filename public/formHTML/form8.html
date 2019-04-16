@@ -1,0 +1,292 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>form8</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .dropbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px;
+                font-size: 10px;
+                border: none;
+            }
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 1.0rem;
+                }
+            }
+			.sortOptions > input[type=radio] {
+			    width:              16px;
+			    height:             16px;
+			}
+            ul{
+                list-style: none;
+            }
+
+            ol li{
+                padding: 5px;
+            }
+
+            p{
+                padding: 5px;
+            }
+
+            .container {
+                max-width: 960px;
+            }
+            .lh-condensed { line-height: 1.25; }
+            
+        </style>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/prismic-javascript"></script>
+		<script type="text/javascript" src="/js/popUpsignatureHTML.js"></script>
+		<script type="text/javascript" src="/js/formDataSetting.js"></script>
+        <script type="text/javascript" src="/js/submitContract.js"></script>
+    </head>
+    <body class="bg-light">
+        <div class="container">
+            <header class="blog-header py-3">
+                <div class="row flex-nowrap justify-content-between align-items-center">
+                    <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                    <div class="col-4 text-center"><h6>貸款轉介服務申請表格</h6></div>
+                    <div class="col-4 d-flex justify-content-end align-items-center" id="uniqueNumber"><!--<h6>表格 3</h6>--></div>
+                </div>
+            </header>
+            <form name="formNewsLetter" action="/process" method="POST" id="form8Letter">
+                <div class="nav-scroller py-1 mb-2">
+                    <nav class="nav d-flex justify-content-between">
+                        <p>致銀行/金融機構告示</p>
+                        <p>貴行對貸款批核擁有絶對決定權。本公司不會核實任何有關轉介客戶之資料。因此本公司不會就貴行因轉介客戶在此申請表格內或另外遞交之任何陳述或資料與因批核貸款直接或間接而招致之任何損失或損害承擔任何法律責任。</p>
+                        <p><input type="text" name="agency" placeholder="請輸入代理名稱" >現免費提供樓宇貸款轉介服務。</p>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>貸款人資料</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        <p>申請人（1）: <input type="text" name="userAEng">
+                            <span class="sortOptions">
+                                <input type="radio" name="userAExclusive" value="先生" checked><label for="先生">先生</label>
+                                    <input type="radio" name="userAExclusive" value="太太"><label for="太太">太太</label>
+                                        <input type="radio" name="userAExclusive" value="小姐"><label for="小姐">小姐</label>
+                                            <input type="radio" name="userAExclusive" value="公司"><label for="公司">公司</label>
+                                            </span><br>
+                           身份證號碼 : <input type="text" name="userAIDNumber">(<input type="text" name="userAIDBRNumber" size="1">)<br>
+                           出生日期 : <input type="text" id="datepicker0" name="userABirthday"><br>
+                           教育程度 : <span class="sortOptions"><input type="radio" name="userAEducation" value="小學" checked><label for="小學">小學</label><input type="radio" name="userAEducation" value="中學"><label for="中學">中學</label><input type="radio" name="userAEducation" value="大專或以上"><label for="大專或以上">大專或以上</label></span><br>
+                           電郵 : <input type="text" name="userAEmail"><br>
+                           流動電話 : <input type="number" name="userAMobilePhoneNumber" size="10"><br>
+                           辦公室電話 : <input type="number" name="userAOfficePhoneNumber" size="10"><br>
+                           住宅電話 : <input type="number" name="userATelePhoneNumber"><br>
+                           傳真 : <input type="number" name="userAFaxNumber"><br>
+                           職位 : <input type="text" name="userAPosition"><br>
+                           業務性質:<input type="text" name="userABusinessNature">
+                           <span class="sortOptions"><input type="radio" name="userAEmploy" value="自僱"><label for="自僱">自僱</label><input type="radio" name="userAEmploy" value="僱員" checked><label for="僱員">僱員</label></span><br>
+                           每月個人收入$:<input type="text" name="userAIncomeDollar" class="amount">
+                           <span class="sortOptions"><input type="radio" name="userAIncome" value="固定收入" checked><label for="固定收入">固定收入</label><input type="radio" name="userAIncome" value="非固定收入"><label for="非固定收入">非固定收入</label></span><br>
+                        </p>
+                        <p>申請人（2）: <input type="text" name="userBEng">  <span class="sortOptions">
+                            <input type="radio" name="userBExclusive" value="先生" checked><label for="先生">先生</label>
+                                <input type="radio" name="userBExclusive" value="太太"><label for="太太">太太</label>
+                                    <input type="radio" name="userBExclusive" value="小姐"><label for="小姐">小姐</label>
+                                        <input type="radio" name="userBExclusive" value="公司"><label for="公司">公司</label>
+                                            </span><br>
+                            身份證號碼 : <input type="text" name="userBIDNumber">(<input type="text" name="userBIDBRNumber" size="1">)<br>
+                            出生日期 : <input type="text" id="datepicker1" name="userBBirthday"><br>
+                            教育程度 : <span class="sortOptions"><input type="radio" name="userBEducation" value="小學" checked><label for="小學">小學</label><input type="radio" name="userBEducation" value="中學"><label for="中學">中學</label><input type="radio" name="userBEducation" value="大專或以上"><label for="大專或以上">大專或以上</label></span><br>
+                            電郵 : <input type="text" name="userBEmail"><br>
+                            流動電話 : <input type="number" name="userBMobilePhoneNumber"><br>
+                            辦公室電話 : <input type="number" name="userBOfficePhoneNumber"><br>
+                            住宅電話 : <input type="number" name="userBTelePhoneNumber"><br>
+                            傳真 : <input type="number" name="userBFaxNumber"><br>
+                            職位 : <input type="text" name="userBPosition"><br>
+                            業務性質:<input type="text" name="userBBusinessNature">
+                            <span class="sortOptions"><input type="radio" name="userBEmploy" value="自僱" checked><label for="自僱">自僱</label><input type="radio" name="userBEmploy" value="僱員"><label for="僱員">僱員</label></span><br>
+                            每月個人收入$:<input type="text" class="amount" name="userBIncomeDollar">
+                            <span class="sortOptions"><input type="radio" name="userBIncome" value="固定收入" checked><label for="固定收入">固定收入</label><input type="radio" name="userBIncome" value="非固定收入"><label for="非固定收入">非固定收入</label></span>
+                        </p>
+                        <p>聯絡人(如客戶為公司) <input type="text" name="contractPerson" ></p>
+                        <p>通訊地址(英文) : Flat <input type="text" name="contractFlat"> Floor <input type="text" name="contractFloor"> Block <input type="text" name="contractBlock">
+                        </p>
+                        <br>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>物業資料</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        <br>
+                        <p>按揭物業地址(請以英文正楷填寫) Flat <input type="text" name="propertyflat">
+                            Floor <input type="text" name="propertyfloor">
+                            Block <input type="text" name="propertyblock" >
+                            車位地址 <input type="text" name="carAddress" >
+                            <span class="sortOptions"><input type="radio" name="cover" value="有蓋" checked><label for="有蓋">有蓋</label><input type="radio" name="cover" value="無蓋"><label for="無蓋">無蓋</label></span>
+                            購入價 $ <input type="text" name="price" class="amount" >
+                            成交/擬提取貸款日期 <input type="text" id="datepicker2" name="propertyDate" >
+                            物業種類：<span class="sortOptions"><input type="radio" name="propertyCat" value="私人住宅" checked><label for="私人住宅">私人住宅</label><input type="radio" name="propertyCat" value="居屋"><label for="居屋">居屋</label><input type="radio" name="propertyCat" value="夾屋"><label for="夾屋">夾屋</label><input type="radio" name="propertyCat" value="村屋"><label for="村屋">村屋</label><input type="radio" name="propertyCat" value="寫字樓"><label for="寫字樓">寫字樓</label><input type="radio" name="propertyCat" value="工廠"><label for="工廠">工廠</label><input type="radio" name="propertyCat" value="商舖"><label for="商舖">商舖</label><input type="radio" name="propertyCat" value="其他"><label for="其他">其他</label><input type="text" name="propertyOther" >
+                            </span>
+                            物業狀況<input type="checkbox" name="propertyStatus" value=1><label for=1>現樓</label>(請註明: <span class="sortOptions"><input type="radio" name="market" value="一手市場" checked><label for="一手市場">一手市場</label><input type="radio" name="market" value="二手市場"><label for="二手市場">二手市場</label></span>)
+                            <input type="checkbox" name="propertyOffPlan" value=1><label for=1>樓花</label>
+                        </p>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>貸款資料及要求</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        <p>貸款目的：
+                        <span class="sortOptions"><input type="radio" name="loanPurpose" value="新做" checked><label for="新做">新做</label><input type="radio" name="loanPurpose" value="轉按"><label for="轉按">轉按</label><input type="radio" name="loanPurpose" value="加按"><label for="加按">加按</label><input type="radio" name="loanPurpose" value="預先批核"><label for="預先批核">預先批核</label><input type="radio" name="loanPurpose" value="私人貸款"><label for="私人貸款">私人貸款</label>
+                            </span>
+                            &emsp;&emsp;
+                            附帶貸款計劃 :
+                            <span class="sortOptions"><input type="radio" name="additionalLoanPlan" value="置貸" checked><label for="置貸">置貸</label><input type="radio" name="additionalLoanPlan" value="按揭保險"><label for="按揭保險">按揭保險</label><input type="radio" name="additionalLoanPlan" value="發展商二按"><label for="發展商二按">發展商二按</label><input type="radio" name="additionalLoanPlan" value="公務員首期貸款"><label for="公務員首期貸款">公務員首期貸款</label>
+                            </span>
+                        </p>
+                        <p>貸款要求：
+                            <input type="checkbox" name="loanRequest" value=1><label for=1>貸款額額</label>(不少於 $<input type="text" class="amount" name="loanRequestMoney">或 <input type="number" name="loanRequestPer"> %)
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="interestRate" value=1><label for=1>利率</label>(不高於 <input type="number" name="interestRatePer" > %)
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="repaymentPeriod" value=1><label for=1>還款年期</label>(不超過 <input type="number" name="repaymentPeriodYear" > 年)
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<span class="sortOptions"><input type="radio" name="contribution" value="兩星期供款" checked><label for="兩星期供款">兩星期供款</label><input type="radio" name="contribution" value="每月供款"><label for="每月供款">每月供款</label></span>
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="penaltyPeriod" value=1><label for=1>罰息期</label>(不超過 <input type="number" name="penaltyPeriodYear" > 年)
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="cashRebate" value=1><label for=1>現金回贈</label>(不少過 <input type="number" name="cashRebatePer" > %)
+                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="approvalLoan" value=1><label for=1>批核時間</label>(不超過 <input type="number" name="approvalLoanDay" > 日)
+                        </p>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>現有按揭資料</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        <p>尚餘供款期<input type="number" name="remainingContributionPeriodYear" >年 尚餘罰款期<input type="number" name="surlusFineYear" >年 尚餘欠款額 $<input type="text" class="amount" name="AmountOwned">按揭銀行<input type="text" name="bankMortgage" >現有按揭息率<input type="number" name="existingMortgageRate" >
+                        </p>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>選擇銀行/金融機構</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                            <p>若閣下欲優先選擇任何銀行/金融機構，請列出名稱：<input type="text" name="BankChoose" ></p>
+                            <p>如閣下欲拒絕被轉介到任何一間銀行/金融機構，請列出名稱：<input type="text" name="otherBankChoose" ></p>
+                        <div class="row flex-nowrap justify-content-between align-items-center">
+                            <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
+                            <div class="col-4 text-center"><h6>客戶聲明</h6></div>
+                            <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
+                        </div>
+                        本人(等)已參閱並明白及同意以下條款:-
+                        <ol type="1">
+                            <li>本人(等)不須支付任何費用予本公司及有權拒絕接受本公司介紹的銀行/金融機構貸款。</li>
+                            <li>本人(等)確認上述資料均屬正確並授權本公司可將本人(等)之個人資料轉介至本人(等)所選之銀行/金融機構，以便有關銀行/金融機構可直接聯絡本人(等)辦理貸款
+                                申請手續。</li>
+                            <li>本人(等)明確表示同意及授權本公司代表本人(等)為轉介目的跟進及轉遞本人(等)向銀行/金融機構提交的申請及向銀行/金融機構收取有關本人(等)的申請進度資料。
+                                <br>
+                                本人(等)亦授權銀行/金融機構接受本公司轉介及利用此表格所載之個人資料與本人(等)直接聯繫及向本公司發放有關本人(等)的申請進度的資料。
+                            </li>
+                            <li>本人(等)明白銀行/金融機構對貸款事宜擁有最終批核權。</li>
+                            <li>如本人(等)接受任何一間由本公司介紹之銀行/金融機構貸款，本人(等)明白並同意將會本公司獲得該銀行之介紹費。</li>
+<!--                            <li>除非於下述選項中提出反對，本人(等)同意在貸款提取後只有申請人（1）獲得並接受本公司之會籍並同意使用及/或轉移本人(等)之個人資料（包括姓名、-->
+<!--                                電話號碼及電郵地址）用作處理會員申請和提供會員福利、優惠、服務、活動及/或獎賞的用途（詳情載於本公司的網頁）-->
+<!--                                及/或本公司私隱政策聲明內所列之其他第三方(下稱「其他第三方」)作直接促銷，本人（等）明白即使已同意本公司使用及/或轉移本人（等）之個人資料至本公司-->
+<!--                                及/或其他第三方，本人(等)仍有權隨時要求本公司在不收費的情況下停止使用及/或轉移本人(等)之個人資料至本公司及/或其他第三方作前述用途，詳情可參考-->
+<!--                                本公司之私隱政策聲明。</li>-->
+                        </ol>
+                        本人(等)反對本公司: <input type="checkbox" name="rejectForDirectMarket" value=1><label>將本人(等)之個人資料轉移予其他第三方作直接促銷用途</label> <input type="checkbox" name="rejectForLoanReferral" value=1><label>使用本人(等)之個人資料作直接促銷本公司之貸款轉介服務</label> <input type="checkbox" name="rejectForSendData" value=1><label>將本人(等)之個人資料轉移予其他公司</label>
+                            <br><br>
+<!--                            <div class="row border rounded shadow-sm">-->
+<!--                                <div class="col-md-4 order-md-2 mb-4">-->
+<!--                                    <h6 class="d-flex justify-content-between align-items-center mb-3">-->
+<!--                                        <span class="text-muted"><br>&emsp;&emsp;&emsp;只供內部填寫</span>-->
+<!--                                    </h6>-->
+<!--                                    <ul class="list-group mb-3">-->
+<!--                                        <li>檔案編號 : <input type="text" name="fileNumber" ></li>-->
+<!--                                        <li>職員姓名 : <input type="text" name="staff" ></li>-->
+<!--                                        <li>聯絡電話 : <input type="text" name="staffContract" > </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-8 order-md-1">-->
+<!--                                    <h6 class="d-flex justify-content-between align-items-center mb-3">-->
+<!--                                        <span class="text-muted"><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;本人從以下途徑得知本公司按揭轉介之服務 (只供客戶填寫) </span>-->
+<!--                                    </h6>-->
+<!--                                    <div class="container">-->
+<!--                                        <ol type="1" class="container">-->
+<!--                                            <li>報紙 :-->
+<!--                                                <input type="checkbox" name="headlineDaily" value=1><label>頭條</label>-->
+<!--                                                <input type="checkbox" name="hket" value=1><label>經濟</label>-->
+<!--                                                <input type="checkbox" name="stheadline" value=1><label>星島</label>-->
+<!--                                                <input type="checkbox" name="orientaldaily" value=1><label>東方</label>-->
+<!--                                                <input type="checkbox" name="appledaily" value=1><label>蘋果</label>-->
+<!--                                                <input type="checkbox" name="mingpao" value=1><label>明報</label>-->
+<!--                                                <input type="checkbox" name="wenweipo" value=1><label>文匯</label>-->
+<!--                                                <input type="checkbox" name="hkej" value=1><label>信報</label>-->
+<!--                                                <input type="checkbox" name="metrodaily" value=1><label>都市日報</label>-->
+<!--                                                <input type="checkbox" name="otherNewsPaper" value=1><label>其他<input type="text" name="otherNewsPaperText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>雜誌 :-->
+<!--                                                <input type="checkbox" name="ownerShip" value=1><label>置業家居</label>-->
+<!--                                                <input type="checkbox" name="superLouWang" value=1><label>超級睇樓王</label>-->
+<!--                                                <input type="checkbox" name="edigest" value=1><label>經濟一週</label>-->
+<!--                                                <input type="checkbox" name="iMoney" value=1><label>iMoney</label>-->
+<!--                                                <input type="checkbox" name="MetroPop" value=1><label>Metro Pop</label>-->
+<!--                                                <input type="checkbox" name="otherMagzine" value=1><label>其他<input type="text" name="otherMagzineText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>電子傳媒 :-->
+<!--                                                <input type="checkbox" name="tvb" value=1><label>無線</label>-->
+<!--                                                <input type="checkbox" name="now" value=1><label>NOW</label>-->
+<!--                                                <input type="checkbox" name="cabletv" value=1><label>有線</label>-->
+<!--                                                <input type="checkbox" name="metroradio" value=1><label>新城</label>-->
+<!--                                                <input type="checkbox" name="881903" value=1><label>商台</label>-->
+<!--                                                <input type="checkbox" name="rthk" value=1><label>港台</label>-->
+<!--                                                <input type="checkbox" name="othertv" value=1><label>其他<input type="text" name="othertvText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>戶外媒體 :-->
+<!--                                                <input type="checkbox" name="taxi" value=1><label>的士</label>-->
+<!--                                                <input type="checkbox" name="minibus" value=1><label>小巴</label>-->
+<!--                                                <input type="checkbox" name="othertransportation" value=1><label>其他<input type="text" name="othertransportationText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>網站 :-->
+<!--                                                <input type="checkbox" name="google" value=1><label>Google</label>-->
+<!--                                                <input type="checkbox" name="yahoo" value=1><label>Yahoo</label>-->
+<!--                                                <input type="checkbox" name="facebook" value=1><label>Facebook</label>-->
+<!--                                                <input type="checkbox" name="uwants" value=1><label>Uwants</label>-->
+<!--                                                <input type="checkbox" name="hkdiscuss" value=1><label>香港討論區</label>-->
+<!--                                                <input type="checkbox" name="otherwebsite" value=1><label>其他<input type="text" name="otherwebsiteText" ></label>-->
+<!--                                            </li>-->
+<!--                                            <li>其他途徑 :-->
+<!--                                                <input type="checkbox" name="friends" value=1><label>朋友</label>-->
+<!--                                                <input type="checkbox" name="oldcustomer" value=1><label>舊有客戶</label>-->
+<!--                                                <input type="checkbox" name="leaflets" value=1><label>宣傳單張</label>-->
+<!--                                                <input type="checkbox" name="mobileapps" value=1><label>手機應用程式</label>-->
+<!--                                                <input type="checkbox" name="othersources" value=1><label>其他<input type="text" name="othersourcesText" ></label>-->
+<!--                                            </li>-->
+<!--                                        </ol>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        <br>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="臨時儲存" onclick="playSave(8, 'chi')">
+                        <p>客戶簽署 <button type="button" class="dropbtn" onclick="openPopUp('svgUser', 'chi')">電子簽署</button><input type="hidden" id="svgUserID" name="svgUser" readonly />
+                        <!--&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;日期 : <input type="text" id="datepicker3" name="userSignDate"  > -->
+                        </p>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="遞交智能合約" onclick="playSubmit(8, 'chi')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="取消" onclick="playReset('chi')">
+                        <input type="hidden" name="shaOneReturnUrl">
+                        <!-- <input type="hidden" name="uniqueNumber"> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
