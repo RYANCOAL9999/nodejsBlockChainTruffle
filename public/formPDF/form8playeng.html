@@ -1,0 +1,119 @@
+
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>form8</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .dropbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px;
+                font-size: 10px;
+                border: none;
+            }
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 1.5rem;
+                }
+            }
+            ul{
+                list-style: none;
+            }
+            ul li{
+                padding : 10px;
+            }
+            ol li{
+                padding: 10px;
+            }
+            .container {
+                max-width: 960px;
+            }
+            .lh-condensed { line-height: 1.25; }
+        </style>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    </head>
+    <body class="bg-light">
+        <div style="position:absolute;left:650px;top:20px" class="cls_004"><h6>Loan Referral Service Application Form<h6></div>
+        <div style="position:relative;left:1450px;top:20px"><span class="cls_003" style="font-weight:bold;" id="uniqueNumber"></span></div>
+        <div style="position:absolute;left:28px;top:85px" class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-between">
+                <p>Notice to Banks/Financial Institutions:</p>
+                <p>The grant of any Loans shall be at your absolute discretion. This company shall not verify any information regarding the Prospective Borrowers and therefore shall not be held liable to you for (i) any statement or information stated in the referral form and/or submitted by the Prospective Borrowers and/or (ii) any loss or damage suffered by you as a result of or in connection with the grant of Loans.</p>
+                <p><span class="cls_003" id="agency" style="color:lightblue;text-decoration:underline;"></span>offer professional and free loan referral service to our clients.</p>
+            </nav>
+        </div>
+        <div style="position:relative;left:0px;top:250px">
+            <p class="text-center" style="font-weight:bold;">Customer’s Information</p>
+            <div style="position:relative;left:-20px;top:0px" class="cls_003">
+                <ul>
+                    <li>Applicant（1）: <span class="cls_003" id="userAEng" style="color:lightblue;text-decoration:underline;"></span>(<span class="cls_003" id="userAExclusive" style="color:lightblue;text-decoration:underline;"></span>)HKID No: <span class="cls_003" id="userAIDNumber" style="color:lightblue;text-decoration:underline;"></span><span class="cls_014" style="color:lightblue;text-decoration:underline;">(</span><span class="cls_003" id="userAIDBRNumber" style="color:lightblue;text-decoration:underline;"></span><span class="cls_014" style="color:lightblue;text-decoration:underline;">)</span>Date of Birth:<span class="cls_003" id="userABirthday" style="color:lightblue;text-decoration:underline;"></span>Education:<span class="cls_003" id="userAEducation" style="color:lightblue;text-decoration:underline;"></span>E-mail:<span class="cls_003" id="userAEmail" style="color:lightblue;text-decoration:underline;"></span>mobile No:<span class="cls_003" id="userAMobilePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>office No:<span class="cls_003" id="userAOfficePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>Home No:<span class="cls_003" id="userATelePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>Fax No:<span class="cls_003" id="userAFaxNumber" style="color:lightblue;text-decoration:underline;"></span>position:<span class="cls_003" id="userAPosition" style="color:lightblue;text-decoration:underline;"></span>Nature:<span class="cls_003" id="userABusinessNature" style="color:lightblue;text-decoration:underline;"></span><span class="cls_003" id="userAEmploy" style="color:lightblue;text-decoration:underline;"></span>Monthly Income$:</span><span class="cls_003" id="userAIncomeDollar"  readonly size="8"></span><span class="cls_003" id="userAIncome" style="color:lightblue;text-decoration:underline;"></span></li>
+                    <li>Applicant（2）: <span class="cls_003" id="userBEng" style="color:lightblue;text-decoration:underline;"></span>(<span class="cls_003" id="userBExclusive" style="color:lightblue;text-decoration:underline;"></span>)HKID No: <span class="cls_003" id="userBIDNumber" style="color:lightblue;text-decoration:underline;"></span><span class="cls_014" style="color:lightblue;text-decoration:underline;">(</span><span class="cls_003" id="userBIDBRNumber" style="color:lightblue;text-decoration:underline;"></span><span class="cls_014" style="color:lightblue;text-decoration:underline;">)</span>Date of Birth:<span class="cls_003" id="userBBirthday" style="color:lightblue;text-decoration:underline;"></span>Education:<span class="cls_003" id="userBEducation" style="color:lightblue;text-decoration:underline;"></span>E-mail:<span class="cls_003" id="userBEmail" style="color:lightblue;text-decoration:underline;"></span>mobile No:<span class="cls_003" id="userBMobilePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>office No:<span class="cls_003" id="userBOfficePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>Home No:<span class="cls_003" id="userBTelePhoneNumber" style="color:lightblue;text-decoration:underline;"></span>Fax No:<span class="cls_003" id="userBFaxNumber" style="color:lightblue;text-decoration:underline;"></span>position:<span class="cls_003" id="userBPosition" style="color:lightblue;text-decoration:underline;"></span>Nature:<span class="cls_003" id="userBBusinessNature" style="color:lightblue;text-decoration:underline;"></span><span class="cls_003" id="userBEmploy" style="color:lightblue;text-decoration:underline;"></span>Monthly Income$:</span><span class="cls_003" id="userBIncomeDollar"  readonly size="8"></span><span class="cls_003" id="userBIncome" style="color:lightblue;text-decoration:underline;"></span></li>
+                    <li>Contact Person (For Corporate Customer) <span class="cls_003" id="contractPerson" style="color:lightblue;text-decoration:underline;"></span></li>
+                    <li>Correspondence Address : Flat<span class="cls_003" id="contractFlat" style="color:lightblue;text-decoration:underline;"></span>Floor<span class="cls_003" id="contractFloor" style="color:lightblue;text-decoration:underline;"></span>Block<span class="cls_003" id="contractBlock"  style="color:lightblue;text-decoration:underline;"></span></li>
+                </ul>
+            </div>
+            <p class="text-center" style="font-weight:bold;">Information of property to be mortgaged</p>
+            <div style="position:relative;left:-20px;top:0px" class="cls_003">
+                <ul>
+                    <li>Flat<span class="cls_003" id="propertyFlat" style="color:lightblue;text-decoration:underline;"></span>Floor<span class="cls_003" id="propertyFloor" style="color:lightblue;text-decoration:underline;"></span>Block<span class="cls_003" id="propertyBlock" style="color:lightblue;text-decoration:underline;"></span>Car Park<span class="cls_003" id="carAddress" style="color:lightblue;text-decoration:underline;"></span><span class="cls_003" id="contractBlock"  style="color:lightblue;text-decoration:underline;"></span><span class="cls_003" id="cover" style="color:lightblue;text-decoration:underline;"></span>Purchase Price $ <span class="cls_003" id="price" style="color:lightblue;text-decoration:underline;"></span>Completion / Drawdown Date</span><span class="cls_003" id="propertyDate" style="color:lightblue;text-decoration:underline;"></span>Property type：<span class="cls_003" id="propertyCat" style="color:lightblue;text-decoration:underline;"></span><span class="cls_003" id="propertyOther" style="color:lightblue;text-decoration:underline;"></span>Property status<input type="checkbox" name="propertyStatus" value=1><label for=1>Legal Charge</label>(Please specify:<span class="cls_003" id="market" style="color:lightblue;text-decoration:underline;"></span>)</span><input type="checkbox" name="propertyOffPlan" value=1><label for=1>Equitable Mortgage</label></li>
+                </ul>
+            </div>
+            <p class="text-center" style="font-weight:bold;">Loan Information And Requirements</p>
+            <div style="position:relative;left:-20px;top:0px" class="cls_003">
+                <ul>
+                    <li>Objective:<span class="cls_003" id="loanPurpose" style="color:lightblue;text-decoration:underline;"></span> Associated mortgage plan:<span class="cls_003" id="additionalLoanPlan" style="color:lightblue;text-decoration:underline;"></span> Loan Amount：<input type="checkbox" name="loanRequest" value=1><label for=1>(Not less than＄</label><span class="cls_003" id="loanRequestMoney" style="color:lightblue;text-decoration:underline;"></span> or <span class="cls_003" id="loanRequestPer" style="color:lightblue;text-decoration:underline;"></span> %) <input type="checkbox" name="interestRate" value=1><label for=1>Interest Rate</label> (Not more than <span class="cls_013" id="interestRatePer" style="color:lightblue;text-decoration:underline;"></span>%) <input type="checkbox" name="repaymentPeriod" value=1><label for=1>Tenor</label> (No longer than<span class="cls_013" id="repaymentPeriodYear" style="color:lightblue;text-decoration:underline;" ></span> year(s)) <span class="cls_003" id="userAIncome" style="color:lightblue;text-decoration:underline;"></span><span class="cls_003" id="contribution" style="color:lightblue;text-decoration:underline;"></span><input type="checkbox" name="penaltyPeriod" value=1><label for=1>Penalty Period</label> (Not more than <span class="cls_013" id="penaltyPeriodYear" style="color:lightblue;text-decoration:underline;"></span> year(s)) <input type="checkbox" name="cashRebate" value=1><label for=1>Cash Rebate</label> (Not less than <span class="cls_013" id="cashRebatePer" style="color:lightblue;text-decoration:underline;"></span> %) <input type="checkbox" name="approvalLoan" value=1><label for=1>Approval Time</label> (Not more than <span class="cls_013" id="approvalLoanDay" style="color:lightblue;text-decoration:underline;"></span> days)</li>
+                </ul>
+            </div>
+            <p class="text-center" style="font-weight:bold;">Existing Loan Information</p>
+            <div style="position:relative;left:-20px;top:0px" class="cls_003">
+                <ul>
+                    <li>O/S Tenor <span class="cls_003" id="remainingContributionPeriodYear" style="color:lightblue;text-decoration:underline;"></span>yr(s) O/S Penalty Period <span class="cls_003" id="surlusFineYear" style="color:lightblue;text-decoration:underline;"></span>yr(s) O/S Amt $  <span class="cls_003" id="AmountOwned" style="color:lightblue;text-decoration:underline;"></span> Bank<span class="cls_003" id="bankMortgage" style="color:lightblue;text-decoration:underline;"></span>Existing mortgage rate <span class="cls_003" id="existingMortgageRate" style="color:lightblue;text-decoration:underline;"></span></li>
+                </ul>
+            </div>
+            <p class="text-center" style="font-weight:bold;">Choice of Banks</p>
+            <div style="position:relative;left:-20px;top:0px" class="cls_003">
+                <ul>
+                    <li>Please specify if : 1)Any lender(s) which you prefer in first priority:：<span class="cls_003" id="BankChoose" style="color:lightblue;text-decoration:underline;"></span></li>
+                    <li>2)Any lender(s) which you do not prefer to submit your application:<span class="cls_003" id="otherBankChoose" style="color:lightblue;text-decoration:underline;"></span></li>
+                </ul>
+            </div>
+            <p class="text-center" style="font-weight:bold;">Customer’s Agreement and Declaration</p>
+            <div style="position:relative;left:30px;top:0px" class="cls_003">
+                <p class="text-left" style="font-weight:bold;">I/We acknowledge and agree to the following terms and conditions: -</p>
+            </div>
+            <div style="position:relative;left:15px;top:0px" class="cls_003">
+                <ol type="1">
+                    <li>I am/We are not required to pay any fee to mReferral and I/we have the right to refuse any offer made by the lender(s) through this company.</li>
+                    <li>I/We confirm that the above information provided by me/us is true. I/We hereby authorize this company to refer or provide to the lender(s) selected by me/us any personal information relating to myself/ourselves so that the relevant lender(s) may contact me/us directly in completing the application procedure.</li>
+                    <li>I/We expressly agree and authorize mReferral to follow up on and to forward my/our application(s) to individual lender(s) on my/our behalf for referral purpose and to receive information on the progress of my/our application(s) from the individual lender(s). I/We also authorize individual lender(s) to accept referral from mReferral and to contact me/us directly using the personal data provided in this form and to release information on the progress of my/our application(s) to this company.</li>
+                    <li>I/We understand that the above application is subject to the final approval of the individual lender(s).</li>
+                    <li>I/We acknowledge and agree that upon my/our acceptance of loan from any lender(s), this company will receive a referral fee from the lender(s).</li>
+                    <!--                           <li>Unless objection is raised by the option below, on drawdown of loan, only Applicant (1) will be granted with and agrees to accept the membership of Midland Club and I/we consent to mReferral using and/or transferring my/our personal data (including name, telephone number and email address) to Midland Club for processing application for membership and for the purposes of providing membership benefits, special offers, services, activities and/or rewards (details are outlined in the website of Midland Club www.midlandclub.com.hk) and/or to third parties set out in the Privacy Policy Statement (“third parties”) for direct marketing. I/We understand that even if I/we have given consent to mReferral to use and/or transfer my/our personal data to Midland Club and/or third parties, I/we may still have the right, at any time without charge, to request mReferral to cease to use and/or transfer my/our personal data to Midland Club and/or third parties for the purposes before mentioned (details are outlined in the Privacy Policy Statement posted in https://www.mReferral.com)..</li>-->
+                </ol>
+            </div>
+            <div style="position:relative;left:30px;top:0px" class="cls_003">
+                <p class="text-left" style="font-weight:bold;">I/We object to this company:                        <input type="checkbox" name="rejectForDirectMarket" value=1><label>transferring my/our personal data to third parties for use in direct marketing.</label><input type="checkbox" name="rejectForLoanReferral" value=1><label>using my/our personal data for direct marketing of mortgage and loan referral services provided.</label><input type="checkbox" name="rejectForSendData" value=1><label>transferring my/our personal data.</label></p>
+            </div>
+            <div style="position:relative;left:30px;top:0px" class="cls_013">
+                <p class="text-left">Customer’s Signature(s):&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Date:<span class="cls_025" id="userSignDate" style="color:lightblue;text-decoration:underline;"></span></p>
+            </div>
+            <div style="position:relative;left:30px;top:0px" class="cls_012"><span class="cls_012">
+                <span class="cls_003">
+                <img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" id="svgUser" width="200" height="200">
+                    </span>
+                </span>
+            </div>
+        </div>
+    </body>
+</html>
