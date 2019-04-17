@@ -199,6 +199,14 @@ class controllerWeb3
                 "userBEng":String,
                 "userBExclusive":String,
                 "userBFaxNumber":String,
+                "userBIDBRNumber":String,
+                "userBIDNumber":String,
+                "userBIncome":String,
+                "userBIncomeDollar":String,
+                "userBMobilePhoneNumber":String,
+                "userBOfficePhoneNumber":String,
+                "userBPosition":String,
+                "userBTelePhoneNumber":String,
                 "rejectForDirectMarket" : String,
                 "rejectForLoanReferral" : String,
                 "rejectForSendData" : String,
@@ -494,6 +502,19 @@ class controllerWeb3
             this.sendError(403, res, languageText[language]);
             return;
         }
+    }
+
+    async preview(req, res)
+    {
+        var formData = req.body;
+        // console.log(formData);
+        // var language = this.updatelanguage(params.language);
+        // var languageText = _errorMessage['getContractBalance'];
+        var tableRecord = formData.tableRecord == undefined || formData.tableRecord == null ? 0 : Number(formData.tableRecord);
+        var form_id = formData.form_id;
+        var json = this.modelForm.getPDFData(formData, tableRecord);
+        var daynamic = await this.formHTML.renderingPDF(json, this.formPage[form_id], undefined, undefined, formData.language, tableRecord);
+        res.send(JSON.stringify(daynamic));
     }
 
     submitRendering(formData, htmlCachePath, contractName, inputProperty)
