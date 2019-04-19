@@ -295,9 +295,12 @@ class controllerWeb3
         var path = _path.join(base_path+`${subPath}.html`);
         if(! await _fsHelper.fileExistAsync(path))
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${path}`, 'loadFile');
             return;
         }
+
+        _.log(`loadFile: ${path}`);
+
         var html = await _fsHelper.readFileAsync(path, 'utf8');
         var params = _url.parse(req.url, true).query;
         if(params.returnUrl)
@@ -451,20 +454,23 @@ class controllerWeb3
         var params = _url.parse(req.url, true).query;
         var agency = params.account;
         var language = this.updatelanguage(params.language);
-        var languageText = _errorMessage['getContractBalanceByAgent'];
+        var agent = _errorMessage['getAgent'];
         if(!agency)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, agent[language], 'getContractBalanceByAgent');
             return;
         }
 
         var contract = await this.redis.hasValuesWithHM(agency);
+        var languageText = _errorMessage['getContractBalanceByAgent'];
 
         if(!contract)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${contract}`, 'getContractBalanceByAgent');
             return;
         }
+
+        _.log(`getContractBalanceByAgent:${agency}`);
 
         var uniqueNumberArray = Object.keys(contract);
         
@@ -487,30 +493,35 @@ class controllerWeb3
         var agency = params.account;
 
         var language = this.updatelanguage(params.language);
-        var languageText = _errorMessage['getHashFormBlockChain'];
+        var agent = _errorMessage['getAgent'];
         if(!uniqueNumber || !agency)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, agent[language], 'getHashFormBlockChain');
             return;
         }
 
         var contractObject = await this.redis.hasValuesWithHM(agency);
+        var languageText = _errorMessage['getContractBalanceByAgent'];
 
         if(!contract)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${uniqueNumber}`, 'getHashFormBlockChain');
             return;
         }
 
         var uniqueNumberArray = Object.keys(contractObject);
 
         var num = uniqueNumberArray.includes(uniqueNumber);
+        var languageMessage = _errorMessage['getHashFormBlockChain'];
 
         if(num == -1)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageMessage[language]} : ${uniqueNumber}`, 'getHashFormBlockChain');
             return;
         }
+
+        _.log(`getContractBalanceByAgent:${agency}, ${uniqueNumber}`);
+
         var data = {};
         try
         {
@@ -556,7 +567,7 @@ class controllerWeb3
         var languageText = _errorMessage['getContractBalance'];
         if(!uniqueNumber)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, languageText[language], 'getContractBalance');
             return;
         }
 
@@ -566,7 +577,7 @@ class controllerWeb3
 
         if(!contract)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${uniqueNumber}`, 'getContractBalance');
             return;
         }
 
@@ -582,9 +593,11 @@ class controllerWeb3
             hash: contract
         }, tank);
 
+        var languageMessage = _errorMessage['getHashFormBlockChain'];
+
         if(!formData)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageMessage[language]} : ${uniqueNumber}`, 'getContractBalance');
             return;
         }
 
@@ -599,12 +612,15 @@ class controllerWeb3
             var json = this.modelForm.getFormData(formData, inputProperty);
             daynamic = await this.formHTML.renderingHTML(json, uniqueNumber, formData.language, inputProperty);
             data.html = daynamic;
+            _.log(`getContractBalance : ${uniqueNumber}, ${action}, ${tableRecord}`);
             res.send(JSON.stringify(data));
         }
         else if(action == 'submit')
         {
             var subPath = `/htmlCache/${contract}.pdf`; //pdf
             var htmlCachePath = _path.join(base_path+`/public/${subPath}`);
+
+            _.log(`getContractBalance : ${uniqueNumber}, ${action}, ${tableRecord}`);
             
             if(!await _fsHelper.fileExistAsync(htmlCachePath))
             {
@@ -620,7 +636,7 @@ class controllerWeb3
         }
         else
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageMessage[language]} : ${uniqueNumber}`, 'getContractBalance');
             return;
         }
     }
@@ -633,13 +649,13 @@ class controllerWeb3
     async preview(req, res)
     {
         var formData = req.body;
-        // console.log(formData);
         // var language = this.updatelanguage(params.language);
         // var languageText = _errorMessage['getContractBalance'];
         var tableRecord = formData.tableRecord == undefined || formData.tableRecord == null ? 0 : Number(formData.tableRecord);
         var form_id = formData.form_id;
         var json = this.modelForm.getPDFData(formData, tableRecord);
         var daynamic = await this.formHTML.renderingPDF(json, this.formPage[form_id], undefined, undefined, formData.language, tableRecord);
+        _.log(`preview : ${form_id}, ${formData.agency}`);
         res.send(JSON.stringify(daynamic));
     }
 
@@ -652,6 +668,7 @@ class controllerWeb3
      */
     submitRendering(formData, htmlCachePath, contractName, inputProperty)
     {
+        _.log(`submitRendering : ${htmlCachePath}, ${contractName}`);
         return new Promise((resolve)=>{
             var json = this.modelForm.getPDFData(formData, inputProperty);
             var form_id = formData.form_id;
@@ -662,7 +679,6 @@ class controllerWeb3
             };
             this.formHTML.renderingPDF(json, this.formPage[form_id], undefined, undefined, formData.language, inputProperty)
             .then((daynamic)=>{
-                // console.log(daynamic);
                 a2pClient.headlessChromeFromHtml(daynamic, true, `${contractName}.pdf`, options)
                 .then(async (result)=>{
                     var success = await _fsHelper.downloadFile(htmlCachePath, result.pdf);
@@ -680,7 +696,7 @@ class controllerWeb3
      */
     initServerWithPortCallback()
     {
-        console.log(`Listening on port ${process.env.port}`);
+        _.log(`Listening on port ${process.env.port}`);
     }
 
     /**
@@ -711,8 +727,6 @@ class controllerWeb3
 
             Promise.all(promiseEvent).then( async(result)=>{
                 result = _.convectorArrayToObjectWithKey(result);
-    
-                console.log(result);
                 var thirdChat =  result['thirdChat'];
                 var secondChat = result['secondChat']
                 var firstChat =  result['firstChat']
@@ -806,9 +820,12 @@ class controllerWeb3
      */
     updateTableRecord(uniqueNumber, form_id, tableRecord)
     {
-        if(form_id == 4 || form_id == 6)
-        {
-            this.redis.saveData(uniqueNumber, String(tableRecord));
+        if(tableRecord != 0){
+            if(form_id == 4 || form_id == 6)
+            {
+                _.log(`update table Record with ${uniqueNumber}, ${form_id}, ${tableRecord}`);
+                this.redis.saveData(uniqueNumber, String(tableRecord));
+            }
         }
     }
 
@@ -821,22 +838,25 @@ class controllerWeb3
     {
         var params = _url.parse(req.url, true).query;
         var agency = params.account;
-        var before = params.before;
-        var after  = params.after;
+        var before = params.before == undefined || params.before == null ? null : params.before;
+        var after  = params.after == undefined || params.after == null ? null : params.after;
         var language = this.updatelanguage(params.language);
         var languageText = _errorMessage['getContracts'];
+        var agent = _errorMessage['getAgent'];
         if(!agency)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, agent[language], 'getContracts');
             return;
         }
         var contractObject = await this.redis.hasValuesWithHM(`${agency}timeRecord`);
 
         if(!contractObject)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${agency}`, 'getContracts');
             return;
         }
+
+        _.log(`getContracts:${agency}, ${before}, ${after}`);
 
         var outputObject = this.renderContractWithDate(this.beforeAndAftercalculate(before, after, contractObject));
 
@@ -949,7 +969,7 @@ class controllerWeb3
     {
         var formData = req.body;
 
-        console.log(formData);
+        // console.log(formData);
         
         if(formData)
         {
@@ -962,6 +982,7 @@ class controllerWeb3
             var tableRecord = formData.tableRecord == undefined || formData.tableRecord == null ? 0 : Number(formData.tableRecord);
             var isNeedToUpdate = false;
             var uniqueNumber = undefined;
+            _.log(`form_id :${form_id}, agency:${agency}, tableRecord:${tableRecord}`);
             if(!uniqueNumberCache)
             {
                 uniqueNumber = await this.getUniqueNumber(unixTime.getFullYear().toString().substr(-2), form_id);
@@ -976,25 +997,29 @@ class controllerWeb3
             formData.hash = fileHash;
             formData.uniqueNumber = uniqueNumber;
 
-            if(tableRecord){
-                this.updateTableRecord(uniqueNumber, form_id, tableRecord);
-            }
+            _.log(`uniqueNumber : ${uniqueNumber}, fileHash : ${fileHash}`);
+
+            this.updateTableRecord(uniqueNumber, form_id, tableRecord);
 
             if(formData.action == 'save')
             {
+                _.log(`save draft`);
                 if(!isNeedToUpdate){
+                    _.log(`save with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
                     this.saveData(formData, form_id, tableRecord);
                     this.redis.saveDataWithH('record', uniqueNumber, fileHash);
                     this.redis.saveDataWithH(agency, uniqueNumber, fileHash);             
                 }
                 else
                 {
+                    _.log(`update with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
                     this.updateData(formData, uniqueNumber, fileHash, form_id, tableRecord);
                 }
                 this.contractEventHandle(returnUrl, res);
             }
             else
             {
+                _.log(`submit contract`);
                 formData.userSignDate = _moment().format("YYYY-MM-DD");
                 if(formData.form_id != 8){
                     formData.agencySignDate = _moment().format("YYYY-MM-DD");
@@ -1019,9 +1044,11 @@ class controllerWeb3
      * @param {Number} code     error coding with http response
      * @param {Object} res      response
      * @param {String} message  error message
+     * @param {String} functionName functionName
      */
-    sendError(code, res, message)
+    sendError(code, res, message, functionName)
     {
+        _.log(`${functionName} error: ${message}`);
         res.status(code).send({ error: message });
     }
 
@@ -1051,12 +1078,14 @@ class controllerWeb3
         var method_call_abi = await this.theContract.methods.UploadHash(agency, num, dataHash).encodeABI();
         if(!method_call_abi)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, languageText[language], 'runWeb3Function');
             return;
         }
 
+        _.log(`runWeb3Function ${uniqueNumber}, ${agency}, ${form_id}`);
+
         this.handleResToClient(json, isNeedToUpdate, form_id, agency, returnUrl, res);
-        this.handleSendTransaction(method_call_abi);
+        this.handleSendTransaction(method_call_abi, uniqueNumber, agency);
     }
 
     /**
@@ -1078,12 +1107,14 @@ class controllerWeb3
         var uniqueNumber = json.uniqueNumber;
         var fileHash = json.hash;
         if(!isNeedToUpdate){
+            _.log(`save with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
             this.saveData(json, form_id, tableRecord);
             this.redis.saveDataWithH('record', uniqueNumber, fileHash);
             this.redis.saveDataWithH(agency, uniqueNumber, fileHash);       
         }
         else
         {
+            _.log(`update with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
             this.updateData(json, uniqueNumber, fileHash, form_id, tableRecord);
         }
         this.updateTableRecord(uniqueNumber, form_id, tableRecord);
@@ -1097,10 +1128,13 @@ class controllerWeb3
      * sign the transaction with private key Buff
      * send transaction with signed.
      * if error, just re-try.
-     * @param {object} method_call_abi 
+     * @param {object} method_call_abi  method abi
+     * @param {String} uniqueNumber     contract data's uniqueNumber
+     * @param {String} agency           contract data's agency
      */
-    async handleSendTransaction(method_call_abi)
+    async handleSendTransaction(method_call_abi, uniqueNumber, agency)
     {
+        _.log(`handleSendTransaction: ${uniqueNumber}, ${agency}`);
         var from_addr = _setting.WALLET_ADDRESS;
         var contract_addr = _setting.CONTRACT_ADDRESS;
 
@@ -1120,7 +1154,7 @@ class controllerWeb3
         transaction.sign(privateKeyBuf);
         var serializedTx = transaction.serialize().toString('hex');
         var confirmSendSignTransaction = await this.web3.eth.sendSignedTransaction('0x' + serializedTx);
-        console.log(confirmSendSignTransaction);
+        // console.log(confirmSendSignTransaction);
         if(!confirmSendSignTransaction)
         {
             this.handleSendTransaction(method_call_abi);
@@ -1170,13 +1204,15 @@ class controllerWeb3
             }
         }
 
+        _.log(`access User: ${user}`);
+
         if(correct)
         {
             res.send(String(1));
         }
         else
         {
-            this.sendError(403, res, 0);
+            this.sendError(403, res, 0, 'adminCorrect');
         }
 
     }

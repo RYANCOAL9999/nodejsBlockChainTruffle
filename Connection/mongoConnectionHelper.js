@@ -49,7 +49,7 @@ class mongoConnectionHelper extends _EventEmitter
         },
         (err)=>{
             if(err){
-                console.log(error);
+                _.log(error);
             }
         });
         return _Mongoose.connection;
@@ -71,7 +71,7 @@ class mongoConnectionHelper extends _EventEmitter
     getErrorFromMongo()
     {
         this.db.on('error', (err)=>{
-            console.log(`Error : ${err}`);
+            _.log(`Error : ${err}`);
             this.dbConnected = false;
             this.emit('Removedb');
             
@@ -85,7 +85,7 @@ class mongoConnectionHelper extends _EventEmitter
     {
         this.db.once('open', ()=>
         {
-            console.log(`Connected to Mongo`);
+            _.log(`Connected to Mongo`);
             this.dbConnected = true;    
         })
         this.getErrorFromMongo();

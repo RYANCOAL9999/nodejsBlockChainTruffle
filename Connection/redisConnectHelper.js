@@ -51,7 +51,7 @@ class RedisConnectHelper extends _EventEmitter
     getErrorFromRedis()
     {
         this.workingClient.on('error', (err)=>{
-            console.log(`Error : ${err}`);
+            _.log(`Error : ${err}`);
             this.emit('RemoveRedisClient');
         });
     }
@@ -64,7 +64,7 @@ class RedisConnectHelper extends _EventEmitter
     {
         if(rClient == undefined){
             this.workingClient.on('connect', ()=>{
-                console.log(`Connected to Redis`);
+                _.log(`Connected to Redis`);
                 this.redisConnected = true;     
             });
         }
@@ -107,7 +107,7 @@ class RedisConnectHelper extends _EventEmitter
         {
             if(err != undefined)
             {
-                console.log(`What is error = ${err}`);
+                _.log(`What is error = ${err}`);
                 if(!startServer){
                     this.ReclusivePing(time, startServer);
                 }
@@ -118,7 +118,7 @@ class RedisConnectHelper extends _EventEmitter
             }
             else
             {
-                console.log(`What is result = ${result}`);
+                _.log(`What is result = ${result}`);
                 if(!startServer)
                 {
                     this.redisConnected = true;
@@ -135,7 +135,7 @@ class RedisConnectHelper extends _EventEmitter
      */
     reclusivePing(time, startServer)
     {
-        console.log('set TimeOut Ping With Reclusive')
+        _.log('set TimeOut Ping With Reclusive')
         setTimeout(()=>
         {
             this.pingRedis(time, startServer);
@@ -148,7 +148,7 @@ class RedisConnectHelper extends _EventEmitter
     receiptRedisCloseEvent()
     {
         this.workingClient.once("end", ()=>{
-            console.log('redis is closed');
+            _.log('redis is closed');
             this.emit('RemoveRedisClient');
             this.reclusivePing(1000, false);
         })
