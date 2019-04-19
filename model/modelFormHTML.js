@@ -8,11 +8,20 @@ let _propertyadded  =   require(base_path+'/enum/propertyadded');
 
 class modelFormHTML
 {
+    /**
+     * 
+     */
     constructor()
     {
     }
 
-    //inputField include date and text and number, checkBox 
+    /**
+     * inputField include date and text and number, checkBox
+     * update input text Field         
+     * @param {object} fieldObject     gen form Data
+     * @param {object} inputFieldHTML  html data
+     * @param {Boolean} isCheckBox     know is checkBox
+     */ 
     updateInputFieldHTML(fieldObject, inputFieldHTML, isCheckBox)
     {
         if(fieldObject && inputFieldHTML)
@@ -36,7 +45,11 @@ class modelFormHTML
         }
     }
 
-    //radio Button
+    /**
+     * update radio button  
+     * @param {Object} radioButtonObject  gen form Data
+     * @param {Object} radioButtonHTML    html data
+     */
     updateRadioButtonHTML(radioButtonObject, radioButtonHTML)
     {
         if(radioButtonObject && radioButtonHTML){
@@ -56,7 +69,13 @@ class modelFormHTML
         }
     }
 
-    //textArea and Span and SignatureObject, selectFieldObject
+    /**
+     * textArea and Span and SignatureObject, selectFieldObject
+     * @param {Object} fieldObject gen form Data
+     * @param {String} idTextArea  string of id  
+     * @param {String} type        which type 
+     * @param {Object} $           html
+     */
     updateFieldHTML(fieldObject, idTextArea, type, $)
     {
         if(fieldObject){
@@ -86,6 +105,13 @@ class modelFormHTML
         }
     }
 
+    /**
+     * render HTML
+     * @param {Object} fileObject    gen form Data
+     * @param {String} createDay     uniqueNumber
+     * @param {String} language      contract language
+     * @param {Number} inputproperty table Record of contract
+     */
     renderingHTML(fileObject, createDay, language, inputproperty)
     {
         return new Promise( async(resolve)=>{
@@ -150,14 +176,25 @@ class modelFormHTML
         });
     }
 
+    /**
+     * append div
+     * @param {Object} $          html
+     * @param {String} subtext    text
+     * @param {String} index      key
+     */
     divAppendForm($, subtext, index)
     {
         // console.log($(`#${index}`));
         $(`#${index}`).append(subtext);
     }
 
-
-
+    /**
+     * append div with mongodb
+     * @param {Object} pdfDataLan mongodb data
+     * @param {String} key        id
+     * @param {Object} $          html
+     * @param {String} startFor   ol start for
+     */
     pdfAppendForm(pdfDataLan, key, $, startFor)
     {
         var formData = $(`#${key}`);
@@ -180,6 +217,15 @@ class modelFormHTML
         formData.prepend(text);
     }
 
+    /**
+     * rendering pdf
+     * @param {Object} fileObject    formData
+     * @param {Object} formOnePage   mongodb data
+     * @param {Object} formTwoPage   mongodb data
+     * @param {Object} formThreePage mongodb data 
+     * @param {String} language      formData language
+     * @param {Number} inputproperty formdata tableRecord
+     */
     renderingPDF(fileObject, formOnePage, formTwoPage, formThreePage, language, inputproperty)
     { 
         return new Promise( async(resolve)=>{

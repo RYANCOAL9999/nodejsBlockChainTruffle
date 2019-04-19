@@ -8,6 +8,11 @@ class fsHelper
 
     }
 
+    /**
+     * 
+     * @param {*} path 
+     * @param {*} url 
+     */
     static downloadFile(path, url)
     {
         return new Promise((resolve)=>{
@@ -23,6 +28,11 @@ class fsHelper
         })
     }
 
+    /**
+     * 
+     * @param {*} path 
+     * @param {*} content 
+     */
     static writeFileAsync(path, content)
     {
         return new Promise((resolve)=>{
@@ -37,6 +47,11 @@ class fsHelper
         })
     }
 
+    /**
+     * 
+     * @param {*} path 
+     * @param {*} encoding 
+     */
     static readFileAsync(path, encoding)
     {
         return new Promise((resolve)=>{
@@ -51,6 +66,10 @@ class fsHelper
         })
     }
 
+    /**
+     * 
+     * @param {*} path 
+     */
     static fileExistAsync(path)
     {
         return new Promise((resolve)=>{

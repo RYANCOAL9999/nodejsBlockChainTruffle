@@ -6,9 +6,9 @@ let _EventEmitter = require('events').EventEmitter;
 class mongoConnectionHelper extends _EventEmitter
 {
     /**
-     * 
-     * @param {*} host 
-     * @param {*} port 
+     * init with connection
+     * @param {string} host 
+     * @param {Number} port 
      */
     constructor(host, port)
     {
@@ -22,7 +22,7 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * init with create connection
      */
     initConnection()
     {
@@ -31,9 +31,9 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
-     * @param {*} host 
-     * @param {*} port 
+     * creating connection
+     * @param {string} host 
+     * @param {Number} port 
      */
     createConnection(host, port)
     {
@@ -56,7 +56,7 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * receipt remove client
      */
     receiptRemoveClient()
     {
@@ -66,7 +66,7 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     *  get error of mongodb
      */
     getErrorFromMongo()
     {
@@ -79,7 +79,7 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * check mongodb is connection
      */
     checkConnection()
     {
@@ -92,7 +92,7 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * get dbAdapter
      */
     get dbAdapter()
     {
@@ -100,7 +100,7 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * get mongodb is connect
      */
     get mongoIsConnected()
     {

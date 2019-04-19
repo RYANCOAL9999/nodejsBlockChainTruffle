@@ -5,9 +5,9 @@ let _Setting               = require(base_path+'/enum/setting');
 class modelRedis
 {
     /**
-     * 
-     * @param {*} ipAddrss 
-     * @param {*} port 
+     * init with redis connection
+     * @param {String} ipAddress ip address 
+     * @param {Number} port port
      */
     constructor(ipAddrss, port)
     {
@@ -21,9 +21,8 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} key 
-     * @param {*} callback 
+     * redis get
+     * @param {String} key key of set
      */
     getData(key)
     {
@@ -40,9 +39,9 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} key 
-     * @param {*} data 
+     * redis set
+     * @param {String} key  key of set
+     * @param {object} data value of set
      */
     saveData(key, data)
     {
@@ -59,9 +58,8 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} key 
-     * @param {*} callback 
+     * redis del
+     * @param {String} key       key of set
      */
     deleteData(key, callback)
     {
@@ -71,10 +69,10 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} key 
-     * @param {*} field 
-     * @param {*} data 
+     * redis Hset
+     * @param {string} key     key of hset
+     * @param {string} field   field of hset
+     * @param {object} data    data of hset
      */
     saveDataWithH(key, field, data)
     {
@@ -92,9 +90,9 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} key 
-     * @param {*} field 
+     * redis Hget
+     * @param {string} key     key of hset
+     * @param {string} field   field of hset
      */
     getDataWithH(key, field)
     {
@@ -111,9 +109,9 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} key 
-     * @param {*} data 
+     * redis hmset
+     * @param {string} key     key of hset
+     * @param {object} data    data of hset
      */
     saveDataWithHM(key, data)
     {
@@ -130,9 +128,9 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} key 
-     * @param {*} callback 
+     * redis hmdel
+     * @param {string} key key of hset
+     * @param {Function} callback callback 
      */
     deleteDataWithHM(key, callback)
     {
@@ -143,8 +141,8 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} key 
+     * redis hgetall
+     * @param {String} key key of hset 
      */
     hasValuesWithHM(key)
     {
@@ -161,10 +159,10 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} queueName 
-     * @param {*} size 
-     * @param {*} callback 
+     * redis create message queue
+     * @param {String} queueName queueName
+     * @param {Number} size       queue sizes
+     * @param {Function} callback callback 
      */
     createMessageQueue(queueName, size, callback) {
         console.log(`Createing queue ${queueName}`);
@@ -191,10 +189,10 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} queueName 
-     * @param {*} msg 
-     * @param {*} callback 
+     * redis send message queue
+     * @param {String} queueName  queueName
+     * @param {String} msg        messages
+     * @param {Function} callback callback 
      */
     sendMessageToQueue(queueName, msg, callback) {
         this.redisMQ.sendMessage({ qname: queueName, message: msg }, function(err, resp) {
@@ -209,9 +207,9 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} queueName 
-     * @param {*} callback 
+     * redis receive messages
+     * @param {String} queueName  queueName
+     * @param {Function} callback callback 
      */
     receiveMessageFromQueue(queueName, callback) {
         this.redisMQ.receiveMessage({ qname: queueName }, function(err, resp) {
@@ -230,10 +228,10 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} queueName 
-     * @param {*} messageId 
-     * @param {*} callback 
+     * redis delete messages
+     * @param {String} queueName  queueName
+     * @param {Number} messageId  message ID of redis with queue
+     * @param {Function} callback callback 
      */
     deleteMessageFromQueue(queueName, messageId, callback) {
         this.redisMQ.deleteMessage({ qname: queueName, id: messageId }, function(err, resp) {
@@ -242,9 +240,9 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} queueName 
-     * @param {*} callback 
+     * redis delete messages with last one
+     * @param {String} queueName  queueName
+     * @param {Function} callback callback 
      */
     popMessageFromQueue(queueName, callback) {
         var self = this;
@@ -258,9 +256,9 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} queueName 
-     * @param {*} callback 
+     * get query attributes
+     * @param {String} queueName  queueName
+     * @param {Function} callback callback 
      */
     getAttributesFromQueue(queueName, callback) {
         this.redisMQ.getQueueAttributes({ qname: queueName }, function(err, resp) {
@@ -272,9 +270,9 @@ class modelRedis
     }
 
     /**
-     * 
-     * @param {*} queueName 
-     * @param {*} callback 
+     * delete message query
+     * @param {String} queueName  queueName
+     * @param {Function} callback callback 
      */
     deleteMessageQueue(queueName, callback)
     {
@@ -327,8 +325,9 @@ class modelRedis
 	} 
 
     /**
-     * 
-     * @param {*} key 
+     * redis incr key with getUniqueNumber
+     * @param {string} key incr key 
+     * @param {Boolean} isGetData to know is get data 
      */
     incrSN(key, isGetData)
     {
@@ -355,7 +354,7 @@ class modelRedis
     }
     
     /**
-     * 
+     * reset key crKey.
      * @param {String} key 
      */
     resetCrKey(key)
@@ -363,7 +362,7 @@ class modelRedis
         this.saveData(key, 1);
     }
 
-    /**
+    /** 
 	 * incr Target Socket Size for redis
 	 * @param {String} key 			identify key
 	 * @param {Function} callback  	back to which functions call this functions  
@@ -417,13 +416,8 @@ class modelRedis
 				this.publishEvent(setting.INTERNA_MESSAGE_QUEUE, data, ()=>{});
 			}
 		});
-	}
-
+    }
     
-    
-
-
-
 }
 
 module.exports = modelRedis;

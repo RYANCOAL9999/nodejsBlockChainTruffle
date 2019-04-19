@@ -9,8 +9,8 @@ class RedisConnectHelper extends _EventEmitter
 {
 
     /**
-     * 
-     * @param {*} startupNodes 
+     * start redis connection
+     * @param {object} startupNodes node with single or multiple
      */
     constructor(startupNodes)
     {
@@ -28,7 +28,7 @@ class RedisConnectHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * init redis connection
      */
     initConnection()
     {
@@ -37,8 +37,8 @@ class RedisConnectHelper extends _EventEmitter
     }
 
     /**
-     * 
-     * @param {*} startupNodes 
+     * create redis connection
+     * @param {Object} startupNodes  node with single or multiple
      */
     createConnection(startupNodes)
     {
@@ -46,7 +46,7 @@ class RedisConnectHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * get redis error
      */
     getErrorFromRedis()
     {
@@ -57,8 +57,8 @@ class RedisConnectHelper extends _EventEmitter
     }
 
     /**
-     * 
-     * @param {*} rClient 
+     * check redis connection after connect
+     * @param {object} rClient redis client
      */
     checkConnection(rClient)
     {
@@ -80,7 +80,7 @@ class RedisConnectHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * receipt remove client for redis
      */
     receiptRemoveClient()
     {

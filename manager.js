@@ -237,6 +237,10 @@ class manager extends _EventEmitter
         }
     }
 
+    /**
+     * send many internal message
+     * @param {object} messageList message object 
+     */
     sendMultiInternalMessage(messageList) {
         _.log("Worker Process: " + process.env.cid + " Receives sendMultiInternalMessage event");
         var size = messageList.length;
