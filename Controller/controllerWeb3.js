@@ -612,7 +612,7 @@ class controllerWeb3
             var json = this.modelForm.getFormData(formData, inputProperty);
             daynamic = await this.formHTML.renderingHTML(json, uniqueNumber, formData.language, inputProperty);
             data.html = daynamic;
-            _.log(`getContractBalance : ${uniqueNumber}, ${action}, ${tableRecord}`);
+            _.log(`getContractBalance : ${uniqueNumber}, ${action}`);
             res.send(JSON.stringify(data));
         }
         else if(action == 'submit')
@@ -620,7 +620,7 @@ class controllerWeb3
             var subPath = `/htmlCache/${contract}.pdf`; //pdf
             var htmlCachePath = _path.join(base_path+`/public/${subPath}`);
 
-            _.log(`getContractBalance : ${uniqueNumber}, ${action}, ${tableRecord}`);
+            _.log(`getContractBalance : ${uniqueNumber}, ${action}`);
             
             if(!await _fsHelper.fileExistAsync(htmlCachePath))
             {

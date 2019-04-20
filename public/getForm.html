@@ -27,33 +27,20 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" src="/js/getForm.js"></script>
-        <script type="text/javascript" src="/js/wz_jsgraphics.js"></script>
-        <script type="text/javascript" src="/js/formDataSetting.js"></script>
-        <script type="text/javascript" src="/js/submitContract.js"></script>
-        <script type="text/javascript" src="/js/formContract.js"></script>
+        <!-- <script type="text/javascript" src="/js/formDataSetting.js"></script>
+        <script type="text/javascript" src="/js/controlContract.js"></script>
+        <script type="text/javascript" src="/js/controlForm.js"></script> -->
     </head>
     <body>
-        <form action="/api/users/date" method="GET" id="dataForm">
+        <form action="/api/users/agency" method="GET" id="dataForm">
         <div class="mb-3">
             &emsp;請輸入代理名稱: <input type="text" name="account">
-            <input type="button" class="dropbtn" value="確定" onclick="clickSubmit()">
+            <input type="button" class="dropbtn" value="確定" onclick="agencySubmit()">
             <p id="spanOPT" class="lead"></p>
             &emsp;請輸入按合約編號: <input type="text" name="uniqueNumber">
             <input type="button" class="dropbtn" value="顯示/更改表格" onclick="readContract()">
         </div>
         </form>
         <p id="spanOPText"></p>
-<!--        <br>-->
-        <!-- <div class="mb-3">
-            &emsp;文件的 Hash : <input type="text" name="hash1" size="38" id="formHash" style="height:18px;">
-        </div>
-        <br>
-        <div class="mb-3">
-            &emsp;放上了block Chain Hash : <input type="text" name="hash2" size="38" id="blockChainHash" style="height:18px;">
-        </div>
-        <br>
-        <div class="mb-3">
-            &emsp;<input type="button" class="dropbtn" value="compare Two Hash" onclick="playHash()">
-        </div> -->
     </body>
 </html>

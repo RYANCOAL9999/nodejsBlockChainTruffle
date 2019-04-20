@@ -1,51 +1,8 @@
 var dbFormData = undefined;
 
-function hashQuery(data)
-{
-    return new Promise((resolve)=>{
-        $.ajax({
-            type: 'post',
-            url: '/api/encryption',
-            data: data,
-            success: function (data) {
-                resolve(data);
-            }
-        });
-    })
-}
-
-
-async function playHash()
-{
-    if(dbFormData)
-    {
-        var form_id = dbFormData.form_id;
-        var form = $(`#form${form_id}Letter`);
-        var data = form.serialize();
-        data += `&tableRecord=${dbFormData.inputproperty}`;
-        data += `&form_id=${form_id}`;
-        data += `&action=${dbFormData.action}`;
-        data += `&svgUser=${dbFormData.svgUser}`;
-        data += `&svgAgency=${dbFormData.svgAgency}`;
-        var hash = await hashQuery(data);
-        $("#formHash").val(hash);
-    }
-}
-
-async function render(data, hash)
-{
-    var dataHash = await hashQuery(data);
-    var blockHash = hash;
-    dbFormData = data;
-    $("#formHash").val(dataHash);
-    $("#blockChainHash").val(blockHash);
-}
-
-function formTest(url, data, hash)
-{
-    window.open(url, '_blank');
-    render(data, hash);
-}
+/**
+ * read the contract with api balance
+ */
 function readContract()
 {
     var uniqueNumber = $('input[name="uniqueNumber"]').val();
@@ -73,13 +30,19 @@ function readContract()
     });
 }
 
+/**
+ * add data to input field to get contract
+ * @param {String} uniqueNumber contract uniqueNumber
+ */
 function addField(uniqueNumber)
 {
     $('input[name="uniqueNumber"]').val(uniqueNumber);
 }
 
-
-function clickSubmit()
+/**
+ * submit agency to get the uniqueNumber
+ */
+function agencySubmit()
 {
     var form = $(`#dataForm`);
     document.getElementById("spanOPT").innerHTML = "";

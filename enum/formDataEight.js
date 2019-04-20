@@ -40,7 +40,7 @@ var formDataEight = {
                                      'contractFlat',
                                      'contractFloor',
                                      'contractBlock',
-                                     'propertyflat', 'propertyfloor', 'propertyblock', 'carAddress', 'price', 'propertyOther', 'bankMortgage', 'BankChoose', 'otherBankChoose', 'userABirthday',
+                                     'propertyFlat', 'propertyFloor', 'propertyBlock', 'carAddress', 'price', 'propertyOther', 'bankMortgage', 'BankChoose', 'otherBankChoose', 'userABirthday',
                                      'userBBirthday', 'loanRequestMoney', 'AmountOwned',
                                      'propertyDate', 'singatureDate'],
     'checkboxArray'             :   ['propertyStatus','propertyOffPlan', 'loanRequest', 'interestRate', 'repaymentPeriod','penaltyPeriod', 'cashRebate', 'approvalLoan', 'rejectForDirectMarket','rejectForLoanReferral','rejectForSendData'],

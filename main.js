@@ -120,7 +120,7 @@ var StartServer = ()=>
      */
     app.get('/admin', controllerWeb3.adminCorrect.bind(controllerWeb3));
      
-    app.get('/api/users/date', controllerWeb3.getContractBalanceByAgent.bind(controllerWeb3));
+    app.get('/api/users/agency', controllerWeb3.getContractBalanceByAgent.bind(controllerWeb3));
 
     app.get('/api/users/balance', controllerWeb3.getContractBalance.bind(controllerWeb3));
 

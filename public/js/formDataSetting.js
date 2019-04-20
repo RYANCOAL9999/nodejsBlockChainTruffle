@@ -1,4 +1,6 @@
-
+/**
+ * data display setting with enum
+ */
 var formData = 
 {
   'chi':
@@ -187,7 +189,9 @@ var signData =
       svgUser : '租客未進行签署',
       svgAgency : '代理未進行签署',
     },
-    '8': {}
+    '8': {
+      svgUser : '客戶未進行签署',
+    }
   },
   'eng':
   {
@@ -211,8 +215,10 @@ var signData =
       svgUser : 'Tenant is not Sign',
       svgAgency : 'Agency is not Sign',
     },
-    '8': {}
+    '8': {
+      svgUser : 'user is not Sign',
     }
+  }
 };
 
 var keepData =
@@ -382,6 +388,9 @@ var buttonEvent =
     
 };
 
+/**
+ * concurrenc with , input
+ */
 (function($, undefined){
   "use strict";
   $(function() {
@@ -409,6 +418,9 @@ var buttonEvent =
   });
 })(jQuery);
 
+/**
+ *  datapicker for all broswers settings.
+ */
 $( function() {
   for(var i = 0 ; i < 3; i++)
   {

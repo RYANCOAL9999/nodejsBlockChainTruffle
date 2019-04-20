@@ -72,7 +72,7 @@
         <script type="text/javascript" src="https://unpkg.com/prismic-javascript"></script>
 		<script type="text/javascript" src="/js/popUpsignatureHTML.js"></script>
 		<script type="text/javascript" src="/js/formDataSetting.js"></script>
-        <script type="text/javascript" src="/js/submitContract.js"></script>
+        <script type="text/javascript" src="/js/controlContract.js"></script>
     </head>
     <body class="bg-light">
         <div class="container">
@@ -374,7 +374,7 @@
                                 </ol>
                             </li>
                         </ol>
-                        <input type="button" class="btn btn-primary btn-lg btn-block" value="save draft" onclick="playSave(5, 'eng')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="save draft" onclick="saveContract(5, 'eng')">
                         <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="row no-gutters overflow-hidden flex-md-row mb-4 position-relative">
@@ -387,7 +387,7 @@
                                     </div>
                                 </div>
                             </div>
-                        <input type="button" class="btn btn-primary btn-lg btn-block" value="Submit smart contract" onclick="playSubmit(5, 'eng')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="Submit smart contract" onclick="submitContract(5, 'eng')">
                         <input type="button" class="btn btn-primary btn-lg btn-block" value="Cancel" onclick="playReset('eng')">
                         <input type="hidden" name="shaOneReturnUrl">
                         <!-- <input type="hidden" name="uniqueNumber"> -->

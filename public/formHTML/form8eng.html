@@ -56,7 +56,7 @@
         <script type="text/javascript" src="https://unpkg.com/prismic-javascript"></script>
 		<script type="text/javascript" src="/js/popUpsignatureHTML.js"></script>
 		<script type="text/javascript" src="/js/formDataSetting.js"></script>
-        <script type="text/javascript" src="/js/submitContract.js"></script>
+        <script type="text/javascript" src="/js/controlContract.js"></script>
     </head>
     <body class="bg-light">
         <div class="container">
@@ -271,11 +271,11 @@
 <!--                                </div>-->
 <!--                            </div>-->
                         <br>
-                        <input type="button" class="btn btn-primary btn-lg btn-block" value="save draft" onclick="playSave(8, 'eng')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="save draft" onclick="saveContract(8, 'eng')">
                         <p>Customer’s Signature(s) <button type="button" class="dropbtn" onclick="openPopUp('svgUser', 'eng')">digital signature</button><input type="hidden" id="svgUserID" name="svgUser" readonly />
                         <!--&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;日期 : <input type="text" id="datepicker3" name="userSignDate"  > -->
                         </p>
-                        <input type="button" class="btn btn-primary btn-lg btn-block" value="Submit smart contract" onclick="playSubmit(8, 'eng')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="Submit smart contract" onclick="submitContract(8, 'eng')">
                         <input type="button" class="btn btn-primary btn-lg btn-block" value="Cancel" onclick="playReset('eng')">
                         <input type="hidden" name="shaOneReturnUrl">
                         <!-- <input type="hidden" name="uniqueNumber"> -->

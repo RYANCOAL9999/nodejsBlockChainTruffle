@@ -35,7 +35,7 @@ var formDataEight = {
                                      'contractFlat',
                                      'contractFloor',
                                      'contractBlock',
-                                     'propertyflat', 'propertyfloor', 'propertyblock', 'carAddress', 'price', 'propertyOther', 'bankMortgage', 'BankChoose', 'otherBankChoose', 'userAExclusive',
+                                     'propertyFlat', 'propertyFloor', 'propertyBlock', 'carAddress', 'price', 'propertyOther', 'bankMortgage', 'BankChoose', 'otherBankChoose', 'userAExclusive',
                                      'userAEducation',
                                      'userAEmploy',
                                      'userAIncome',
