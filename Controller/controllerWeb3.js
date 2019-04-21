@@ -372,8 +372,16 @@ class controllerWeb3
     {
         var params = _url.parse(req.url, true).query;
         var uniqueNumber = params.uniqueNumber;
-        var agency = params.account;
-
+        var agency = undefined;
+        //hyperledger_web3
+        if(process.env.hyperledger === '1')
+        {
+            agency = await this.redis.getDataWithH('recordAgency', uniqueNumber);
+        }
+        else
+        {
+            agency = params.account;
+        }
         var language = this.updatelanguage(params.language);
         var languageText = _errorMessage['getHashFormBlockChain'];
         if(!uniqueNumber || !agency)
@@ -471,30 +479,68 @@ class controllerWeb3
 
         var daynamic = undefined;
 
-        var data = {};
+        var sendBackObject = {};
 
         if(action=='save')
         {
             var json = this.modelForm.getFormData(formData, inputProperty);
             daynamic = await this.formHTML.renderingHTML(json, uniqueNumber, formData.language, inputProperty);
-            data.html = daynamic;
-            res.send(JSON.stringify(data));
+            sendBackObject.html = daynamic;
+            res.send(JSON.stringify(sendBackObject));
         }
         else if(action == 'submit')
         {
+            if(process.env.hyperledger === '1'){
+                var agency = await this.redis.getDataWithH('recordAgency', uniqueNumber);
+
+                if(!agency)
+                {
+                    this.sendError(403, res, languageText[language]);
+                    return;
+                }
+                var contractObject = await this.redis.hasValuesWithHM(agency);
+        
+                if(!contract)
+                {
+                    this.sendError(403, res, languageText[language]);
+                    return;
+                }
+        
+                var uniqueNumberArray = Object.keys(contractObject);
+        
+                var num = uniqueNumberArray.includes(uniqueNumber);
+        
+                if(num == -1)
+                {
+                    this.sendError(403, res, languageText[language]);
+                    return;
+                }
+
+                try
+                {
+                    sendBackObject['hash'] = await this.theContract.methods.Get(agency, num).call({from: _setting.WALLET_ADDRESS});
+                }
+                catch(error)
+                {
+                    throw new Error(error);
+                }
+
+                sendBackObject['data'] = formData;
+            }
+
             var subPath = `/htmlCache/${contract}.pdf`; //pdf
             var htmlCachePath = _path.join(base_path+`/public/${subPath}`);
             
             if(!await _fsHelper.fileExistAsync(htmlCachePath))
             {
                 var htmlCachePath = await this.submitRendering(formData, htmlCachePath, contract, inputProperty);
-                data.url = subPath;
-                res.send(JSON.stringify(data));
+                sendBackObject.url = subPath;
+                res.send(JSON.stringify(sendBackObject));
             }
             else
             {
-                data.url = subPath;
-                res.send(JSON.stringify(data));
+                sendBackObject.url = subPath;
+                res.send(JSON.stringify(sendBackObject));
             }
         }
         else
@@ -791,7 +837,11 @@ class controllerWeb3
                 if(!isNeedToUpdate){
                     this.saveData(formData, form_id, tableRecord);
                     this.redis.saveDataWithH('record', uniqueNumber, fileHash);
-                    this.redis.saveDataWithH(agency, uniqueNumber, fileHash);             
+                    this.redis.saveDataWithH(agency, uniqueNumber, fileHash);
+                    if(process.env.hyperledger === '1')
+                    {       
+                        this.redis.saveDataWithH('recordAgency', uniqueNumber, agency);             
+                    }             
                 }
                 else
                 {
@@ -833,7 +883,17 @@ class controllerWeb3
         var language = this.updatelanguage(json.language);
         var languageText = _errorMessage['runWeb3Function'];
 
-        var method_call_abi = await this.theContract.methods.UploadHash(agency, num, dataHash).encodeABI();
+        var method_call_abi = undefined;
+        try
+        {
+            method_call_abi = await this.theContract.methods.UploadHash(agency, num, dataHash).send({from: _setting.WALLET_ADDRESS});
+        }
+        catch(exception)
+        {
+            console.log(`what is exception ${exception}`);
+            this.sendError(403, res, languageText[language]);
+            return;
+        }
         if(!method_call_abi)
         {
             this.sendError(403, res, languageText[language]);
@@ -841,7 +901,10 @@ class controllerWeb3
         }
 
         this.handleResToClient(json, isNeedToUpdate, form_id, agency, returnUrl, res);
-        this.handleSendTransaction(method_call_abi);
+        if(process.env.hyperledger !== '1')
+        {       
+            this.handleSendTransaction(method_call_abi);
+        }
     }
 
     handleResToClient(json, isNeedToUpdate, form_id, agency, returnUrl, res)
@@ -852,7 +915,11 @@ class controllerWeb3
         if(!isNeedToUpdate){
             this.saveData(json, form_id, tableRecord);
             this.redis.saveDataWithH('record', uniqueNumber, fileHash);
-            this.redis.saveDataWithH(agency, uniqueNumber, fileHash);       
+            this.redis.saveDataWithH(agency, uniqueNumber, fileHash);
+            if(process.env.hyperledger === '1')
+            {       
+                this.redis.saveDataWithH('recordAgency', uniqueNumber, agency);            
+            }           
         }
         else
         {

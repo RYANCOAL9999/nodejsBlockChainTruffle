@@ -44,7 +44,9 @@ async function render(data, hash)
 function formTest(url, data, hash)
 {
     window.open(url, '_blank');
-    render(data, hash);
+    if(data && hash){
+        render(data, hash);
+    }
 }
 function readContract()
 {
@@ -54,11 +56,11 @@ function readContract()
         type: 'get',
         url: `/api/users/balance`,
         data:`uniqueNumber=${uniqueNumber}`,
-        success: function (data) {
-            var json = JSON.parse(data);
+        success: function (result) {
+            var json = JSON.parse(result);
             if(json.url)
             {
-                window.open(json.url, '_blank');
+                formTest(json.url, json.data, json.hash);
             }
             else
             {
