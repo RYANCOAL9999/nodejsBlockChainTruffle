@@ -15,8 +15,21 @@ let _api2Pdf        =   require('api2pdf');
 let _errorMessage   =   require(base_path+'/enum/errorMessage');
 let a2pClient       =   new _api2Pdf('ba28d6a8-b161-416a-8bba-7828fe14c192');
 
+/**
+ * controllerWeb3 with api functions
+ */
 class controllerWeb3 
 {
+    /**
+     * init the mongo and redis connect's object
+     * init the web3 object
+     * init formHTML object and modelForm for JSON convertor
+     * init contract object
+     * init the moongoose object for create model
+     * init the formData for mongodb
+     * @param {object} mongodb mongodb connect's object
+     * @param {object} redis   redis connect's object
+     */
     constructor(mongodb, redis)
     {
         this.mongodb = mongodb;
@@ -58,6 +71,11 @@ class controllerWeb3
         // })
     }
 
+    /**
+     * gen the schema with structure for moogoose schema with 0 to more object
+     * @param {Number} inputproperty to know gen 0 to more object
+     * @param {Number} form_id to know the form is 8 or not
+     */
     genSchema(inputproperty, form_id){
         var object = {
             "hash" : String,
@@ -218,11 +236,21 @@ class controllerWeb3
         return object;
     }
 
+    /**
+     * load the html for index.html
+     * @param {Object} req api request
+     * @param {Object} res api response
+     */
     loadIndexhtml(req, res)
     {
         res.sendFile(_path.join(base_path+'/public/index.html'));
     }
 
+    /**
+     * gen the contract with new file
+     * @param {object} params request params for client
+     * @param {object} html html code for form file
+     */
     genContentContract(params, html)
     {
         return new Promise( async(resolve)=>{
@@ -247,6 +275,15 @@ class controllerWeb3
         })
     }
 
+    /**
+     * load the form
+     * if have data just call genContentContract function to gen new form file
+     * send the form file to client
+     * @param {object} req request
+     * @param {object} res response
+     * @param {Number} contractIndex which form 
+     * @param {String} language which language
+     */
     async loadFile(req, res, contractIndex, language)
     {
         var subPath = `/public/formHTML/form${contractIndex}`;
@@ -258,9 +295,12 @@ class controllerWeb3
         var path = _path.join(base_path+`${subPath}.html`);
         if(! await _fsHelper.fileExistAsync(path))
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${path}`, 'loadFile');
             return;
         }
+
+        _.log(`loadFile: ${path}`);
+
         var html = await _fsHelper.readFileAsync(path, 'utf8');
         var params = _url.parse(req.url, true).query;
         if(params.returnUrl)
@@ -270,66 +310,131 @@ class controllerWeb3
         res.sendFile(path);
     }
 
+    /**
+     * send Form 3 with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom3(req, res)
     {
         this.loadFile(req, res, 3);
     }
 
+    /**
+     * send Form 4 with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom4(req, res)
     {
         this.loadFile(req, res, 4);
     }
 
+    /**
+     * send Form 5 with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom5(req, res)
     {
         this.loadFile(req, res, 5);
     }
 
+    /**
+     * send Form 6 with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom6(req, res)
     {
         this.loadFile(req, res, 6);
     }
 
+    /**
+     * send Form 8 with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom8(req, res)
     {
         this.loadFile(req, res, 8);
     }
 
+    /**
+     * send Form 3 eng with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom3Eng(req, res)
     {
         this.loadFile(req, res, 3, 'eng');
     }
 
+    /**
+     * send Form 4 eng with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom4Eng(req, res)
     {
         this.loadFile(req, res, 4, 'eng');
     }
 
+    /**
+     * send Form 5 eng with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom5Eng(req, res)
     {
         this.loadFile(req, res, 5, 'eng');
     }
 
+   /**
+     * send Form 6 eng with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom6Eng(req, res)
     {
         this.loadFile(req, res, 6, 'eng');
     }
 
+    /**
+     * send Form 8 eng with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadfrom8Eng(req, res)
     {
         this.loadFile(req, res, 8, 'eng');
     }
 
+    /**
+     * send getForm with response
+     * @param {object} req request
+     * @param {object} res response
+     */
     loadGetForm(req, res)
     {
         res.sendFile(_path.join(base_path+'/public/getForm.html'));
     }
 
+    /**
+     * send back string with response
+     * @param {object} res response 
+     * @param {object} data data for which functions is call this function 
+     */
     resSendWithString(res, data)
     {
         res.send(JSON.stringify(data)); 
     }
 
+    /**
+     * update language with english or other
+     * if not language is english.
+     * @param {String} language 
+     */
     updatelanguage(language)
     {
         if(!language)
@@ -339,25 +444,33 @@ class controllerWeb3
         return language;
     }
 
+    /**
+     * get contract Number for Agent
+     * @param {object} req request
+     * @param {object} res response
+     */
     async getContractBalanceByAgent(req, res)
     {
         var params = _url.parse(req.url, true).query;
         var agency = params.account;
         var language = this.updatelanguage(params.language);
-        var languageText = _errorMessage['getContractBalanceByAgent'];
+        var agent = _errorMessage['getAgent'];
         if(!agency)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, agent[language], 'getContractBalanceByAgent');
             return;
         }
 
         var contract = await this.redis.hasValuesWithHM(agency);
+        var languageText = _errorMessage['getContractBalanceByAgent'];
 
         if(!contract)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${contract}`, 'getContractBalanceByAgent');
             return;
         }
+
+        _.log(`getContractBalanceByAgent:${agency}`);
 
         var uniqueNumberArray = Object.keys(contract);
         
@@ -368,6 +481,11 @@ class controllerWeb3
         res.send(JSON.stringify(data));
     }
 
+    /**
+     * get the contract hash for agency and uniqueNumber
+     * @param {object} req request
+     * @param {object} res response
+     */
     async getHashFormBlockChain(req, res)
     {
         var params = _url.parse(req.url, true).query;
@@ -383,30 +501,35 @@ class controllerWeb3
             agency = params.account;
         }
         var language = this.updatelanguage(params.language);
-        var languageText = _errorMessage['getHashFormBlockChain'];
+        var agent = _errorMessage['getAgent'];
         if(!uniqueNumber || !agency)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, agent[language], 'getHashFormBlockChain');
             return;
         }
 
         var contractObject = await this.redis.hasValuesWithHM(agency);
+        var languageText = _errorMessage['getContractBalanceByAgent'];
 
         if(!contract)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${uniqueNumber}`, 'getHashFormBlockChain');
             return;
         }
 
         var uniqueNumberArray = Object.keys(contractObject);
 
         var num = uniqueNumberArray.includes(uniqueNumber);
+        var languageMessage = _errorMessage['getHashFormBlockChain'];
 
         if(num == -1)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageMessage[language]} : ${uniqueNumber}`, 'getHashFormBlockChain');
             return;
         }
+
+        _.log(`getContractBalanceByAgent:${agency}, ${uniqueNumber}`);
+
         var data = {};
         try
         {
@@ -420,6 +543,12 @@ class controllerWeb3
         res.send(JSON.stringify(data));
     }
 
+    /**
+     * get tanks model for the this class
+     * if no this model, it will gen new tanks model
+     * @param {*} tableRecord 
+     * @param {*} form_id 
+     */
     getTanks(tableRecord, form_id)
     {
         if(form_id == 8)
@@ -433,8 +562,11 @@ class controllerWeb3
         return this.tankObject[tableRecord];
     }
 
-
-
+    /**
+     * get the contract for uniqueNumber
+     * @param {object} req request
+     * @param {object} res response
+     */
     async getContractBalance(req, res)
     {
         var params = _url.parse(req.url, true).query;
@@ -443,7 +575,7 @@ class controllerWeb3
         var languageText = _errorMessage['getContractBalance'];
         if(!uniqueNumber)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, languageText[language], 'getContractBalance');
             return;
         }
 
@@ -453,7 +585,7 @@ class controllerWeb3
 
         if(!contract)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${uniqueNumber}`, 'getContractBalance');
             return;
         }
 
@@ -469,9 +601,11 @@ class controllerWeb3
             hash: contract
         }, tank);
 
+        var languageMessage = _errorMessage['getHashFormBlockChain'];
+
         if(!formData)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageMessage[language]} : ${uniqueNumber}`, 'getContractBalance');
             return;
         }
 
@@ -486,6 +620,7 @@ class controllerWeb3
             var json = this.modelForm.getFormData(formData, inputProperty);
             daynamic = await this.formHTML.renderingHTML(json, uniqueNumber, formData.language, inputProperty);
             sendBackObject.html = daynamic;
+            _.log(`getContractBalance : ${uniqueNumber}, ${action}`); _.log(`getContractBalance : ${uniqueNumber}, ${action}`);
             res.send(JSON.stringify(sendBackObject));
         }
         else if(action == 'submit')
@@ -530,6 +665,8 @@ class controllerWeb3
 
             var subPath = `/htmlCache/${contract}.pdf`; //pdf
             var htmlCachePath = _path.join(base_path+`/public/${subPath}`);
+
+            _.log(`getContractBalance : ${uniqueNumber}, ${action}`);
             
             if(!await _fsHelper.fileExistAsync(htmlCachePath))
             {
@@ -545,26 +682,39 @@ class controllerWeb3
         }
         else
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageMessage[language]} : ${uniqueNumber}`, 'getContractBalance');
             return;
         }
     }
 
+    /**
+     * gen preview html code with pdf format
+     * @param {object} req request
+     * @param {object} res response
+     */
     async preview(req, res)
     {
         var formData = req.body;
-        // console.log(formData);
         // var language = this.updatelanguage(params.language);
         // var languageText = _errorMessage['getContractBalance'];
         var tableRecord = formData.tableRecord == undefined || formData.tableRecord == null ? 0 : Number(formData.tableRecord);
         var form_id = formData.form_id;
         var json = this.modelForm.getPDFData(formData, tableRecord);
         var daynamic = await this.formHTML.renderingPDF(json, this.formPage[form_id], undefined, undefined, formData.language, tableRecord);
+        _.log(`preview : ${form_id}, ${formData.agency}`);
         res.send(JSON.stringify(daynamic));
     }
 
+    /**
+     * make the data to pdf, after return back the url of file
+     * @param {Object} formData      data of contract
+     * @param {String} htmlCachePath htmlCachePath
+     * @param {String} contractName  contract Name
+     * @param {Number} inputProperty table record
+     */
     submitRendering(formData, htmlCachePath, contractName, inputProperty)
     {
+        _.log(`submitRendering : ${htmlCachePath}, ${contractName}`);
         return new Promise((resolve)=>{
             var json = this.modelForm.getPDFData(formData, inputProperty);
             var form_id = formData.form_id;
@@ -575,7 +725,6 @@ class controllerWeb3
             };
             this.formHTML.renderingPDF(json, this.formPage[form_id], undefined, undefined, formData.language, inputProperty)
             .then((daynamic)=>{
-                // console.log(daynamic);
                 a2pClient.headlessChromeFromHtml(daynamic, true, `${contractName}.pdf`, options)
                 .then(async (result)=>{
                     var success = await _fsHelper.downloadFile(htmlCachePath, result.pdf);
@@ -588,13 +737,18 @@ class controllerWeb3
         })
     }
 
-    
-
+    /**
+     * init the server with console.log
+     */
     initServerWithPortCallback()
     {
-        console.log(`Listening on port ${process.env.port}`);
+        _.log(`Listening on port ${process.env.port}`);
     }
 
+    /**
+     * get url for redis, it data is save to redis
+     * @param {String} shaOneReturnUrl 
+     */
     queryUrl(shaOneReturnUrl)
     {
         return new Promise((resolve)=>{
@@ -604,6 +758,11 @@ class controllerWeb3
         });
     }
 
+    /**
+     * gen the unique Number with redis
+     * @param {String} day       new Date
+     * @param {Number} form_id   which form
+     */
     getUniqueNumber(day, form_id)
     {      
         return new Promise((resolve)=>{
@@ -614,8 +773,6 @@ class controllerWeb3
 
             Promise.all(promiseEvent).then( async(result)=>{
                 result = _.convectorArrayToObjectWithKey(result);
-    
-                console.log(result);
                 var thirdChat =  result['thirdChat'];
                 var secondChat = result['secondChat']
                 var firstChat =  result['firstChat']
@@ -641,6 +798,12 @@ class controllerWeb3
         })       
     }
 
+    /**
+     * gen the uniqueNumber with redis
+     * @param {String} uniqueNumber  unique Number for this contract
+     * @param {String} agency        agency for this contract
+     * @param {Object} unixTime      current time
+     */
     getAndupdateHash(uniqueNumber, agency, unixTime)
     {
         return new Promise((resolve)=>{
@@ -660,6 +823,12 @@ class controllerWeb3
         })
     }
     
+    /**
+     * save the data with mongodb
+     * @param {Object} data         client 's upload data
+     * @param {Number} form_id      which form
+     * @param {Number} tableRecord  the table Record of upload data
+     */
     saveData(data, form_id, tableRecord)
     {
         if(data)
@@ -670,6 +839,14 @@ class controllerWeb3
         }
     }
 
+    /**
+     * update the data with mongodb
+     * @param {Object} data         client 's upload data
+     * @param {String} uniqueNumber unique Number for this contract
+     * @param {String} hash         hash for this contract
+     * @param {Number} form_id      which form
+     * @param {Number} tableRecord  the table Record of upload data
+     */
     async updateData(data, uniqueNumber, hash, form_id, tableRecord)
     {
         if(data)
@@ -681,34 +858,51 @@ class controllerWeb3
         }
     }
 
+    /**
+     * only form 4 and form 6 just update table record for redis
+     * @param {String} uniqueNumber  unique Number for this contract
+     * @param {Number} form_id       which form
+     * @param {Number} tableRecord   the table Record of upload data
+     */
     updateTableRecord(uniqueNumber, form_id, tableRecord)
     {
-        if(form_id == 4 || form_id == 6)
-        {
-            this.redis.saveData(uniqueNumber, String(tableRecord));
+        if(tableRecord != 0){
+            if(form_id == 4 || form_id == 6)
+            {
+                _.log(`update table Record with ${uniqueNumber}, ${form_id}, ${tableRecord}`);
+                this.redis.saveData(uniqueNumber, String(tableRecord));
+            }
         }
     }
 
+    /**
+     * get the contract with before day and after day
+     * @param {object} req request
+     * @param {object} res response
+     */
     async getContracts(req, res)
     {
         var params = _url.parse(req.url, true).query;
         var agency = params.account;
-        var before = params.before;
-        var after  = params.after;
+        var before = params.before == undefined || params.before == null ? null : params.before;
+        var after  = params.after == undefined || params.after == null ? null : params.after;
         var language = this.updatelanguage(params.language);
         var languageText = _errorMessage['getContracts'];
+        var agent = _errorMessage['getAgent'];
         if(!agency)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, agent[language], 'getContracts');
             return;
         }
         var contractObject = await this.redis.hasValuesWithHM(`${agency}timeRecord`);
 
         if(!contractObject)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, `${languageText[language]} : ${agency}`, 'getContracts');
             return;
         }
+
+        _.log(`getContracts:${agency}, ${before}, ${after}`);
 
         var outputObject = this.renderContractWithDate(this.beforeAndAftercalculate(before, after, contractObject));
 
@@ -718,6 +912,12 @@ class controllerWeb3
         res.send(JSON.stringify(outputObject));
     }
 
+    /**
+     * gen the data between before day and after day
+     * @param {Object} before          before this day
+     * @param {Object} after           after this day
+     * @param {Object} handleObject    redis data
+     */
     beforeAndAftercalculate(before, after, handleObject)
     {
         var outputObject = {};
@@ -742,6 +942,10 @@ class controllerWeb3
         return outputObject;
     }
 
+    /**
+     * gen the data localstring
+     * @param {object} outputObject day of object 
+     */
     renderContractWithDate(outputObject)
     {
         Object.keys(outputObject).forEach((value)=>{
@@ -757,6 +961,11 @@ class controllerWeb3
         return outputObject;
     }
 
+    /**
+     * render contract with pdf
+     * @param {String} url        file path
+     * @param {object} inputbject redis data
+     */
     renderContractWithPDF(url, inputbject)
     {
         return new Promise((resolve)=>{
@@ -783,10 +992,10 @@ class controllerWeb3
     }
 
     /**
-     * 
-     * load post api
+     * send sha One Return url with res
+     * @param {String} shaOneReturnUrl  sha One Return url
+     * @param {object} res              response
      */
-
     contractEventHandle(shaOneReturnUrl, res)
     {
         var data = {
@@ -797,11 +1006,16 @@ class controllerWeb3
         this.resSendWithString(res, data);
     }
 
+    /**
+     * post data with contract
+     * @param {object} req request
+     * @param {object} res response
+     */
     async contractCallback(req, res)
     {
         var formData = req.body;
 
-        console.log(formData);
+        // console.log(formData);
         
         if(formData)
         {
@@ -814,6 +1028,7 @@ class controllerWeb3
             var tableRecord = formData.tableRecord == undefined || formData.tableRecord == null ? 0 : Number(formData.tableRecord);
             var isNeedToUpdate = false;
             var uniqueNumber = undefined;
+            _.log(`form_id :${form_id}, agency:${agency}, tableRecord:${tableRecord}`);
             if(!uniqueNumberCache)
             {
                 uniqueNumber = await this.getUniqueNumber(unixTime.getFullYear().toString().substr(-2), form_id);
@@ -828,13 +1043,15 @@ class controllerWeb3
             formData.hash = fileHash;
             formData.uniqueNumber = uniqueNumber;
 
-            if(tableRecord){
-                this.updateTableRecord(uniqueNumber, form_id, tableRecord);
-            }
+            _.log(`uniqueNumber : ${uniqueNumber}, fileHash : ${fileHash}`);
+
+            this.updateTableRecord(uniqueNumber, form_id, tableRecord);
 
             if(formData.action == 'save')
             {
+                _.log(`save draft`);
                 if(!isNeedToUpdate){
+                    _.log(`save with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
                     this.saveData(formData, form_id, tableRecord);
                     this.redis.saveDataWithH('record', uniqueNumber, fileHash);
                     this.redis.saveDataWithH(agency, uniqueNumber, fileHash);
@@ -845,12 +1062,14 @@ class controllerWeb3
                 }
                 else
                 {
+                    _.log(`update with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
                     this.updateData(formData, uniqueNumber, fileHash, form_id, tableRecord);
                 }
                 this.contractEventHandle(returnUrl, res);
             }
             else
             {
+                _.log(`submit contract`);
                 formData.userSignDate = _moment().format("YYYY-MM-DD");
                 if(formData.form_id != 8){
                     formData.agencySignDate = _moment().format("YYYY-MM-DD");
@@ -860,16 +1079,39 @@ class controllerWeb3
         }
     }
 
+    /**
+     * gen the hash sha 1
+     * @param {String} agency       agency of contract data
+     * @param {Number} createDay    which day create the contract
+     */
     hashFilePath(agency, createDay)
     {
         return _.sha1(agency+'#'+createDay+'#'+_setting.PRIVATE_KEY);
     }
 
-    sendError(code, res, message)
+    /**
+     * send error to client with res
+     * @param {Number} code     error coding with http response
+     * @param {Object} res      response
+     * @param {String} message  error message
+     * @param {String} functionName functionName
+     */
+    sendError(code, res, message, functionName)
     {
+        _.log(`${functionName} error: ${message}`);
         res.status(code).send({ error: message });
     }
 
+    /**
+     * 
+     * @param {String} dataHash         hash of contract data
+     * @param {object} json             contract data
+     * @param {String} agency           contract of agency
+     * @param {Boolean} isNeedToUpdate  know need to update the contract data 
+     * @param {Number} form_id          which form
+     * @param {Number} returnUrl        sha One Return url
+     * @param {Object} res              response
+     */
     async runWeb3Function(dataHash, json, agency, isNeedToUpdate, form_id, returnUrl, res)
     {
         var uniqueNumber = json.uniqueNumber;
@@ -896,23 +1138,40 @@ class controllerWeb3
         }
         if(!method_call_abi)
         {
-            this.sendError(403, res, languageText[language]);
+            this.sendError(403, res, languageText[language], 'runWeb3Function');
             return;
         }
 
+        _.log(`runWeb3Function ${uniqueNumber}, ${agency}, ${form_id}`);
+
         this.handleResToClient(json, isNeedToUpdate, form_id, agency, returnUrl, res);
+
         if(process.env.hyperledger !== '1')
         {       
             this.handleSendTransaction(method_call_abi);
         }
     }
 
+    /**
+     * handle data after method api with update or save
+     * if is need to update, just save.
+     * if not just update.
+     * update table record
+     * send finished to client
+     * @param {object} json             contract data
+     * @param {String} agency           contract of agency
+     * @param {Boolean} isNeedToUpdate  know need to update the contract data 
+     * @param {Number} form_id          which form
+     * @param {Number} returnUrl        sha One Return url
+     * @param {Object} res              response
+     */
     handleResToClient(json, isNeedToUpdate, form_id, agency, returnUrl, res)
     {
         var tableRecord = json.tableRecord == undefined || json.tableRecord == null ? 0 : Number(json.tableRecord);
         var uniqueNumber = json.uniqueNumber;
         var fileHash = json.hash;
         if(!isNeedToUpdate){
+            _.log(`save with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
             this.saveData(json, form_id, tableRecord);
             this.redis.saveDataWithH('record', uniqueNumber, fileHash);
             this.redis.saveDataWithH(agency, uniqueNumber, fileHash);
@@ -923,14 +1182,27 @@ class controllerWeb3
         }
         else
         {
+            _.log(`update with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
             this.updateData(json, uniqueNumber, fileHash, form_id, tableRecord);
         }
         this.updateTableRecord(uniqueNumber, form_id, tableRecord);
         this.contractEventHandle(returnUrl, res);
     }
 
-    async handleSendTransaction(method_call_abi)
+    /**
+     * handle the object after method api with send transaction.
+     * get the transcation Count
+     * gen txData.
+     * sign the transaction with private key Buff
+     * send transaction with signed.
+     * if error, just re-try.
+     * @param {object} method_call_abi  method abi
+     * @param {String} uniqueNumber     contract data's uniqueNumber
+     * @param {String} agency           contract data's agency
+     */
+    async handleSendTransaction(method_call_abi, uniqueNumber, agency)
     {
+        _.log(`handleSendTransaction: ${uniqueNumber}, ${agency}`);
         var from_addr = _setting.WALLET_ADDRESS;
         var contract_addr = _setting.CONTRACT_ADDRESS;
 
@@ -950,13 +1222,17 @@ class controllerWeb3
         transaction.sign(privateKeyBuf);
         var serializedTx = transaction.serialize().toString('hex');
         var confirmSendSignTransaction = await this.web3.eth.sendSignedTransaction('0x' + serializedTx);
-        console.log(confirmSendSignTransaction);
+        // console.log(confirmSendSignTransaction);
         if(!confirmSendSignTransaction)
         {
             this.handleSendTransaction(method_call_abi);
         }
     }
 
+    /**
+     * query for access white
+     * @param {object} query query
+     */
     getAccessUsers(query)
     {
         return new Promise((resolve)=>{
@@ -969,6 +1245,14 @@ class controllerWeb3
         })
     }
 
+    /**
+     * post data to access white to make which one can login to test the website.
+     * this query is save on mongodb 
+     * if true, pass correct to the client
+     * if false, pass error to the client
+     * @param {object} req request
+     * @param {object} res response
+     */
     async adminCorrect(req, res)
     {
         var params = _url.parse(req.url, true).query;
@@ -988,13 +1272,15 @@ class controllerWeb3
             }
         }
 
+        _.log(`access User: ${user}`);
+
         if(correct)
         {
             res.send(String(1));
         }
         else
         {
-            this.sendError(403, res, 0);
+            this.sendError(403, res, 0, 'adminCorrect');
         }
 
     }

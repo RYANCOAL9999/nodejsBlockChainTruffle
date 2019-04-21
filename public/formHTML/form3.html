@@ -125,7 +125,7 @@
         <script type="text/javascript" src="https://unpkg.com/prismic-javascript"></script>
 		<script type="text/javascript" src="/js/popUpsignatureHTML.js"></script>
 		<script type="text/javascript" src="/js/formDataSetting.js"></script>
-        <script type="text/javascript" src="/js/submitContract.js"></script>
+        <script type="text/javascript" src="/js/controlContract.js"></script>
     </head>
     <body class="bg-light">
         <div class="container">
@@ -432,7 +432,7 @@
                                 </ol>
                             </li>
                         </ol>
-                        <input type="button" class="btn btn-primary btn-lg btn-block" value="臨時儲存" onclick="playSave(3, 'chi')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="臨時儲存" onclick="saveContract(3, 'chi')">
                         <br>
                         <div class="row mb-2">
                             <div class="col-md-6">
@@ -446,7 +446,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="button" class="btn btn-primary btn-lg btn-block" value="遞交智能合約" onclick="playSubmit(3, 'chi')">
+                        <input type="button" class="btn btn-primary btn-lg btn-block" value="遞交智能合約" onclick="submitContract(3, 'chi')">
                         <input type="button" class="btn btn-primary btn-lg btn-block" value="取消" onclick="playReset('chi')">
                         <input type="hidden" name="shaOneReturnUrl">
                         <!-- <input type="hidden" name="uniqueNumber"> -->

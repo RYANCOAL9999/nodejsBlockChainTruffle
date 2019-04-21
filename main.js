@@ -72,12 +72,16 @@ process.on('SIGINT', () => {
 // 	global.exit();
 // });
 
+/**
+ * start Server with controller and express api
+ */
 var StartServer = ()=>
 {
+    //set directory for public
     app.use(_Express.static(__dirname + '/public'));
+    // parse application/json with 50 mb
     app.use(_BodyParser.json({limit: '50mb'}));
     app.use(_BodyParser.urlencoded({limit: '50mb', extended: true}));
-    // parse application/json
     
 
     let _ControllerWeb3  =  require('./controller/controllerWeb3'); 
@@ -87,7 +91,6 @@ var StartServer = ()=>
     /**
      * request get for website 
      */
-
     app.get('/', controllerWeb3.loadIndexhtml);
 
     app.get('/contract/3/form', controllerWeb3.loadfrom3.bind(controllerWeb3));
@@ -117,13 +120,11 @@ var StartServer = ()=>
      */
     app.get('/admin', controllerWeb3.adminCorrect.bind(controllerWeb3));
      
-    app.get('/api/users/date', controllerWeb3.getContractBalanceByAgent.bind(controllerWeb3));
+    app.get('/api/users/agency', controllerWeb3.getContractBalanceByAgent.bind(controllerWeb3));
 
     app.get('/api/users/balance', controllerWeb3.getContractBalance.bind(controllerWeb3));
 
     app.get('/api/users/contracts', controllerWeb3.getContracts.bind(controllerWeb3));
-
-    
 
     /**
      * request post for api 

@@ -6,9 +6,9 @@ let _EventEmitter = require('events').EventEmitter;
 class mongoConnectionHelper extends _EventEmitter
 {
     /**
-     * 
-     * @param {*} host 
-     * @param {*} port 
+     * init with connection
+     * @param {string} host 
+     * @param {Number} port 
      */
     constructor(host, port)
     {
@@ -22,7 +22,7 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * init with create connection
      */
     initConnection()
     {
@@ -31,9 +31,9 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
-     * @param {*} host 
-     * @param {*} port 
+     * creating connection
+     * @param {string} host 
+     * @param {Number} port 
      */
     createConnection(host, port)
     {
@@ -49,14 +49,14 @@ class mongoConnectionHelper extends _EventEmitter
         },
         (err)=>{
             if(err){
-                console.log(error);
+                _.log(error);
             }
         });
         return _Mongoose.connection;
     }
 
     /**
-     * 
+     * receipt remove client
      */
     receiptRemoveClient()
     {
@@ -66,12 +66,12 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     *  get error of mongodb
      */
     getErrorFromMongo()
     {
         this.db.on('error', (err)=>{
-            console.log(`Error : ${err}`);
+            _.log(`Error : ${err}`);
             this.dbConnected = false;
             this.emit('Removedb');
             
@@ -79,20 +79,20 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * check mongodb is connection
      */
     checkConnection()
     {
         this.db.once('open', ()=>
         {
-            console.log(`Connected to Mongo`);
+            _.log(`Connected to Mongo`);
             this.dbConnected = true;    
         })
         this.getErrorFromMongo();
     }
 
     /**
-     * 
+     * get dbAdapter
      */
     get dbAdapter()
     {
@@ -100,7 +100,7 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * 
+     * get mongodb is connect
      */
     get mongoIsConnected()
     {

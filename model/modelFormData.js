@@ -6,10 +6,19 @@ let _pdfDataEight = require(base_path+'/enum/pdfDataEight.js');
 
 class modelFormData
 {
+    /**
+     * 
+     */
     constructor()
     {
         
     }
+
+    /**
+     * general the data with html id setting form
+     * @param {object} formObject   contract data
+     * @param {Number} tableRecord  table record of contract data
+     */
     getFormData(formObject, tableRecord)
     {
         var formData = {};
@@ -43,6 +52,11 @@ class modelFormData
         return formData;
     }
     
+    /**
+     * general the data with pdf id setting form
+     * @param {object} formObject   contract data
+     * @param {Number} tableRecord  table record of contract data
+     */
     getPDFData(formObject, tableRecord)
     {
         var formData = {};

@@ -1,5 +1,9 @@
 var dbFormData = undefined;
 
+/**
+ * api request with ajax
+ * @param {Object} data data with access Users
+ */
 function hashQuery(data)
 {
     return new Promise((resolve)=>{
@@ -14,7 +18,9 @@ function hashQuery(data)
     })
 }
 
-
+/**
+ * submit hash with data
+ */
 async function playHash()
 {
     if(dbFormData)
@@ -32,6 +38,11 @@ async function playHash()
     }
 }
 
+/**
+ * render html
+ * @param {Object} data  data with submit 
+ * @param {String} hash  submit data with hash
+ */
 async function render(data, hash)
 {
     var dataHash = await hashQuery(data);
@@ -41,6 +52,12 @@ async function render(data, hash)
     $("#blockChainHash").val(blockHash);
 }
 
+/**
+ * 
+ * @param {String} url   url for pdf
+ * @param {Object} data  data with submit 
+ * @param {String} hash  submit data with hash
+ */
 function formTest(url, data, hash)
 {
     window.open(url, '_blank');
@@ -48,6 +65,9 @@ function formTest(url, data, hash)
         render(data, hash);
     }
 }
+/**
+ * read the contract with api balance
+ */
 function readContract()
 {
     var uniqueNumber = $('input[name="uniqueNumber"]').val();
@@ -75,13 +95,19 @@ function readContract()
     });
 }
 
+/**
+ * add data to input field to get contract
+ * @param {String} uniqueNumber contract uniqueNumber
+ */
 function addField(uniqueNumber)
 {
     $('input[name="uniqueNumber"]').val(uniqueNumber);
 }
 
-
-function clickSubmit()
+/**
+ * submit agency to get the uniqueNumber
+ */
+function agencySubmit()
 {
     var form = $(`#dataForm`);
     document.getElementById("spanOPT").innerHTML = "";

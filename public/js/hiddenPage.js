@@ -1,3 +1,7 @@
+/**
+ * ajax load can using to page
+ * @param {object} data access user data
+ */
 function adminCorrect(data)
 {
     return new Promise((resolve)=>{
@@ -15,6 +19,9 @@ function adminCorrect(data)
     })
 }
 
+/**
+ * start on load with index pages to display
+ */
 function bodyOnLoad()
 {
     var data = document.cookie;
@@ -28,6 +35,10 @@ function bodyOnLoad()
     }
 }
 
+/**
+ * login in index.html
+ * @param {object} data access user data
+ */
 function adminLogin(data)
 {
     if(!data)

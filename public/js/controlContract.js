@@ -1,5 +1,10 @@
 var inputproperty = 0;
-function playSubmit(form_id, language)
+/**
+ * submit contract with data with confirm button and only the agency checking!
+ * @param {Number} form_id  form id
+ * @param {String} language language
+ */
+function submitContract(form_id, language)
 {
     var action = 'submit';
     var url = '/process';
@@ -31,7 +36,7 @@ function playSubmit(form_id, language)
         {
             return;
         }
-        playSave(form_id,language, url, data, action, async function(data)
+        saveContract(form_id,language, url, data, action, function(data)
         {
             if(data){
                 location.href = data.returnUrl == '' || data.returnUrl == undefined ? '../../../' : data.returnUrl;
@@ -48,6 +53,11 @@ function playSubmit(form_id, language)
     }
 }
 
+/**
+ * validation check for check box
+ * @param {Number} id        form id
+ * @param {String} language  language
+ */
 function validationCheckBox(id, language)
 {
     var message = '';
@@ -83,13 +93,20 @@ function validationCheckBox(id, language)
     return message;
 }
 
+/**
+ * validation for input felid
+ * @param {Number} id        form id
+ * @param {String} language  language
+ */
 function validation(id, language)
 {
     var message = '';
     var data = formData[language][id];
     var sign = signData[language][id];
     data['svgUser'] = sign['svgUser'];
-    data['svgAgency'] = sign['svgAgency'];
+    if(id != 8){
+        data['svgAgency'] = sign['svgAgency'];
+    }
     for(var name in data)
     {
         if(name == 'iDNumber')
@@ -116,7 +133,16 @@ function validation(id, language)
     return message;
 }
 
-function playSave(form_id, language, url, data, action, callback)
+/**
+ * save Contract 
+ * @param {Number} form_id    form id
+ * @param {String} language   language
+ * @param {String} url        return url
+ * @param {Object} data       submitted data
+ * @param {String} action     sumitted action
+ * @param {Function} callback callback Function
+ */
+function saveContract(form_id, language, url, data, action, callback)
 {
     callback = callback == null || callback == undefined ? null : callback;
 
@@ -205,6 +231,10 @@ function playSave(form_id, language, url, data, action, callback)
     });
 }
 
+/**
+ * reload pages
+ * @param {String} language language 
+ */
 function playReset(language)
 {
     var correct = confirm(buttonEvent[language]["resetCorrect"])
