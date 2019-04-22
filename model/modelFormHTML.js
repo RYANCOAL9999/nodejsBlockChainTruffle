@@ -255,7 +255,7 @@ class modelFormHTML
      * @param {String} language      formData language
      * @param {Number} inputproperty formdata tableRecord
      */
-    renderingPDF(fileObject, formOnePage, formTwoPage, formThreePage, language, inputproperty)
+    renderingPDF(fileObject, formOnePage, formTwoPage, formThreePage, language, inputproperty, createDay)
     { 
         return new Promise( async(resolve)=>{
             var form_id = fileObject.form_id;
@@ -300,6 +300,7 @@ class modelFormHTML
             this.updateSpan(textFieldObject, language, $);
             this.updateInputFieldHTML(checkboxObject, checkboxHTML, true);
             this.updateFieldHTML(signatureObject, null, 'signature', $);
+            $('#uniqueNumber').text(createDay.toString());
             resolve($.html());
         });
     }

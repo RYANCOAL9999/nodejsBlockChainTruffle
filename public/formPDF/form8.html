@@ -31,10 +31,11 @@
                 list-style: none;
             }
             ul li{
-                padding : 8px;
+                padding : 10px;
+                font-size: 15px;
             }
             ol li{
-                padding: 5px;
+                padding: 10px;
                 font-size: 13px;
             }
             .container {
@@ -44,15 +45,15 @@
         </style>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
-    <body class="bg-light">
-        <div style="position:relative;left:0px;top:0px;text-align:center;"><h6>貸款轉介服務申請表格</h6></div>
-        <div style="position:relative;left:1450px;top:-30px"><span class="cls_003" style="font-weight:bold;" id="uniqueNumber"></span></div>
-        <div style="position:relative;left:28px;top:0px" class="nav-scroller py-1 mb-2">
-            <nav class="nav d-flex justify-content-between">
-                <p>致 銀行/金融機構告示</p>
-                <p>貴行對貸款批核擁有絶對決定權。本公司不會核實任何有關轉介客戶之資料。因此本公司不會就 貴行 (i)因轉介客戶在此申請表格內或另外遞交之任何陳述或資料與/或 (ii)因批核貸款直接或間接而招致之任何損失或損害承擔任何法律責任。</p>
-                <p><span class="cls_003" id="agency" style="color:lightblue;text-decoration:underline;"></span>現免費提供樓宇貸款轉介服務。</p>
-            </nav>
+    <body>
+        <p class="text-center" style="font-weight:bold;">貸款轉介服務申請表格</p>
+        <div style="position:relative;left:1450px;top:-40px"><span class="cls_003" style="font-weight:bold;" id="uniqueNumber"></span></div>
+        <div style="position:relative;left:-20px;top:0px" class="nav-scroller py-1 mb-2">
+            <ul>
+                <li>致 銀行/金融機構告示</li>
+                <li>貴行對貸款批核擁有絶對決定權。本公司不會核實任何有關轉介客戶之資料。因此本公司不會就 貴行 (i)因轉介客戶在此申請表格內或另外遞交之任何陳述或資料與/或 (ii)因批核貸款直接或間接而招致之任何損失或損害承擔任何法律責任。</li>
+                <li><span class="cls_003" id="agency" style="color:lightblue;text-decoration:underline;"></span>現免費提供樓宇貸款轉介服務。</li>
+            </ul>
         </div>
         <div style="position:relative;left:0px;top:0px">
             <p class="text-center" style="font-weight:bold;">貸款人資料</p>
@@ -67,7 +68,7 @@
             <p class="text-center" style="font-weight:bold;">物業資料</p>
             <div style="position:relative;left:-20px;top:0px" class="cls_003">
                 <ul>
-                    <li>按揭物業地址(請以英文正楷填寫) : Flat <span class="cls_003" id="propertyFlat" style="color:lightblue;text-decoration:underline;"></span> Floor <span class="cls_003" id="propertyFloor" style="color:lightblue;text-decoration:underline;"></span> Block <span class="cls_003" id="propertyBlock" style="color:lightblue;text-decoration:underline;"></span> 車位地址 <span class="cls_003" id="carAddress" style="color:lightblue;text-decoration:underline;"></span> <span class="cls_003" id="cover" style="color:lightblue;text-decoration:underline;"></span> 購入價 $ <span class="cls_003" id="price" style="color:lightblue;text-decoration:underline;"></span> 成交/擬提取貸款日期 </span><span class="cls_003" id="propertyDate" style="color:lightblue;text-decoration:underline;"></span> 物業種類 ： <span class="cls_003" id="propertyCat" style="color:lightblue;text-decoration:underline;"></span><span class="cls_003" id="propertyOther" style="color:lightblue;text-decoration:underline;"></span> 物業狀況 <input type="checkbox" name="propertyStatus" value=1><label for=1>現樓</label>(請註明 : <span class="cls_003" id="market" style="color:lightblue;text-decoration:underline;"></span>)</span> <input type="checkbox" name="propertyOffPlan" value=1><label for=1>樓花</label></li>
+                    <li>按揭物業地址(請以英文正楷填寫) : Flat <span class="cls_003" id="propertyFlat" style="color:lightblue;text-decoration:underline;"></span> Floor <span class="cls_003" id="propertyFloor" style="color:lightblue;text-decoration:underline;"></span> Block <span class="cls_003" id="propertyBlock" style="color:lightblue;text-decoration:underline;"></span> 車位地址 <span class="cls_003" id="carAddress" style="color:lightblue;text-decoration:underline;"></span> <span class="cls_003" id="cover" style="color:lightblue;text-decoration:underline;"></span> 購入價 $ <span class="cls_003" id="price" style="color:lightblue;text-decoration:underline;"></span> 成交/擬提取貸款日期 <span class="cls_003" id="propertyDate" style="color:lightblue;text-decoration:underline;"></span> 物業種類 ： <span class="cls_003" id="propertyCat" style="color:lightblue;text-decoration:underline;"></span><span class="cls_003" id="propertyOther" style="color:lightblue;text-decoration:underline;"></span> 物業狀況 <input type="checkbox" name="propertyStatus" value=1><label for=1>現樓</label>(請註明 : <span class="cls_003" id="market" style="color:lightblue;text-decoration:underline;"></span>) <input type="checkbox" name="propertyOffPlan" value=1><label for=1>樓花</label></li>
                 </ul>
             </div>
             <p class="text-center" style="font-weight:bold;">物業貸款資料及要求</p>
@@ -93,7 +94,7 @@
             <div style="position:relative;left:30px;top:0px" class="cls_003">
                 <p class="text-left" style="font-weight:bold;">本人(等)已參閱並明白及同意以下條款:-</p>
             </div>
-            <div style="position:relative;left:15px;top:0px" class="cls_003">
+            <div style="position:relative;left:0px;top:0px" class="cls_003">
                 <ol type="1">
                     <li>本人(等)不須支付任何費用予本公司及有權拒絕接受本公司介紹的銀行/金融機構貸款。</li>
                     <li>本人(等)確認上述資料均屬正確並授權本公司可將本人(等)之個人資料轉介至本人(等)所選之銀行/金融機構，以便有關銀行/金融機構可直接聯絡本人(等)辦理貸款申請手續。</li>
