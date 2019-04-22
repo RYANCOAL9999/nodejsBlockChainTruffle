@@ -670,7 +670,7 @@ class controllerWeb3
             
             if(!await _fsHelper.fileExistAsync(htmlCachePath))
             {
-                var htmlCachePath = await this.submitRendering(formData, htmlCachePath, contract, inputProperty);
+                var htmlCachePath = await this.submitRendering(formData, htmlCachePath, contract, inputProperty, uniqueNumber);
                 sendBackObject.url = subPath;
                 res.send(JSON.stringify(sendBackObject));
             }
@@ -711,8 +711,9 @@ class controllerWeb3
      * @param {String} htmlCachePath htmlCachePath
      * @param {String} contractName  contract Name
      * @param {Number} inputProperty table record
+     * @param {String} uniqueNumber  formData uniqueNumber
      */
-    submitRendering(formData, htmlCachePath, contractName, inputProperty)
+    submitRendering(formData, htmlCachePath, contractName, inputProperty, uniqueNumber)
     {
         _.log(`submitRendering : ${htmlCachePath}, ${contractName}`);
         return new Promise((resolve)=>{
@@ -721,9 +722,10 @@ class controllerWeb3
             var options = { 
                 "pageSize": "A4",
                 "pageWidth":"595px",
-                "pageHeight":"842px"
+                "pageHeight":"842px",
+                "dpi": 300,
             };
-            this.formHTML.renderingPDF(json, this.formPage[form_id], undefined, undefined, formData.language, inputProperty)
+            this.formHTML.renderingPDF(json, this.formPage[form_id], undefined, undefined, formData.language, inputProperty, uniqueNumber)
             .then((daynamic)=>{
                 a2pClient.headlessChromeFromHtml(daynamic, true, `${contractName}.pdf`, options)
                 .then(async (result)=>{

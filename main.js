@@ -80,8 +80,8 @@ var StartServer = ()=>
     //set directory for public
     app.use(_Express.static(__dirname + '/public'));
     // parse application/json with 50 mb
-    app.use(_BodyParser.json({limit: '50mb'}));
-    app.use(_BodyParser.urlencoded({limit: '50mb', extended: true}));
+    app.use(_BodyParser.json({limit: '100mb'}));
+    app.use(_BodyParser.urlencoded({limit: '100mb', extended: true}));
     
 
     let _ControllerWeb3  =  require('./controller/controllerWeb3'); 
