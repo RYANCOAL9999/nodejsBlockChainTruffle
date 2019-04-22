@@ -31,10 +31,10 @@
                 list-style: none;
             }
             ul li{
-                padding : 10px;
+                padding : 5px;
             }
             ol li{
-                padding: 10px;
+                padding: 8px;
             }
             .container {
                 max-width: 960px;
@@ -44,26 +44,21 @@
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
     <body class="bg-light">
-        <div style="position:absolute;left:350px;top:20px" class="col-4 text-center">
-            <span class="cls_003" style="font-weight:bold;"><h6>ESTATE AGENCY AGREEMENT FOR PURCHASE OF
-                RESIDENTIAL PROPERTIES IN HONG KONG</h6></span>
+        <div style="position:relative;left:0px;top:0px;text-align:center;"><h6>ESTATE AGENCY AGREEMENT FOR PURCHASE OF RESIDENTIAL PROPERTIES IN HONG KONG</h6></div>
+        <div style="position:relative;left:1450px;top:-30px"><span class="cls_003" style="font-weight:bold;" id="uniqueNumber"></span></div>
+        <div style="position:relative;left:-30px;top:0px" class="nav-scroller py-1 mb-2">
+            <ul>
+                <li>GENERAL CAUTION: Read this Agreement carefully and follow its instructions. If you do not understand any thing in this Agreement then ask for an explanation to be given. If you do not understand or agree with any explanation given then it is best to consult your solicitor before signing this Agreement.</ul>
+                <li>Information note：Where any thing in this Agreement is followed by a number in brackets (e.g.<sup>(1)</sup>), then immediately read the explanatory note that bears that number in Schedule 4 to this Agreement.  Where any thing in this Agreement refers to a Schedule to this Agreement, then immediately read that Schedule.</ul>
+            </ul>
         </div>
-        <div style="position:relative;left:1450px;top:20px">
-            <span class="cls_003" style="font-weight:bold;" id="uniqueNumber"></span>
-        </div>
-        <div style="position:absolute;left:28px;top:80px" class="nav-scroller py-1 mb-2">
-            <nav class="nav d-flex justify-content-between">
-                <p>GENERAL CAUTION: Read this Agreement carefully and follow its instructions. If you do not understand any thing in this Agreement then ask for an explanation to be given. If you do not understand or agree with any explanation given then it is best to consult your solicitor before signing this Agreement.</p>
-                <p>Information note：Where any thing in this Agreement is followed by a number in brackets (e.g.<sup>(1)</sup>), then immediately read the explanatory note that bears that number in Schedule 4 to this Agreement.  Where any thing in this Agreement refers to a Schedule to this Agreement, then immediately read that Schedule.</p>
-            </nav>
-        </div>
-        <div style="position:absolute;left:0px;top:240px">
+        <div style="position:relative;left:0px;top:0px">
             <div id="formOnePage">
-                <div style="position:relative;left:50px;top:0px">Signature of the Purchaser：&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Signature of the estate agent/salesperson signing for and on behalf of the Agent:</div>
-                <div style="position:relative;left:50px;top:20px"><img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" id="svgUser" width="200" height="200">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" id="svgAgency" width="200" height="200"></div>
-                <div style="position:relative;left:800px;top:20px">
+                <div style="position:relative;left:50px;top:0px">Signature of the Purchaser：&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Signature of the estate agent/salesperson signing for and on behalf of the Agent:</div>
+                <div style="position:relative;left:50px;top:20px"><img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" id="svgUser" width="200" height="200">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" id="svgAgency" width="200" height="200"></div>
+                <div style="position:relative;left:735px;top:20px">
                     <ul>
-                        <li>Name of the signatory:<span class="cls_003" id="iDNumber" style="color:lightblue;text-decoration:underline;"></span><br><br>licence number of the signatory:：<span class="cls_003" id="agencyNumber" style="color:lightblue;text-decoration:underline;"></span></li>
+                        <li>Name of the signatory:<span class="cls_003" id="agencyName" style="color:lightblue;text-decoration:underline;"></span><br><br>licence number of the signatory:：<span class="cls_003" id="agencyNumber" style="color:lightblue;text-decoration:underline;"></span></li>
                     </ul>
                 </div>
                 <div style="position:relative;left:50px;top:-70px">Hong Kong identity card(s) number(s):<span class="cls_003" id="iDNumber" style="color:lightblue;text-decoration:underline;"></span><span class="cls_013" style="color:lightblue;text-decoration:underline;">(</span><span class="cls_003" id="iDBRNumber" style="color:lightblue;text-decoration:underline;"></span><span class="cls_013" style="color:lightblue;text-decoration:underline;">)</span><br>(if applicable)
