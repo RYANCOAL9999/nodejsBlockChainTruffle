@@ -93,13 +93,42 @@ class modelFormHTML
                         idObject.attr('src', fieldObject[key]);
                         break;
                         case 'textArea':
-                        case 'span' :
                         idObject.text(fieldObject[key]).html();
                         break;
+                        // case 'span' :
+                        // var text = " "+fieldObject[key] + " ";
+                        // idObject.text(text).html();
+                        // break;
                         case 'select':
                         idObject.val(fieldObject[key]).html();
                         break;
                     }
+                }
+            })
+        }
+    }
+
+    /**
+     * update Span Object
+     * @param {Object} fieldObject gen form Data
+     * @param {String} language    language
+     * @param {Object} $           html  
+     */
+    updateSpan(fieldObject, language, $)
+    {
+        if(fieldObject){
+            Object.keys(fieldObject).forEach(function(key) {
+            var idObject = $(`#${key}`);
+                if(idObject){
+                    var text = "";
+                    if(language == 'eng'){
+                        text = " "+fieldObject[key] + " ";
+                    }
+                    else
+                    {
+                        text = fieldObject[key];
+                    }
+                    idObject.text(text).html();
                 }
             })
         }
@@ -267,7 +296,8 @@ class modelFormHTML
             var checkboxHTML = $('input[type="checkbox"]');
 
 
-            this.updateFieldHTML(textFieldObject, null, 'span', $);
+            // this.updateFieldHTML(textFieldObject, null, 'span', $);
+            this.updateSpan(textFieldObject, language, $);
             this.updateInputFieldHTML(checkboxObject, checkboxHTML, true);
             this.updateFieldHTML(signatureObject, null, 'signature', $);
             resolve($.html());
