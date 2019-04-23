@@ -90,7 +90,7 @@
                                             <input type="radio" name="userAExclusive" value="公司"><label for="公司">公司</label>
                                             </span><br>
                            身份證號碼 : <input type="text" name="userAIDNumber" size="8">(<input type="text" name="userAIDBRNumber" size="1">)<br>
-                           出生日期 : <input type="text" id="datepicker0" name="userABirthday"><br>
+                           出生日期 : <input type="text" class="datepick" name="userABirthday"><br>
                            教育程度 : <span class="sortOptions"><input type="radio" name="userAEducation" value="小學" checked><label for="小學">小學</label><input type="radio" name="userAEducation" value="中學"><label for="中學">中學</label><input type="radio" name="userAEducation" value="大專或以上"><label for="大專或以上">大專或以上</label></span><br>
                            電郵 : <input type="text" name="userAEmail"><br>
                            流動電話 : <input type="number" name="userAMobilePhoneNumber" size="10"><br>
@@ -110,7 +110,7 @@
                                         <input type="radio" name="userBExclusive" value="公司"><label for="公司">公司</label>
                                             </span><br>
                             身份證號碼 : <input type="text" name="userBIDNumber" size="8">(<input type="text" name="userBIDBRNumber" size="1">)<br>
-                            出生日期 : <input type="text" id="datepicker1" name="userBBirthday"><br>
+                            出生日期 : <input type="text" class="datepick" name="userBBirthday"><br>
                             教育程度 : <span class="sortOptions"><input type="radio" name="userBEducation" value="小學" checked><label for="小學">小學</label><input type="radio" name="userBEducation" value="中學"><label for="中學">中學</label><input type="radio" name="userBEducation" value="大專或以上"><label for="大專或以上">大專或以上</label></span><br>
                             電郵 : <input type="text" name="userBEmail"><br>
                             流動電話 : <input type="number" name="userBMobilePhoneNumber"><br>
@@ -153,26 +153,26 @@
                         <p>貸款目的：
                         <span class="sortOptions"><input type="radio" name="loanPurpose" value="新做" checked><label for="新做">新做</label><input type="radio" name="loanPurpose" value="轉按"><label for="轉按">轉按</label><input type="radio" name="loanPurpose" value="加按"><label for="加按">加按</label><input type="radio" name="loanPurpose" value="預先批核"><label for="預先批核">預先批核</label><input type="radio" name="loanPurpose" value="私人貸款"><label for="私人貸款">私人貸款</label>
                             </span>
-                            &emsp;&emsp;
+                            <br />
                             附帶貸款計劃 :
                             <span class="sortOptions"><input type="radio" name="additionalLoanPlan" value="置貸" checked><label for="置貸">置貸</label><input type="radio" name="additionalLoanPlan" value="按揭保險"><label for="按揭保險">按揭保險</label><input type="radio" name="additionalLoanPlan" value="發展商二按"><label for="發展商二按">發展商二按</label><input type="radio" name="additionalLoanPlan" value="公務員首期貸款"><label for="公務員首期貸款">公務員首期貸款</label>
                             </span>
                         </p>
                         <p>貸款要求：
-                            <input type="checkbox" name="loanRequest" value=1><label for=1>貸款額額</label>(不少於 $<input type="text" class="amount" name="loanRequestMoney">或 <input type="number" name="loanRequestPer"> %)
-                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="interestRate" value=1><label for=1>利率</label>(不高於 <input type="number" name="interestRatePer" > %)
-                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="repaymentPeriod" value=1><label for=1>還款年期</label>(不超過 <input type="number" name="repaymentPeriodYear" > 年)
-                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<span class="sortOptions"><input type="radio" name="contribution" value="兩星期供款" checked><label for="兩星期供款">兩星期供款</label><input type="radio" name="contribution" value="每月供款"><label for="每月供款">每月供款</label></span>
-                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="penaltyPeriod" value=1><label for=1>罰息期</label>(不超過 <input type="number" name="penaltyPeriodYear" > 年)
-                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="cashRebate" value=1><label for=1>現金回贈</label>(不少過 <input type="number" name="cashRebatePer" > %)
-                                <br>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="checkbox" name="approvalLoan" value=1><label for=1>批核時間</label>(不超過 <input type="number" name="approvalLoanDay" > 日)
+                            <br><input type="checkbox" name="loanRequest" value=1><label for=1>貸款額額</label>(不少於 $<input type="text" class="amount" name="loanRequestMoney">或 <input type="number" name="loanRequestPer"> %)
+                            <br><input type="checkbox" name="interestRate" value=1><label for=1>利率</label>(不高於 <input type="number" name="interestRatePer" > %)
+                            <br><input type="checkbox" name="repaymentPeriod" value=1><label for=1>還款年期</label>(不超過 <input type="number" name="repaymentPeriodYear" > 年)
+                            <br><span class="sortOptions"><input type="radio" name="contribution" value="兩星期供款" checked><label for="兩星期供款">兩星期供款</label><input type="radio" name="contribution" value="每月供款"><label for="每月供款">每月供款</label></span>
+                            <br><input type="checkbox" name="penaltyPeriod" value=1><label for=1>罰息期</label>(不超過 <input type="number" name="penaltyPeriodYear" > 年)
+                            <br><input type="checkbox" name="cashRebate" value=1><label for=1>現金回贈</label>(不少過 <input type="number" name="cashRebatePer" > %)
+                            <br><input type="checkbox" name="approvalLoan" value=1><label for=1>批核時間</label>(不超過 <input type="number" name="approvalLoanDay" > 日)
                         </p>
                         <div class="row flex-nowrap justify-content-between align-items-center">
                             <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
                             <div class="col-4 text-center"><h6>現有按揭資料</h6></div>
                             <div class="col-4 d-flex justify-content-end align-items-center"><!--<h6>表格 3</h6>--></div>
                         </div>
-                        <p>尚餘供款期<input type="number" name="remainingContributionPeriodYear" >年 尚餘罰款期<input type="number" name="surlusFineYear" >年 尚餘欠款額 $<input type="text" class="amount" name="AmountOwned">按揭銀行<input type="text" name="bankMortgage" >現有按揭息率<input type="number" name="existingMortgageRate" >
+                        <p>尚餘供款期 <input type="number" name="remainingContributionPeriodYear" style="width:80px;"> 年 尚餘罰款期 <input type="number" name="surlusFineYear" style="width:80px;"> 年 尚餘欠款額 $ <input type="text" class="amount" name="AmountOwned">  按揭銀行 <input type="text" name="bankMortgage" >  現有按揭息率 <input type="number" name="existingMortgageRate" >
                         </p>
                         <div class="row flex-nowrap justify-content-between align-items-center">
                             <div class="col-4 pt-1"><!-- <a class="text-muted" href="#">Subscribe</a> --></div>
@@ -288,5 +288,6 @@
                 </form>
             </div>
         </div>
+        <script type="text/javascript" src="/js/jqueryHandle.js"></script>
     </body>
 </html>
