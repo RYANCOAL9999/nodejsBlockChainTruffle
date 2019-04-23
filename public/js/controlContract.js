@@ -130,35 +130,35 @@ function submitContract(form_id, language)
 function validationCheckBox(id, language)
 {
     var message = '';
-    // var beforeMessage = checkBox[language]["beforeMessage"];
-    // var afterMessage = checkBox[language]["afterMessage"];
-    // var data = checkBox[language][id];
+    var beforeMessage = checkBox[language]["beforeMessage"];
+    var afterMessage = checkBox[language]["afterMessage"];
+    var data = checkBox[language][id];
 
-    // for(var key in data)
-    // {
-    //     var nameArray = data[key];
-    //     var index = 0;
-    //     var checkBoxZero = document.forms["formNewsLetter"][nameArray[index]];
-    //     var correctZero = false
-    //     var checkBoxOne = document.forms["formNewsLetter"][nameArray[index+1]];
-    //     var correctOne = false;
-    //     if(checkBoxZero && checkBoxZero.checked)
-    //     {
-    //         correctZero = true;
-    //     }
-    //     if(checkBoxOne && checkBoxOne.checked)
-    //     {
-    //         correctOne = true;
-    //     }
-    //     if(correctZero && correctOne){}
-    //     else if(!correctZero && correctOne){}
-    //     else if(correctZero && !correctOne){}
-    //     else
-    //     {
-    //         message = `${beforeMessage} ${key}${afterMessage}`;
-    //         break;
-    //     }
-    // }
+    for(var key in data)
+    {
+        var nameArray = data[key];
+        var index = 0;
+        var checkBoxZero = document.forms["formNewsLetter"][nameArray[index]];
+        var correctZero = false
+        var checkBoxOne = document.forms["formNewsLetter"][nameArray[index+1]];
+        var correctOne = false;
+        if(checkBoxZero && checkBoxZero.checked)
+        {
+            correctZero = true;
+        }
+        if(checkBoxOne && checkBoxOne.checked)
+        {
+            correctOne = true;
+        }
+        if(correctZero && correctOne){}
+        else if(!correctZero && correctOne){}
+        else if(correctZero && !correctOne){}
+        else
+        {
+            message = `${beforeMessage} ${key}${afterMessage}`;
+            break;
+        }
+    }
     return message;
 }
 
@@ -170,35 +170,35 @@ function validationCheckBox(id, language)
 function validation(id, language)
 {
     var message = '';
-    // var data = formData[language][id];
-    // var sign = signData[language][id];
-    // data['svgUser'] = sign['svgUser'];
-    // if(id != 8){
-    //     data['svgAgency'] = sign['svgAgency'];
-    // }
-    // for(var name in data)
-    // {
-    //     if(name == 'iDNumber')
-    //     {
-    //         if(!document.forms["formNewsLetter"][name].value || typeof document.forms["formNewsLetter"][name].value == "number")
-    //         {
-    //             message = data[name];
-    //             break;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         var formName = document.forms["formNewsLetter"][name];
-    //         if(formName)
-    //         {
-    //             if(formName.value == "")
-    //             {
-    //                 message = data[name];
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
+    var data = formData[language][id];
+    var sign = signData[language][id];
+    data['svgUser'] = sign['svgUser'];
+    if(id != 8){
+        data['svgAgency'] = sign['svgAgency'];
+    }
+    for(var name in data)
+    {
+        if(name == 'iDNumber')
+        {
+            if(!document.forms["formNewsLetter"][name].value || typeof document.forms["formNewsLetter"][name].value == "number")
+            {
+                message = data[name];
+                break;
+            }
+        }
+        else
+        {
+            var formName = document.forms["formNewsLetter"][name];
+            if(formName)
+            {
+                if(formName.value == "")
+                {
+                    message = data[name];
+                    break;
+                }
+            }
+        }
+    }
     return message;
 }
 
