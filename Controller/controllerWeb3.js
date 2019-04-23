@@ -1120,6 +1120,7 @@ class controllerWeb3
             this.updateData(json, uniqueNumber, fileHash, form_id, tableRecord);
         }
         this.updateTableRecord(uniqueNumber, form_id, tableRecord);
+        this.submitRendering(json, _path.join(base_path+`/public//htmlCache/${fileHash}.pdf`), fileHash, tableRecord, uniqueNumber);
         this.contractEventHandle(returnUrl, res);
     }
 
