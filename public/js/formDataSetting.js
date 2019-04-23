@@ -388,5 +388,4 @@ var buttonEvent =
     
 };
 
-var hyperledger = 1;
 

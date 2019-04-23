@@ -8,5 +8,4 @@ process.env.redisIP     = '18.138.0.49';
 process.env.redisPort   = 26375;
 process.env.mongodbIP   = '18.138.0.49';
 process.env.mongodbPort = 27017;
-process.env.hyperledger = 1;
 // process.env.IS_MASTER_PROCESS = (process.env.pm_id === undefined || process.env.pm_id === '0') ? 1 : 0;

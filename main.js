@@ -79,7 +79,7 @@ var StartServer = ()=>
 {
     //set directory for public
     app.use(_Express.static(__dirname + '/public'));
-    // parse application/json with 50 mb
+    // parse application/json with 100 mb
     app.use(_BodyParser.json({limit: '100mb'}));
     app.use(_BodyParser.urlencoded({limit: '100mb', extended: true}));
     
@@ -131,6 +131,8 @@ var StartServer = ()=>
      */
 
     app.post('/process', controllerWeb3.contractCallback.bind(controllerWeb3));
+
+    app.post('/hash', controllerWeb3.hashCallback.bind(controllerWeb3));
 
     app.listen(process.env.port, controllerWeb3.initServerWithPortCallback);
 

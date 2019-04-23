@@ -35,40 +35,19 @@ class controllerWeb3
         this.mongodb = mongodb;
         this.redis = redis; //testnet mainnet to testing!
         this.web3 = new _web3(new _web3.providers.HttpProvider(
-            `https://ropsten.infura.io/v3/${_setting.INFURA_API_KEY}`
+            "http://localhost:5000"
         ));
         this.formHTML = new _modelFormHTML();
         this.modelForm = new _modelForm();
         this.theContract = new this.web3.eth.Contract(_HashBlockJson.abi, _setting.CONTRACT_ADDRESS);
         this.tankObject = {};
         this.connection = _Mongoose.connection;
-        // connection.db.collection('formOnePage', (err, collectionObject)=>{
-        //     collectionObject.find({}).toArray((err, data)=>
-        //     {
-        //         this.formOnePage = data[0];
-        //     })
-        // })
-        // connection.db.collection('formTwoPage', (err, collectionObject)=>{
-        //     collectionObject.find({}).toArray((err, data)=>
-        //     {
-        //         this.formTwoPage = data[0];
-        //     })
-        // })
-
         this.connection.db.collection('form', (err, collectionObject)=>{
             collectionObject.find({}).toArray((err, data)=>
             {
                 this.formPage = data[0];
             })
         })
-
-
-        // connection.db.collection('formThreePage', (err, collectionObject)=>{
-        //     collectionObject.find({}).toArray((err, data)=>
-        //     {
-        //         this.formThreePage = data[0];
-        //     })
-        // })
     }
 
     /**
@@ -132,7 +111,8 @@ class controllerWeb3
             "action":String,
             "userAgreeSeeProperty":String,
             "userAgreeKeepKey":String,
-            "language" : String
+            "language" : String,
+            "documentHash" : String
         }
         for(var i = 0; i < inputproperty;i++)
         {
@@ -230,7 +210,8 @@ class controllerWeb3
                 "rejectForSendData" : String,
                 "propertyOffPlan" : String,
                 "hash" : String,
-                "userSignDate" : String
+                "userSignDate" : String,
+                "documentHash" : String
             };
         }
         return object;
@@ -481,6 +462,60 @@ class controllerWeb3
         res.send(JSON.stringify(data));
     }
 
+     /**
+     * get the contract hash for agency and uniqueNumber
+     * @param {object} req request
+     * @param {object} res response
+     */
+    async getHashFormBlockChainWithAgency(req, res)
+    {
+        var params = _url.parse(req.url, true).query;
+        var uniqueNumber = params.uniqueNumber;
+        var agency = params.account;
+        var language = this.updatelanguage(params.language);
+        var agent = _errorMessage['getAgent'];
+        if(!uniqueNumber || !agency)
+        {
+            this.sendError(403, res, agent[language], 'getHashFormBlockChain');
+            return;
+        }
+
+        var contractObject = await this.redis.hasValuesWithHM(agency);
+        var languageText = _errorMessage['getContractBalanceByAgent'];
+
+        if(!contract)
+        {
+            this.sendError(403, res, `${languageText[language]} : ${uniqueNumber}`, 'getHashFormBlockChain');
+            return;
+        }
+
+        var uniqueNumberArray = Object.keys(contractObject);
+
+        var num = uniqueNumberArray.includes(uniqueNumber);
+        var languageMessage = _errorMessage['getHashFormBlockChain'];
+
+        if(num == -1)
+        {
+            this.sendError(403, res, `${languageMessage[language]} : ${uniqueNumber}`, 'getHashFormBlockChain');
+            return;
+        }
+
+        _.log(`getContractBalanceByAgent:${agency}, ${uniqueNumber}`);
+
+        var data = {};
+        try
+        {
+            data[uniqueNumber] = await this.theContract.methods.Get(agency, num).call({from: _setting.WALLET_ADDRESS});
+        }
+        catch(error)
+        {
+            throw new Error(error);
+        }
+
+        res.send(JSON.stringify(data));
+    }
+
+
     /**
      * get the contract hash for agency and uniqueNumber
      * @param {object} req request
@@ -490,16 +525,7 @@ class controllerWeb3
     {
         var params = _url.parse(req.url, true).query;
         var uniqueNumber = params.uniqueNumber;
-        var agency = undefined;
-        //hyperledger_web3
-        if(process.env.hyperledger === '1')
-        {
-            agency = await this.redis.getDataWithH('recordAgency', uniqueNumber);
-        }
-        else
-        {
-            agency = params.account;
-        }
+        var agency = await this.redis.getDataWithH('recordAgency', uniqueNumber);
         var language = this.updatelanguage(params.language);
         var agent = _errorMessage['getAgent'];
         if(!uniqueNumber || !agency)
@@ -625,43 +651,41 @@ class controllerWeb3
         }
         else if(action == 'submit')
         {
-            if(process.env.hyperledger === '1'){
-                var agency = await this.redis.getDataWithH('recordAgency', uniqueNumber);
+            var agency = await this.redis.getDataWithH('recordAgency', uniqueNumber);
 
-                if(!agency)
-                {
-                    this.sendError(403, res, languageText[language]);
-                    return;
-                }
-                var contractObject = await this.redis.hasValuesWithHM(agency);
-        
-                if(!contract)
-                {
-                    this.sendError(403, res, languageText[language]);
-                    return;
-                }
-        
-                var uniqueNumberArray = Object.keys(contractObject);
-        
-                var num = uniqueNumberArray.includes(uniqueNumber);
-        
-                if(num == -1)
-                {
-                    this.sendError(403, res, languageText[language]);
-                    return;
-                }
-
-                try
-                {
-                    sendBackObject['hash'] = await this.theContract.methods.Get(agency, num).call({from: _setting.WALLET_ADDRESS});
-                }
-                catch(error)
-                {
-                    throw new Error(error);
-                }
-
-                sendBackObject['data'] = formData;
+            if(!agency)
+            {
+                this.sendError(403, res, languageText[language]);
+                return;
             }
+            var contractObject = await this.redis.hasValuesWithHM(agency);
+    
+            if(!contract)
+            {
+                this.sendError(403, res, languageText[language]);
+                return;
+            }
+    
+            var uniqueNumberArray = Object.keys(contractObject);
+    
+            var num = uniqueNumberArray.indexOf(uniqueNumber);
+    
+            if(num == -1)
+            {
+                this.sendError(403, res, languageText[language]);
+                return;
+            }
+
+            try
+            {
+                sendBackObject['hash'] = await this.theContract.methods.Get(agency, num).call({from: _setting.WALLET_ADDRESS});
+            }
+            catch(error)
+            {
+                throw new Error(error);
+            }
+
+            sendBackObject['data'] = formData;
 
             var subPath = `/htmlCache/${contract}.pdf`; //pdf
             var htmlCachePath = _path.join(base_path+`/public/${subPath}`);
@@ -1013,6 +1037,21 @@ class controllerWeb3
      * @param {object} req request
      * @param {object} res response
      */
+    hashCallback(req, res)
+    {
+        var formData = req.body;
+        if(formData)
+        {
+            var dataHash = _.sha1(JSON.stringify(formData));
+        }
+        res.send(dataHash);
+    }
+
+    /**
+     * post data with contract
+     * @param {object} req request
+     * @param {object} res response
+     */
     async contractCallback(req, res)
     {
         var formData = req.body;
@@ -1024,7 +1063,6 @@ class controllerWeb3
             var returnUrl = formData.shaOneReturnUrl;
             var agency = formData.agency;
             var uniqueNumberCache = formData.uniqueNumber;
-            var dataHash = _.sha1(JSON.stringify(formData));
             var unixTime = new Date();
             var form_id = Number(formData.form_id);
             var tableRecord = formData.tableRecord == undefined || formData.tableRecord == null ? 0 : Number(formData.tableRecord);
@@ -1056,11 +1094,8 @@ class controllerWeb3
                     _.log(`save with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
                     this.saveData(formData, form_id, tableRecord);
                     this.redis.saveDataWithH('record', uniqueNumber, fileHash);
-                    this.redis.saveDataWithH(agency, uniqueNumber, fileHash);
-                    if(process.env.hyperledger === '1')
-                    {       
-                        this.redis.saveDataWithH('recordAgency', uniqueNumber, agency);             
-                    }             
+                    this.redis.saveDataWithH(agency, uniqueNumber, fileHash);    
+                    this.redis.saveDataWithH('recordAgency', uniqueNumber, agency);                  
                 }
                 else
                 {
@@ -1076,7 +1111,7 @@ class controllerWeb3
                 if(formData.form_id != 8){
                     formData.agencySignDate = _moment().format("YYYY-MM-DD");
                 }
-                this.runWeb3Function(dataHash, formData, agency, isNeedToUpdate, form_id, returnUrl, res);
+                this.runWeb3Function(formData, agency, isNeedToUpdate, form_id, returnUrl, res);
             }
         }
     }
@@ -1114,44 +1149,10 @@ class controllerWeb3
      * @param {Number} returnUrl        sha One Return url
      * @param {Object} res              response
      */
-    async runWeb3Function(dataHash, json, agency, isNeedToUpdate, form_id, returnUrl, res)
+    async runWeb3Function(json, agency, isNeedToUpdate, form_id, returnUrl, res)
     {
-        var uniqueNumber = json.uniqueNumber;
-        var contractObject = await this.redis.hasValuesWithHM(agency);
-        var num = 0;
-        if(contractObject)
-        {
-            num = Object.keys(contractObject).indexOf(uniqueNumber);
-        }
-
-        var language = this.updatelanguage(json.language);
-        var languageText = _errorMessage['runWeb3Function'];
-
-        var method_call_abi = undefined;
-        try
-        {
-            method_call_abi = await this.theContract.methods.UploadHash(agency, num, dataHash).send({from: _setting.WALLET_ADDRESS});
-        }
-        catch(exception)
-        {
-            console.log(`what is exception ${exception}`);
-            this.sendError(403, res, languageText[language]);
-            return;
-        }
-        if(!method_call_abi)
-        {
-            this.sendError(403, res, languageText[language], 'runWeb3Function');
-            return;
-        }
-
-        _.log(`runWeb3Function ${uniqueNumber}, ${agency}, ${form_id}`);
-
+        _.log(`runWeb3Function ${json.uniqueNumber}, ${agency}, ${form_id}`);
         this.handleResToClient(json, isNeedToUpdate, form_id, agency, returnUrl, res);
-
-        if(process.env.hyperledger !== '1')
-        {       
-            this.handleSendTransaction(method_call_abi);
-        }
     }
 
     /**
@@ -1176,11 +1177,8 @@ class controllerWeb3
             _.log(`save with ${uniqueNumber}, ${form_id}, ${tableRecord}, ${fileHash}, with agency ${agency}`);
             this.saveData(json, form_id, tableRecord);
             this.redis.saveDataWithH('record', uniqueNumber, fileHash);
-            this.redis.saveDataWithH(agency, uniqueNumber, fileHash);
-            if(process.env.hyperledger === '1')
-            {       
-                this.redis.saveDataWithH('recordAgency', uniqueNumber, agency);            
-            }           
+            this.redis.saveDataWithH(agency, uniqueNumber, fileHash);    
+            this.redis.saveDataWithH('recordAgency', uniqueNumber, agency);                    
         }
         else
         {
@@ -1188,47 +1186,8 @@ class controllerWeb3
             this.updateData(json, uniqueNumber, fileHash, form_id, tableRecord);
         }
         this.updateTableRecord(uniqueNumber, form_id, tableRecord);
+        this.submitRendering(json, _path.join(base_path+`/public/htmlCache/${fileHash}.pdf`), fileHash, tableRecord, uniqueNumber);
         this.contractEventHandle(returnUrl, res);
-    }
-
-    /**
-     * handle the object after method api with send transaction.
-     * get the transcation Count
-     * gen txData.
-     * sign the transaction with private key Buff
-     * send transaction with signed.
-     * if error, just re-try.
-     * @param {object} method_call_abi  method abi
-     * @param {String} uniqueNumber     contract data's uniqueNumber
-     * @param {String} agency           contract data's agency
-     */
-    async handleSendTransaction(method_call_abi, uniqueNumber, agency)
-    {
-        _.log(`handleSendTransaction: ${uniqueNumber}, ${agency}`);
-        var from_addr = _setting.WALLET_ADDRESS;
-        var contract_addr = _setting.CONTRACT_ADDRESS;
-
-        var txCount = await this.web3.eth.getTransactionCount(from_addr);
-        var txData = {
-            nonce: this.web3.utils.toHex(txCount),
-            gasLimit: this.web3.utils.toHex(250000),
-            gasPrice: this.web3.utils.toHex(10e8),
-            to: contract_addr,
-            from: from_addr,
-            data: method_call_abi,
-        };
-
-        var transaction = new _tx(txData);                             
-        var privateKeyBuf = Buffer.from(_setting.ETH_P_KEY, 'hex');   
-
-        transaction.sign(privateKeyBuf);
-        var serializedTx = transaction.serialize().toString('hex');
-        var confirmSendSignTransaction = await this.web3.eth.sendSignedTransaction('0x' + serializedTx);
-        // console.log(confirmSendSignTransaction);
-        if(!confirmSendSignTransaction)
-        {
-            this.handleSendTransaction(method_call_abi);
-        }
     }
 
     /**

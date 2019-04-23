@@ -123,6 +123,8 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" src="https://unpkg.com/prismic-javascript"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+        <script type="text/javascript" src="/js/dAppSetting.js"></script>
 		<script type="text/javascript" src="/js/popUpsignatureHTML.js"></script>
 		<script type="text/javascript" src="/js/formDataSetting.js"></script>
         <script type="text/javascript" src="/js/controlContract.js"></script>
@@ -165,8 +167,8 @@
                         代理，以推銷位於
                         <input type="text" name="property" placeholder="請輸入大廈名稱">
                         的物業 ( “ 物業 ” ) 。本協議由
-                        <input type="text" class="datepick" name="createDay" placeholder="按">
-                        日起生效，並於<input type="text" class="datepick" name="expiresDay" placeholder="按">
+                        <input type="text" id="datepicker0" name="createDay" placeholder="按">
+                        日起生效，並於<input type="text" id="datepicker1" name="expiresDay" placeholder="按">
                         日屆滿 (首尾兩天包括在內)(“有效期”)。[注意﹕如屬獨家代理的關係，則即使物業在有效期內並非經由代理出售，賣方仍可能須向代理支付佣金，因此當賣方與代理建立獨家代理關係時應謹慎考慮。代理以獨家代理身分行事時須履行的特別責任，可在第13條下以額外條款的形式指明。]
                     </li>
                     <li>代理關係及代理的責任
@@ -454,6 +456,5 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="/js/jqueryHandle.js"></script>
     </body>
 </html>

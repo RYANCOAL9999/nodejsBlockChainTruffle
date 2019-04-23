@@ -1,57 +1,3 @@
-var dbFormData = undefined;
-
-/**
- * api request with ajax
- * @param {Object} data data with access Users
- */
-function hashQuery(data)
-{
-    return new Promise((resolve)=>{
-        $.ajax({
-            type: 'post',
-            url: '/api/encryption',
-            data: data,
-            success: function (data) {
-                resolve(data);
-            }
-        });
-    })
-}
-
-/**
- * submit hash with data
- */
-async function playHash()
-{
-    if(dbFormData)
-    {
-        var form_id = dbFormData.form_id;
-        var form = $(`#form${form_id}Letter`);
-        var data = form.serialize();
-        data += `&tableRecord=${dbFormData.inputproperty}`;
-        data += `&form_id=${form_id}`;
-        data += `&action=${dbFormData.action}`;
-        data += `&svgUser=${dbFormData.svgUser}`;
-        data += `&svgAgency=${dbFormData.svgAgency}`;
-        var hash = await hashQuery(data);
-        $("#formHash").val(hash);
-    }
-}
-
-/**
- * render html
- * @param {Object} data  data with submit 
- * @param {String} hash  submit data with hash
- */
-async function render(data, hash)
-{
-    var dataHash = await hashQuery(data);
-    var blockHash = hash;
-    dbFormData = data;
-    $("#formHash").val(dataHash);
-    $("#blockChainHash").val(blockHash);
-}
-
 /**
  * 
  * @param {String} url   url for pdf
@@ -62,7 +8,8 @@ function formTest(url, data, hash)
 {
     window.open(url, '_blank');
     if(data && hash){
-        render(data, hash);
+        $("#formHash").val(hash);
+        $("#blockChainHash").val(data.documentHash);
     }
 }
 /**
