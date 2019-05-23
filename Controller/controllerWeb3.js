@@ -9,11 +9,11 @@ let _HashBlockJson  =   require(base_path+'/build/contracts/HashBlock.json');
 let _modelFormHTML  =   require(base_path+'/model/modelFormHTML');
 let _tx             =   require('ethereumjs-tx');
 let _fsHelper       =   require(base_path+'/connection/fsHelper');
-let _Mongoose       =   require('mongoose');
 let _moment         =   require('moment');
 let _api2Pdf        =   require('api2pdf');
 let _errorMessage   =   require(base_path+'/enum/errorMessage');
 let a2pClient       =   new _api2Pdf('ba28d6a8-b161-416a-8bba-7828fe14c192');
+let _defaultHeader  =   require(base_path+'/enum/httpHeader');
 
 /**
  * controllerWeb3 with api functions
@@ -41,11 +41,22 @@ class controllerWeb3
         this.modelForm = new _modelForm();
         this.theContract = new this.web3.eth.Contract(_HashBlockJson.abi, _setting.CONTRACT_ADDRESS);
         this.tankObject = {};
-        this.connection = _Mongoose.connection;
-        this.connection.db.collection('form', (err, collectionObject)=>{
-            collectionObject.find({}).toArray((err, data)=>
-            {
-                this.formPage = data[0];
+        this.formPage = undefined;
+        this.genformPage(mongodb.MongooseConnection);
+    }
+
+    /**
+     * gen forPage content form pdf
+     * @param {connection} connection 
+     */
+    genformPage(connection)    
+    {
+        connection.once('open', function () {
+            connection.db.collection('form', (err, collectionObject)=>{
+                collectionObject.find({}).toArray((err, data)=>
+                {
+                    this.formPage = data[0];
+                })
             })
         })
     }
@@ -432,6 +443,13 @@ class controllerWeb3
      */
     async getContractBalanceByAgent(req, res)
     {
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
+        {
+            this.sendError(404, res, 0, 'getContractBalanceByAgent');
+            return;
+        }
+
         var params = _url.parse(req.url, true).query;
         var agency = params.account;
         var language = this.updatelanguage(params.language);
@@ -469,6 +487,13 @@ class controllerWeb3
      */
     async getHashFormBlockChainWithAgency(req, res)
     {
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
+        {
+            this.sendError(404, res, 0, 'getHashFormBlockChain');
+            return;
+        }
+
         var params = _url.parse(req.url, true).query;
         var uniqueNumber = params.uniqueNumber;
         var agency = params.account;
@@ -595,6 +620,13 @@ class controllerWeb3
      */
     async getContractBalance(req, res)
     {
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
+        {
+            this.sendError(404, res, 0, 'getContractBalance');
+            return;
+        }
+
         var params = _url.parse(req.url, true).query;
         var uniqueNumber = params.uniqueNumber;
         var language = this.updatelanguage(params.language);
@@ -697,6 +729,7 @@ class controllerWeb3
                 var htmlCachePath = await this.submitRendering(formData, htmlCachePath, contract, inputProperty, uniqueNumber);
                 sendBackObject.url = subPath;
                 res.send(JSON.stringify(sendBackObject));
+
             }
             else
             {
@@ -908,6 +941,13 @@ class controllerWeb3
      */
     async getContracts(req, res)
     {
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
+        {
+            this.sendError(404, res, 0, 'getContractBalance');
+            return;
+        }
+
         var params = _url.parse(req.url, true).query;
         var agency = params.account;
         var before = params.before == undefined || params.before == null ? null : params.before;
@@ -1054,6 +1094,13 @@ class controllerWeb3
      */
     async contractCallback(req, res)
     {
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
+        {
+            this.sendError(406, res, 0, 'contractCallback');
+            return;
+        }
+
         var formData = req.body;
 
         // console.log(formData);
@@ -1193,11 +1240,12 @@ class controllerWeb3
     /**
      * query for access white
      * @param {object} query query
+     * @param {connection} connection mongodb connection
      */
-    getAccessUsers(query)
+    getAccessUsers(query, connection)
     {
         return new Promise((resolve)=>{
-            this.connection.db.collection('accessUsers', (err, collectionObject)=>{
+            connection.db.collection('accessUsers', (err, collectionObject)=>{
                 collectionObject.find(query).toArray((err, data)=>
                 {
                     resolve(data[0]);
@@ -1216,13 +1264,19 @@ class controllerWeb3
      */
     async adminCorrect(req, res)
     {
+        if(!_.checkHeader(req.headers, _defaultHeader, null))
+        {
+            this.sendError(404, res, 0, 'adminCorrect');
+            return;
+        }
+        
         var params = _url.parse(req.url, true).query;
         var user = params.user;
         var password = params.password;
         var correct = false;
         if(user &&  password)
         {
-            var accessUserObject = await this.getAccessUsers({'user' : user});
+            var accessUserObject = await this.getAccessUsers({'user' : user}, this.mongodb.MongooseConnection);
             if(accessUserObject){
                 var defaultadmin = accessUserObject.user;
                 var defaultPassword = accessUserObject.password;
@@ -1241,7 +1295,7 @@ class controllerWeb3
         }
         else
         {
-            this.sendError(403, res, 0, 'adminCorrect');
+            this.sendError(401, res, 0, 'adminCorrect');
         }
 
     }

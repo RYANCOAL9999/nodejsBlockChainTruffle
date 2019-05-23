@@ -105,7 +105,52 @@ _.mixin({
 			}
 		}
 		return answerList;	
-	}
+	},
+    checkHeader:function(headers, headersObject, accessUserObject)
+    {
+		var result = true;
+		if(!accessUserObject)
+		{
+			delete headersObject["x-kconsultingpro-user"];
+			delete headersObject["x-kconsultingpro-password"];
+		}
+		
+        for(var key in headersObject)
+        {
+            if(!headers[key])
+            {
+                result = false;
+                break;
+            }
+            else
+            {
+                if(headersObject[key] === 'Any')
+                {
+                    continue;
+				}
+				else if(headersObject[key] === 'default')
+				{
+					if(accessUserObject)
+					{
+						var names = key.split('-');
+						var name = names[names.length - 1];
+						if(accessUserObject[name] !== headers[key])
+						{
+							result = false;
+							break;
+						}
+					}
+				}
+                else if(headers[key]  !== headersObject[key])
+                {
+                    result = false;
+                    break;
+				}
+            }
+        }
+        return result;
+        
+    }
 
 
 });

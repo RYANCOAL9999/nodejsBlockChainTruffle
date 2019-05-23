@@ -12,6 +12,7 @@ function formTest(url, data, hash)
         $("#blockChainHash").val(data.documentHash);
     }
 }
+
 /**
  * read the contract with api balance
  */
@@ -23,8 +24,9 @@ function readContract()
         type: 'get',
         url: `/api/users/balance`,
         data:`uniqueNumber=${uniqueNumber}`,
-        success: function (result) {
-            var json = JSON.parse(result);
+        headers:generalHeader("kconsultingpro", "admin", "ASDsuki123"),
+        success: function (data) {
+            var json = JSON.parse(data); 
             if(json.url)
             {
                 formTest(json.url, json.data, json.hash);
@@ -63,6 +65,7 @@ function agencySubmit()
         type: form.attr('method'),
         url: form.attr('action'),
         data: form.serialize(),
+        headers:generalHeader("kconsultingpro", "admin", "ASDsuki123"),
         success: function (data) {
             data = JSON.parse(data);
             var contract = data.contract;

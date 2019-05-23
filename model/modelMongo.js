@@ -14,6 +14,7 @@ class modelMongo
         // this.mongoConnectionHelper = new _MongoConnectionHelper('192.168.1.79', 27017);
         this.mongoConnectionHelper = new _MongoConnectionHelper(ipAddress, port);
         this.db = this.mongoConnectionHelper.dbAdapter;
+        this.MongooseConnection = this.mongoConnectionHelper.MongooseConnection;
     }
 
     /**

@@ -30,6 +30,7 @@ function getNum(agency, uniqueNumber)
             type: 'get',
             url: '/api/users/agency',
             data: `account=${agency}`,
+            headers:generalHeader("kconsultingpro", "admin", "ASDsuki123"),
             success: function (contractObject) {
                 var uniqueNumberArray = contractObject["contract"];
                 if(uniqueNumberArray)
@@ -278,11 +279,12 @@ function saveContract(form_id, language, url, data, action, callback)
         data += `&userAgreeSeeProperty=${userAgreeSeeProperty}`;
         data += `&userAgreeKeepKey=${userAgreeKeepKey}`;
     }
-    
+        
     $.ajax({
         type: form.attr('method'),
         url: url,
         data: data,
+        headers:generalHeader("kconsultingpro", "admin", "ASDsuki123"),
         success: function (data) {
             data = JSON.parse(data);
             if(action == 'submit')

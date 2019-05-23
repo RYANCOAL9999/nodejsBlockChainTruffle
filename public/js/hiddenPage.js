@@ -9,6 +9,7 @@ function adminCorrect(data)
             type: 'get',
             url: `/admin`,
             data:data,
+            headers:generalHeader("kconsultingpro", null, null),
             success: function (data) {
                 resolve(true);
             },
