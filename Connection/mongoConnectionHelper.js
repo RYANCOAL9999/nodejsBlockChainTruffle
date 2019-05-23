@@ -13,23 +13,14 @@ class mongoConnectionHelper extends _EventEmitter
     constructor(host, port)
     {
         super();
+        this.createConnection(host, port);
         this.host           =   host;
         this.port           =   port;
         this.dbConnected    =   false;
         this.db             =   undefined;
-        this.initConnection();
         this.on('Removedb', this.receiptRemoveClient);    
     }
-
-    /**
-     * init with create connection
-     */
-    initConnection()
-    {
-        this.db = this.createConnection(this.host, this.port);
-        this.checkConnection();
-    }
-
+    
     /**
      * creating connection
      * @param {string} host 
@@ -37,22 +28,24 @@ class mongoConnectionHelper extends _EventEmitter
      */
     createConnection(host, port)
     {
-        _Mongoose.connect(`mongodb://${host}:${port}/truffle`, 	
+        _Mongoose.connect(`mongodb://${process.env.DBadmin}:${process.env.DBpassword}@${host}:${port}/truffle?authSource=${process.env.auth}&w=1`,
+        // _Mongoose.connect(`mongodb://${host}:${port}/truffle`,
         {
-            // useMongoClient: true,
             autoIndex: false, 
             reconnectTries: Number.MAX_VALUE,
             reconnectInterval: 500, 
-            poolSize: 10, 
+            poolSize: 5, 
             bufferMaxEntries: 0,
-            useNewUrlParser : true
-        },
-        (err)=>{
-            if(err){
-                _.log(error);
-            }
-        });
-        return _Mongoose.connection;
+            useNewUrlParser : true,
+            family: 4
+        }).then(()=>{
+            _.log(`Connected to Mongo`);
+            this.db = _Mongoose.connection;
+            this.getErrorFromMongo();
+        }, (err)=>{
+            _.log(`Can't connected to Mongo`);
+            global.exit();
+        })
     }
 
     /**
@@ -62,7 +55,7 @@ class mongoConnectionHelper extends _EventEmitter
     {
         this.db = undefined;
         // remake the connection
-        this.initConnection();
+        this.createConnection(this.host, this.port);
     }
 
     /**
@@ -79,24 +72,19 @@ class mongoConnectionHelper extends _EventEmitter
     }
 
     /**
-     * check mongodb is connection
-     */
-    checkConnection()
-    {
-        this.db.once('open', ()=>
-        {
-            _.log(`Connected to Mongo`);
-            this.dbConnected = true;    
-        })
-        this.getErrorFromMongo();
-    }
-
-    /**
      * get dbAdapter
      */
     get dbAdapter()
     {
         return this.db;
+    }
+
+    /**
+     * get MoogooseConnection
+     */
+    get MongooseConnection()
+    {
+        return _Mongoose.connection;
     }
 
     /**
