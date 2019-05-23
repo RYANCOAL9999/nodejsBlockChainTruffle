@@ -7,7 +7,7 @@ module.exports = {
 
     // First application
     {
-      name        : 'Small Contract',
+      name        : 'Smart Contract',
       script      : 'main.js',
 	    instances   : 'max',
 	    exec_mode   : 'cluster',
