@@ -12,7 +12,7 @@ let _fsHelper       =   require(base_path+'/connection/fsHelper');
 let _moment         =   require('moment');
 let _api2Pdf        =   require('api2pdf');
 let _errorMessage   =   require(base_path+'/enum/errorMessage');
-let a2pClient       =   new _api2Pdf('43696e0d-9901-4506-a7af-2d16e2f2d2dd');
+let a2pClient       =   new _api2Pdf('ba28d6a8-b161-416a-8bba-7828fe14c192');
 let _defaultHeader  =   require(base_path+'/enum/httpHeader');
 
 /**

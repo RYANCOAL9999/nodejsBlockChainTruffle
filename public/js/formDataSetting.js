@@ -388,4 +388,6 @@ var buttonEvent =
     
 };
 
-var hyperledger = 0;
+var agent = "kconsultingpro";
+var user = "admin";
+var pw = "ASDsuki123";

@@ -1,4 +1,6 @@
-var dbFormData = undefined;
+var agent = "kconsultingpro";
+var user = "admin";
+var pw = "ASDsuki123";
 
 /**
  * read the contract with api balance
@@ -11,6 +13,7 @@ function readContract()
         type: 'get',
         url: `/api/users/balance`,
         data:`uniqueNumber=${uniqueNumber}`,
+        headers:generalHeader(agent, user, pw),
         success: function (data) {
             var json = JSON.parse(data);
             if(json.url)
@@ -51,6 +54,7 @@ function agencySubmit()
         type: form.attr('method'),
         url: form.attr('action'),
         data: form.serialize(),
+        headers:generalHeader(agent, user, pw),
         success: function (data) {
             data = JSON.parse(data);
             var contract = data.contract;

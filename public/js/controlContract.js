@@ -209,11 +209,12 @@ function saveContract(form_id, language, url, data, action, callback)
         data += `&userAgreeSeeProperty=${userAgreeSeeProperty}`;
         data += `&userAgreeKeepKey=${userAgreeKeepKey}`;
     }
-    
+        
     $.ajax({
         type: form.attr('method'),
         url: url,
         data: data,
+        headers:generalHeader(agent, user, pw),
         success: function (data) {
             data = JSON.parse(data);
             if(action == 'submit')

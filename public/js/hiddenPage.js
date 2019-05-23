@@ -4,11 +4,13 @@
  */
 function adminCorrect(data)
 {
+    var agent = "kconsultingpro";
     return new Promise((resolve)=>{
         $.ajax({
             type: 'get',
             url: `/admin`,
             data:data,
+            headers:generalHeader(agent, null, null),
             success: function (data) {
                 resolve(true);
             },
