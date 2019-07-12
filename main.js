@@ -51,26 +51,26 @@ process.on('SIGINT', () => {
 /**
  * for exception using
  */
-// process.on('unhandledRejection', (reason)=>{
-// 	console.log('Unhandled Rejection reason : ', reason);
-// 	global.exit();
-// });
+process.on('unhandledRejection', (reason)=>{
+	console.log('Unhandled Rejection reason : ', reason);
+	global.exit();
+});
 
 /**
  * for uncaught Exception
  */
-// process.on('uncaughtException', (err)=>{
-// 	console.log('uncaught Exception err : ', err);
-// 	global.exit();
-// });
+process.on('uncaughtException', (err)=>{
+	console.log('uncaught Exception err : ', err);
+	global.exit();
+});
 
 /**
  * for rejeact handled
  */
-// process.on('rejectionHandled', (promise) => {
-// 	console.log('rejectionHandled promise : ', promise);
-// 	global.exit();
-// });
+process.on('rejectionHandled', (promise) => {
+	console.log('rejectionHandled promise : ', promise);
+	global.exit();
+});
 
 /**
  * start Server with controller and express api

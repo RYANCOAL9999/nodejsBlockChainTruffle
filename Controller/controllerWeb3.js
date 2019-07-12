@@ -12,8 +12,9 @@ let _fsHelper       =   require(base_path+'/connection/fsHelper');
 let _moment         =   require('moment');
 let _api2Pdf        =   require('api2pdf');
 let _errorMessage   =   require(base_path+'/enum/errorMessage');
-let a2pClient       =   new _api2Pdf('ba28d6a8-b161-416a-8bba-7828fe14c192');
+let a2pClient       =   new _api2Pdf('40aece99-f9de-428a-a3c3-979726f48764');
 let _defaultHeader  =   require(base_path+'/enum/httpHeader');
+let _Mongoose       =   require('mongoose');
 
 /**
  * controllerWeb3 with api functions
@@ -42,20 +43,21 @@ class controllerWeb3
         this.theContract = new this.web3.eth.Contract(_HashBlockJson.abi, _setting.CONTRACT_ADDRESS);
         this.tankObject = {};
         this.formPage = undefined;
-        this.genformPage(mongodb.MongooseConnection);
+        this.genformPage(mongodb.MongooseConnection, this);
     }
 
     /**
      * gen forPage content form pdf
-     * @param {connection} connection 
+     * @param {connection} connection
+     * @param {controller} classObject 
      */
-    genformPage(connection)    
+    genformPage(connection, classObject)    
     {
         connection.once('open', function () {
             connection.db.collection('form', (err, collectionObject)=>{
                 collectionObject.find({}).toArray((err, data)=>
                 {
-                    this.formPage = data[0];
+                    classObject.formPage = data[0];
                 })
             })
         })
@@ -443,7 +445,7 @@ class controllerWeb3
      */
     async getContractBalanceByAgent(req, res)
     {
-        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]}, this.mongodb.MongooseConnection);
         if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
         {
             this.sendError(404, res, 0, 'getContractBalanceByAgent');
@@ -487,7 +489,7 @@ class controllerWeb3
      */
     async getHashFormBlockChainWithAgency(req, res)
     {
-        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]}, this.mongodb.MongooseConnection);
         if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
         {
             this.sendError(404, res, 0, 'getHashFormBlockChain');
@@ -620,7 +622,7 @@ class controllerWeb3
      */
     async getContractBalance(req, res)
     {
-        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]}, this.mongodb.MongooseConnection);
         if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
         {
             this.sendError(404, res, 0, 'getContractBalance');
@@ -941,7 +943,7 @@ class controllerWeb3
      */
     async getContracts(req, res)
     {
-        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]}, this.mongodb.MongooseConnection);
         if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
         {
             this.sendError(404, res, 0, 'getContractBalance');
@@ -1094,7 +1096,7 @@ class controllerWeb3
      */
     async contractCallback(req, res)
     {
-        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]});
+        var accessUserObject = await this.getAccessUsers({'user' : req.headers["x-kconsultingpro-user"]}, this.mongodb.MongooseConnection);
         if(!_.checkHeader(req.headers, _defaultHeader, accessUserObject))
         {
             this.sendError(406, res, 0, 'contractCallback');
