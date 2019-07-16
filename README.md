@@ -32,13 +32,19 @@ step 3 : PM2 start ecosystem.config.js
 Nginx Proxy server with with 80(http) or 443(https) ports:
 http://blog.topspeedsnail.com/archives/4982
 
-You must need to bing IP after Install mongodb and Redis.
+You must need to bing IP and make to the systems with daemon after Install mongodb and Redis.
 
 Redis bing IP :
 https://dotblogs.com.tw/colinlin/2017/06/26/150257
 
+Redis daemon :
+https://stackoverflow.com/questions/14816892/how-to-keep-redis-server-running
+
 Mongodb bind IP :
 https://docs.mongodb.com/manual/core/security-mongodb-configuration/
+
+Mongodb daemon :
+https://docs.mongodb.com/manual/tutorial/manage-mongodb-processes/
 
 It must connect to mongodb with admin account.
 This is tutorial and why need to doing this:
